@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════
+   CSS CUSTOM PROPERTIES
+═══════════════════════════════════════════════════════ */
+:root {
+  --bg:           #f8fafc;
+  --bg-card:      #ffffff;
+  --bg-raised:    #f1f5f9;
+  --bg-input:     #ffffff;
+  --border:       #e2e8f0;
+  --border-2:     #cbd5e1;
+  --text:         #0f172a;
+  --text-2:       #475569;
+  --text-3:       #94a3b8;
+  --nav-bg:       #ffffff;
+  --nav-border:   #e2e8f0;
+  --accent:       #6366f1;
+  --accent-light: #e0e7ff;
+  --accent-mid:   #818cf8;
+  --accent-dark:  #4f46e5;
+  --transition:   0.15s ease;
+  --font-hero:    'Plus Jakarta Sans', sans-serif;
+  --font-section: 'Space Grotesk', sans-serif;
+  --font-logo:    'Manrope', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+}
+
+.dark {
+  --bg:           #0a0a14;
+  --bg-card:      #12121e;
+  --bg-raised:    #1a1a2e;
+  --bg-input:     #12121e;
+  --border:       #1e1e3a;
+  --border-2:     #2d2d4e;
+  --text:         #f1f5f9;
+  --text-2:       #94a3b8;
+  --text-3:       #475569;
+  --nav-bg:       #0d0d1a;
+  --nav-border:   #1e1e3a;
+  --accent-light: #6366f120;
+  --accent-mid:   #a5b4fc;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  transition: background var(--transition), color var(--transition);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* Hero headings — Plus Jakarta Sans */
+h1 {
+  font-family: var(--font-hero);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  color: var(--text);
+}
+
+/* Section headings — Space Grotesk */
+h2, h3, h4 {
+  font-family: var(--font-section);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ── Inputs ── */
+.calc-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--border-2);
+  outline: none;
+  cursor: pointer;
+}
+.calc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.4);
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+.calc-slider::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 6px rgba(99,102,241,0.15), 0 2px 8px rgba(99,102,241,0.4);
+  transform: scale(1.1);
+}
+.calc-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  box-shadow: 0 2px 8px rgba(99,102,241,0.4);
+}
+
+/* ── Chat FAB ── */
+.chat-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: var(--accent);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  box-shadow: 0 4px 20px rgba(99,102,241,0.45);
+  cursor: pointer;
+  z-index: 1000;
+  border: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.chat-fab:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 8px 32px rgba(99,102,241,0.55); }
+.chat-fab:active { transform: scale(0.96); }
+.chat-fab:not(.open) { animation: fabPulse 3s ease-in-out infinite; }
+.fab-label { font-size: 7px; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: 0.06em; font-family: var(--font-body); }
+
+/* ── Keyframes ── */
+@keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes slideUp { from { opacity:0; transform:translateY(24px) scale(0.97); } to { opacity:1; transform:translateY(0) scale(1); } }
+@keyframes fabPulse { 0%,100% { box-shadow:0 4px 20px rgba(99,102,241,0.45); } 50% { box-shadow:0 4px 28px rgba(99,102,241,0.65); } }
+
+.page-enter { animation: fadeUp 0.35s ease both; }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-mid); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
