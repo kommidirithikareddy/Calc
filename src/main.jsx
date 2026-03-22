@@ -2,15 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './styles/index.scss'
-import './styles/calc-colors.css'
 
-// Pages
-import Home        from './pages/Home'
-import Category    from './pages/Category'
-import Subcategory from './pages/Subcategory'
-import Calculator  from './pages/Calculator'
+import Home              from './pages/Home'
+import BrowseCalculators from './pages/BrowseCalculators'
+import Category          from './pages/Category'
+import Subcategory       from './pages/Subcategory'
+import Calculator        from './pages/Calculator'
 
-// Theme provider — .jsx because it contains JSX
 import { ThemeProvider } from './hooks/useTheme'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -18,17 +16,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ThemeProvider>
       <BrowserRouter>
         <Routes>
-          {/* Homepage */}
-          <Route path="/" element={<Home />} />
-
-          {/* Category — e.g. /finance */}
-          <Route path="/:category" element={<Category />} />
-
-          {/* Subcategory — e.g. /finance/investment */}
-          <Route path="/:category/:subcategory" element={<Subcategory />} />
-
-          {/* Calculator — e.g. /finance/investment/compound-interest */}
-          <Route path="/:category/:subcategory/:calculator" element={<Calculator />} />
+          <Route path="/"                                          element={<Home />} />
+          <Route path="/calculators"                               element={<BrowseCalculators />} />
+          <Route path="/:category"                                 element={<Category />} />
+          <Route path="/:category/:subcategory"                    element={<Subcategory />} />
+          <Route path="/:category/:subcategory/:calculator"        element={<Calculator />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
