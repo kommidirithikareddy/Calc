@@ -1,21 +1,9 @@
-// ═══════════════════════════════════════════════════════════════
-// CalC — Master Calculator Registry
-// Every calculator is defined here with:
-//   slug         — URL segment  e.g. "compound-interest"
-//   name         — Display name
-//   category     — parent category slug
-//   subcategory  — parent subcategory slug
-//   description  — short description shown in cards
-//   about        — 2-3 sentence educational intro shown on calc page
-//   related      — array of 3 related calculator slugs
-//   inputStyle   — 'fields' | 'sliders' | 'wizard'
-// ═══════════════════════════════════════════════════════════════
-
 export const calculators = [
 
   // ─────────────────────────────────────────
-  // FINANCE — Investment & Growth
+  // FINANCE
   // ─────────────────────────────────────────
+  // Investment & Growth
   {
     slug: 'compound-interest', name: 'Compound Interest Calculator',
     category: 'finance', subcategory: 'investment', inputStyle: 'sliders',
@@ -46,7 +34,7 @@ export const calculators = [
   },
   {
     slug: 'fire-calculator', name: 'FIRE Calculator',
-    category: 'finance', subcategory: 'investment', inputStyle: 'wizard',
+    category: 'finance', subcategory: 'fire', inputStyle: 'wizard',
     description: 'Financial Independence Retire Early — find your FIRE date and target number.',
     about: 'FIRE (Financial Independence, Retire Early) is a movement built around aggressive saving and smart investing to achieve freedom from work decades before traditional retirement age. Enter your income, expenses, savings rate and expected return to find your exact FIRE number and projected retirement date.',
     related: ['compound-interest', 'retirement-planner', 'safe-withdrawal'],
@@ -93,10 +81,7 @@ export const calculators = [
     about: 'Dividend yield measures how much a company pays in dividends relative to its stock price. It is a key metric for income investors evaluating whether a dividend stock provides adequate return relative to its price and risk.',
     related: ['roi-calculator', 'compound-interest', 'investment-calculator'],
   },
-
-  // ─────────────────────────────────────────
-  // FINANCE — Loans & Credit
-  // ─────────────────────────────────────────
+  // Loans & Credit
   {
     slug: 'loan-emi', name: 'Loan EMI Calculator',
     category: 'finance', subcategory: 'loans', inputStyle: 'sliders',
@@ -130,7 +115,7 @@ export const calculators = [
     category: 'finance', subcategory: 'loans', inputStyle: 'wizard',
     description: 'Compare avalanche vs snowball strategy to find your fastest path to debt freedom.',
     about: 'The debt avalanche (highest interest first) and debt snowball (smallest balance first) are the two most popular debt payoff strategies. This planner lets you model both, compare total interest paid and payoff dates, and choose the right approach for your psychological and financial situation.',
-    related: ['credit-card-payoff', 'loan-payoff', 'budget-calculator'],
+    related: ['credit-card-payoff', 'loan-payoff', 'loan-emi'],
   },
   {
     slug: 'auto-loan', name: 'Auto Loan Calculator',
@@ -148,7 +133,7 @@ export const calculators = [
   },
   {
     slug: 'interest-rate-calculator', name: 'Interest Rate Calculator',
-    category: 'finance', subcategory: 'loans', inputStyle: 'fields',
+    category: 'finance', subcategory: 'banking', inputStyle: 'fields',
     description: 'Find the implied interest rate given loan amount, payment and term.',
     about: 'If you know the loan amount, monthly payment and term but need to find the implied interest rate — this calculator solves for it using iterative methods. Useful for reverse-engineering the real cost of financing offers.',
     related: ['loan-emi', 'apy-calculator', 'apr-calculator'],
@@ -160,10 +145,7 @@ export const calculators = [
     about: 'Personal loans are unsecured loans used for everything from home improvements to medical expenses. This calculator computes your monthly payment and full cost of borrowing so you can compare offers from different lenders before committing.',
     related: ['loan-emi', 'debt-payoff', 'credit-card-payoff'],
   },
-
-  // ─────────────────────────────────────────
-  // FINANCE — Mortgage
-  // ─────────────────────────────────────────
+  // Mortgage & Real Estate
   {
     slug: 'mortgage-calculator', name: 'Mortgage Calculator',
     category: 'finance', subcategory: 'mortgage', inputStyle: 'wizard',
@@ -206,10 +188,7 @@ export const calculators = [
     about: 'Closing costs typically range from 2% to 5% of the loan amount and can catch first-time buyers off guard. This calculator breaks down all expected fees — lender fees, title insurance, appraisal, prepaid items and more — so you know the full cash required at closing.',
     related: ['mortgage-calculator', 'down-payment', 'affordability'],
   },
-
-  // ─────────────────────────────────────────
-  // FINANCE — Savings & Retirement
-  // ─────────────────────────────────────────
+  // Savings & Retirement
   {
     slug: 'savings-goal', name: 'Savings Goal Calculator',
     category: 'finance', subcategory: 'savings', inputStyle: 'sliders',
@@ -229,7 +208,7 @@ export const calculators = [
     category: 'finance', subcategory: 'savings', inputStyle: 'fields',
     description: 'How large your emergency fund should be and how long to build it.',
     about: 'Financial experts recommend keeping 3-6 months of essential expenses in an accessible emergency fund. This calculator analyses your monthly expenses, income stability and risk factors to recommend the right emergency fund size for your specific situation.',
-    related: ['savings-goal', 'budget-calculator', 'compound-interest'],
+    related: ['savings-goal', 'compound-interest', 'retirement-planner'],
   },
   {
     slug: '401k-calculator', name: '401(k) Calculator',
@@ -245,10 +224,7 @@ export const calculators = [
     about: 'A Roth IRA offers tax-free growth and withdrawals in retirement — making it one of the best long-term savings vehicles for people who expect to be in a higher tax bracket later. This calculator shows your projected Roth IRA balance and compares the after-tax value against a traditional IRA.',
     related: ['401k-calculator', 'retirement-planner', 'compound-interest'],
   },
-
-  // ─────────────────────────────────────────
-  // FINANCE — Banking & Interest
-  // ─────────────────────────────────────────
+  // Banking & Interest
   {
     slug: 'apy-calculator', name: 'APY Calculator',
     category: 'finance', subcategory: 'banking', inputStyle: 'fields',
@@ -284,10 +260,7 @@ export const calculators = [
     about: 'A CD (Certificate of Deposit) offers a guaranteed fixed return for locking up your money for a set period. This calculator computes your maturity value, total interest earned and effective APY — and lets you compare CDs with different terms and rates.',
     related: ['apy-calculator', 'savings-goal', 'compound-interest'],
   },
-
-  // ─────────────────────────────────────────
-  // FINANCE — Income & Pay
-  // ─────────────────────────────────────────
+  // Income & Pay
   {
     slug: 'salary-to-hourly', name: 'Salary to Hourly Calculator',
     category: 'finance', subcategory: 'income', inputStyle: 'fields',
@@ -300,7 +273,7 @@ export const calculators = [
     category: 'finance', subcategory: 'income', inputStyle: 'fields',
     description: 'Estimate your net salary after federal, state and FICA taxes.',
     about: 'Your gross salary and your take-home pay can differ dramatically once federal income tax, state tax, Social Security and Medicare deductions are applied. This calculator estimates your net pay for any salary level so you can plan your budget around actual income.',
-    related: ['salary-to-hourly', 'raise-calculator', 'budget-calculator'],
+    related: ['salary-to-hourly', 'raise-calculator', 'overtime-calculator'],
   },
   {
     slug: 'raise-calculator', name: 'Raise Calculator',
@@ -316,10 +289,7 @@ export const calculators = [
     about: 'US federal law requires overtime pay at 1.5x the regular rate for hours worked beyond 40 per week. Some states and employers pay double time. This calculator shows your overtime earnings, total weekly pay and annual equivalent for any hours and pay rate combination.',
     related: ['salary-to-hourly', 'take-home-pay', 'raise-calculator'],
   },
-
-  // ─────────────────────────────────────────
-  // FINANCE — FIRE
-  // ─────────────────────────────────────────
+  // FIRE Planning
   {
     slug: 'fire-number', name: 'FIRE Number Calculator',
     category: 'finance', subcategory: 'fire', inputStyle: 'fields',
@@ -343,8 +313,9 @@ export const calculators = [
   },
 
   // ─────────────────────────────────────────
-  // HEALTH — Body Metrics
+  // HEALTH
   // ─────────────────────────────────────────
+  // Body Metrics
   {
     slug: 'bmi-calculator', name: 'BMI Calculator',
     category: 'health', subcategory: 'body-metrics', inputStyle: 'fields',
@@ -380,10 +351,7 @@ export const calculators = [
     about: 'Lean body mass (LBM) is total body weight minus fat. It includes muscle, bone, organs, blood and water. Knowing your LBM is important for setting accurate protein targets, calculating activity-adjusted calorie needs and tracking the quality of body composition changes during training.',
     related: ['body-fat', 'bmr-calculator', 'macro-calculator'],
   },
-
-  // ─────────────────────────────────────────
-  // HEALTH — Calories & Nutrition
-  // ─────────────────────────────────────────
+  // Calories & Nutrition
   {
     slug: 'calorie-calculator', name: 'Calorie Calculator',
     category: 'health', subcategory: 'calories', inputStyle: 'fields',
@@ -419,10 +387,7 @@ export const calculators = [
     about: 'Protein needs vary significantly based on your training status and goals. Sedentary adults need 0.8g/kg; athletes need 1.6-2.2g/kg for muscle building. This calculator gives your target range from multiple evidence-based sources including ISSN and ACSM guidelines.',
     related: ['macro-calculator', 'lean-body-mass', 'calorie-calculator'],
   },
-
-  // ─────────────────────────────────────────
-  // HEALTH — Fitness
-  // ─────────────────────────────────────────
+  // Fitness & Performance
   {
     slug: 'one-rep-max', name: 'One Rep Max Calculator',
     category: 'health', subcategory: 'fitness', inputStyle: 'fields',
@@ -458,35 +423,29 @@ export const calculators = [
     about: 'VO2 max is the maximum rate of oxygen consumption during intense exercise and is considered the gold standard of cardiovascular fitness. This calculator estimates VO2 max from several field tests and classifies your result against age and gender norms from the American Heart Association.',
     related: ['heart-rate-zones', 'pace-calculator', 'calories-burned'],
   },
-
-  // ─────────────────────────────────────────
-  // HEALTH — Pregnancy
-  // ─────────────────────────────────────────
+  // Pregnancy & Fertility
   {
     slug: 'due-date', name: 'Due Date Calculator',
     category: 'health', subcategory: 'pregnancy', inputStyle: 'fields',
     description: 'Estimated due date from LMP, conception date or IVF transfer date.',
     about: 'The most common method for calculating due date is Naegele\'s Rule: add 280 days (40 weeks) to the first day of your last menstrual period (LMP). This calculator also accepts a known conception date or IVF transfer date and shows your current gestational age, trimester and key milestone dates.',
-    related: ['pregnancy-weight', 'weeks-pregnant', 'ovulation-calculator'],
+    related: ['pregnancy-weight', 'ovulation-calculator', 'age-calculator'],
   },
   {
     slug: 'ovulation-calculator', name: 'Ovulation Calculator',
     category: 'health', subcategory: 'pregnancy', inputStyle: 'fields',
     description: 'Fertile window and predicted ovulation date from your cycle length.',
     about: 'Ovulation typically occurs 14 days before your next period. This calculator uses your cycle length to predict your fertile window (the 5-day period when conception is possible) and most likely ovulation date — based on the standard menstrual cycle model used in clinical practice.',
-    related: ['due-date', 'conception-date', 'weeks-pregnant'],
+    related: ['due-date', 'pregnancy-weight', 'age-calculator'],
   },
   {
     slug: 'pregnancy-weight', name: 'Pregnancy Weight Gain Calculator',
     category: 'health', subcategory: 'pregnancy', inputStyle: 'fields',
     description: 'Recommended weight gain ranges during pregnancy based on pre-pregnancy BMI.',
     about: 'The Institute of Medicine (IOM) provides evidence-based guidelines for healthy pregnancy weight gain based on pre-pregnancy BMI. Gaining too little or too much can affect birth outcomes. This calculator shows your recommended total gain range and week-by-week target trajectory.',
-    related: ['due-date', 'bmi-calculator', 'weeks-pregnant'],
+    related: ['due-date', 'bmi-calculator', 'ovulation-calculator'],
   },
-
-  // ─────────────────────────────────────────
-  // HEALTH — Vitals
-  // ─────────────────────────────────────────
+  // Vital Health
   {
     slug: 'sleep-calculator', name: 'Sleep Calculator',
     category: 'health', subcategory: 'vitals', inputStyle: 'fields',
@@ -510,13 +469,14 @@ export const calculators = [
   },
 
   // ─────────────────────────────────────────
-  // ENGINEERING — Electrical
+  // ENGINEERING
   // ─────────────────────────────────────────
+  // Electrical Engineering
   {
-    slug: 'ohms-law', name: "Ohm's Law Calculator",
+    slug: 'ohms-law', name: 'Ohm\'s Law Calculator',
     category: 'engineering', subcategory: 'electrical', inputStyle: 'fields',
     description: 'Solve for voltage, current, resistance or power — enter any two values.',
-    about: "Ohm's Law (V = IR) is the fundamental relationship between voltage, current and resistance in electrical circuits. This calculator solves for any one of the four electrical quantities — voltage (V), current (I), resistance (R) or power (P) — from any two known values, with a visual circuit diagram.",
+    about: 'Ohm\'s Law (V = IR) is the fundamental relationship between voltage, current and resistance in electrical circuits. This calculator solves for any one of the four electrical quantities — voltage (V), current (I), resistance (R) or power (P) — from any two known values, with a visual circuit diagram.',
     related: ['voltage-drop', 'power-calculator', 'resistor-color'],
   },
   {
@@ -531,44 +491,38 @@ export const calculators = [
     category: 'engineering', subcategory: 'electrical', inputStyle: 'fields',
     description: 'Calculate electrical power in watts from voltage, current or resistance.',
     about: 'Electrical power is the rate at which electrical energy is transferred. The three forms of the power equation (P=IV, P=I²R, P=V²/R) let you calculate power from any two of the three basic electrical quantities. Essential for sizing conductors, fuses and power supplies.',
-    related: ['ohms-law', 'voltage-drop', 'capacitor-charge'],
+    related: ['ohms-law', 'voltage-drop', 'resistor-color'],
   },
   {
     slug: 'resistor-color', name: 'Resistor Color Code Calculator',
     category: 'engineering', subcategory: 'electrical', inputStyle: 'fields',
     description: 'Decode resistor color bands to resistance and tolerance values.',
-    about: "The resistor color code is a standard system for marking resistance values on small components using colored bands. This calculator decodes 3-band, 4-band and 5-band resistors and also works in reverse — enter a resistance value and it shows you the correct color band sequence.",
+    about: 'The resistor color code is a standard system for marking resistance values on small components using colored bands. This calculator decodes 3-band, 4-band and 5-band resistors and also works in reverse — enter a resistance value and it shows you the correct color band sequence.',
     related: ['ohms-law', 'voltage-drop', 'power-calculator'],
   },
-
-  // ─────────────────────────────────────────
-  // ENGINEERING — Fluid & HVAC
-  // ─────────────────────────────────────────
+  // Fluid & HVAC
   {
     slug: 'flow-rate', name: 'Flow Rate Calculator',
     category: 'engineering', subcategory: 'fluid', inputStyle: 'fields',
     description: 'Volumetric flow rate from velocity and pipe cross-sectional area.',
     about: 'Flow rate (Q = A × v) describes the volume of fluid passing a point per unit time. It is fundamental to pipe sizing, pump selection and HVAC design. This calculator computes flow rate from pipe diameter and velocity, or solves for velocity or diameter given a required flow rate.',
-    related: ['reynolds-number', 'pressure-drop', 'pipe-sizing'],
+    related: ['reynolds-number', 'pressure-drop', 'length-converter'],
   },
   {
     slug: 'reynolds-number', name: 'Reynolds Number Calculator',
     category: 'engineering', subcategory: 'fluid', inputStyle: 'fields',
     description: 'Reynolds number to determine laminar vs turbulent flow in a pipe.',
-    about: 'The Reynolds number (Re = ρvD/μ) predicts whether fluid flow will be laminar (Re < 2300), transitional (2300-4000) or turbulent (>4000). This dimensionless number is critical for heat transfer, pipe pressure drop and fluid machinery design. Enter fluid properties and pipe geometry to compute Re.',
-    related: ['flow-rate', 'pressure-drop', 'pipe-sizing'],
+    about: 'The Reynolds number (Re = ρvD/μ) predicts whether fluid flow will be laminar (Re < 2300), transitional (2300-4000) or turbulent (>4000). This dimensionless number is critical for heat transfer, pipe pressure drop and fluid machinery design.',
+    related: ['flow-rate', 'pressure-drop', 'length-converter'],
   },
   {
     slug: 'pressure-drop', name: 'Pipe Pressure Drop Calculator',
     category: 'engineering', subcategory: 'fluid', inputStyle: 'fields',
     description: 'Pressure drop through a pipe using the Darcy-Weisbach equation.',
     about: 'Pressure drop in piping systems must be accurately calculated to size pumps and ensure adequate flow at all points. This calculator implements the Darcy-Weisbach equation with Moody friction factor for both smooth and rough pipes, supporting water, air and custom fluid properties.',
-    related: ['reynolds-number', 'flow-rate', 'pipe-sizing'],
+    related: ['reynolds-number', 'flow-rate', 'length-converter'],
   },
-
-  // ─────────────────────────────────────────
-  // ENGINEERING — Unit Converters
-  // ─────────────────────────────────────────
+  // Unit Converters
   {
     slug: 'length-converter', name: 'Length Converter',
     category: 'engineering', subcategory: 'converters', inputStyle: 'fields',
@@ -599,8 +553,9 @@ export const calculators = [
   },
 
   // ─────────────────────────────────────────
-  // MATH — Basic
+  // MATH
   // ─────────────────────────────────────────
+  // Basic Math
   {
     slug: 'percentage-calculator', name: 'Percentage Calculator',
     category: 'math', subcategory: 'basic', inputStyle: 'fields',
@@ -629,28 +584,22 @@ export const calculators = [
     about: 'Ratios describe proportional relationships between quantities. This calculator simplifies ratios to their lowest terms, solves for missing values in proportions (A:B = C:?), and scales ratios to any target value — useful for recipe scaling, map reading, scale models and financial analysis.',
     related: ['percentage-calculator', 'fraction-calculator', 'recipe-converter'],
   },
-
-  // ─────────────────────────────────────────
-  // MATH — Algebra
-  // ─────────────────────────────────────────
+  // Algebra
   {
     slug: 'quadratic-solver', name: 'Quadratic Equation Solver',
     category: 'math', subcategory: 'algebra', inputStyle: 'fields',
     description: 'Solve ax² + bx + c = 0 with the quadratic formula, showing all steps.',
     about: 'The quadratic formula solves any second-degree polynomial equation of the form ax²+bx+c=0. This solver computes the discriminant, identifies whether roots are real or complex, and shows the complete step-by-step working using the quadratic formula — perfect for checking homework or understanding the process.',
-    related: ['linear-equation', 'polynomial-roots', 'systems-equations'],
+    related: ['linear-equation', 'percentage-calculator', 'average-calculator'],
   },
   {
     slug: 'linear-equation', name: 'Linear Equation Solver',
     category: 'math', subcategory: 'algebra', inputStyle: 'fields',
     description: 'Solve single and simultaneous linear equations with step-by-step working.',
     about: 'Solve any linear equation of the form ax + b = c for x, with full step-by-step working shown. Also solves systems of two linear equations using substitution and elimination methods. Each step is explained in plain English to help with learning.',
-    related: ['quadratic-solver', 'systems-equations', 'percentage-calculator'],
+    related: ['quadratic-solver', 'percentage-calculator', 'average-calculator'],
   },
-
-  // ─────────────────────────────────────────
-  // MATH — Statistics
-  // ─────────────────────────────────────────
+  // Statistics
   {
     slug: 'mean-median-mode', name: 'Mean Median Mode Calculator',
     category: 'math', subcategory: 'statistics', inputStyle: 'fields',
@@ -663,7 +612,7 @@ export const calculators = [
     category: 'math', subcategory: 'statistics', inputStyle: 'fields',
     description: 'Population and sample standard deviation and variance for any dataset.',
     about: 'Standard deviation measures the spread of data around the mean. This calculator computes both population standard deviation (σ) for complete datasets and sample standard deviation (s) for sample data — and shows the complete step-by-step variance calculation so you can verify the working.',
-    related: ['mean-median-mode', 'normal-distribution', 'average-calculator'],
+    related: ['mean-median-mode', 'average-calculator', 'probability-calculator'],
   },
   {
     slug: 'probability-calculator', name: 'Probability Calculator',
@@ -672,10 +621,7 @@ export const calculators = [
     about: 'Probability is the foundation of statistics, risk analysis and machine learning. This calculator computes basic event probability, union and intersection of events, conditional probability, and applies Bayes theorem — with a clear Venn diagram and plain-English interpretation of results.',
     related: ['standard-deviation', 'permutations', 'combinations'],
   },
-
-  // ─────────────────────────────────────────
-  // MATH — Date & Time
-  // ─────────────────────────────────────────
+  // Date & Time
   {
     slug: 'date-difference', name: 'Date Difference Calculator',
     category: 'math', subcategory: 'date-time', inputStyle: 'fields',
@@ -697,28 +643,26 @@ export const calculators = [
     about: 'Calculate the number of working days between two dates, excluding weekends and optionally excluding public holidays. Also works in reverse: given a start date and number of working days, find the end date. Useful for contract deadlines, shipping estimates and HR calculations.',
     related: ['date-difference', 'add-subtract-days', 'age-calculator'],
   },
-
-  // ─────────────────────────────────────────
-  // MATH — Probability
-  // ─────────────────────────────────────────
+  // Probability
   {
     slug: 'permutations', name: 'Permutations Calculator',
     category: 'math', subcategory: 'probability', inputStyle: 'fields',
     description: 'Number of ordered arrangements of r items from n items — P(n,r).',
     about: 'Permutations count the number of ways to arrange r items selected from n items when order matters. Formula: P(n,r) = n! / (n-r)!. This calculator handles both permutations (order matters) and combinations (order does not matter) with worked examples.',
-    related: ['combinations', 'probability-calculator', 'dice-probability'],
+    related: ['combinations', 'probability-calculator', 'average-calculator'],
   },
   {
     slug: 'combinations', name: 'Combinations Calculator',
     category: 'math', subcategory: 'probability', inputStyle: 'fields',
     description: 'Number of ways to choose r items from n items — C(n,r).',
     about: 'Combinations count the number of ways to select r items from n items when order does not matter. Formula: C(n,r) = n! / (r! × (n-r)!). Used in lottery probability, card game analysis, statistical sampling and any situation where you need to count distinct groups.',
-    related: ['permutations', 'probability-calculator', 'dice-probability'],
+    related: ['permutations', 'probability-calculator', 'average-calculator'],
   },
 
   // ─────────────────────────────────────────
-  // UTILITIES — Everyday
+  // UTILITIES
   // ─────────────────────────────────────────
+  // Everyday
   {
     slug: 'tip-calculator', name: 'Tip Calculator',
     category: 'utilities', subcategory: 'everyday', inputStyle: 'sliders',
@@ -754,16 +698,13 @@ export const calculators = [
     about: 'The fastest way to calculate any percentage off. Enter the original price and the discount percentage to get the final price and dollar saving — or enter original and sale price to find the discount percentage. Ideal for quick decisions while shopping.',
     related: ['discount-calculator', 'percentage-calculator', 'sales-tax'],
   },
-
-  // ─────────────────────────────────────────
-  // UTILITIES — Home & Construction
-  // ─────────────────────────────────────────
+  // Home & Construction
   {
     slug: 'paint-calculator', name: 'Paint Calculator',
     category: 'utilities', subcategory: 'home', inputStyle: 'fields',
     description: 'Litres of paint needed for any room accounting for doors and windows.',
     about: 'Buying too little paint means an extra trip to the store; buying too much is wasteful. This calculator computes the wall area of your room (accounting for windows and doors), divides by the paint coverage rate, and factors in the number of coats — giving you the exact number of tins to buy.',
-    related: ['flooring-calculator', 'tile-calculator', 'wallpaper-calculator'],
+    related: ['flooring-calculator', 'tile-calculator', 'area-calculator'],
   },
   {
     slug: 'flooring-calculator', name: 'Flooring Calculator',
@@ -779,16 +720,13 @@ export const calculators = [
     about: 'Enter your room dimensions and tile size to calculate exactly how many tiles you need. Accounts for grout joint width, your preferred waste percentage, and different layout patterns (straight, diagonal). Shows total tiles, boxes, and cost at any price per tile.',
     related: ['flooring-calculator', 'paint-calculator', 'area-calculator'],
   },
-
-  // ─────────────────────────────────────────
-  // UTILITIES — Food & Cooking
-  // ─────────────────────────────────────────
+  // Food & Cooking
   {
     slug: 'recipe-converter', name: 'Recipe Converter',
     category: 'utilities', subcategory: 'food', inputStyle: 'fields',
     description: 'Scale any recipe up or down to any number of servings.',
     about: 'Scale any recipe from its original serving count to any target number of servings. Handles fractions gracefully — showing results as clean fractions (¾ cup) or mixed numbers (1½ tsp) rather than unwieldy decimals. Works for all units including weight, volume and count.',
-    related: ['measurement-converter', 'ratio-calculator', 'cooking-time'],
+    related: ['measurement-converter', 'ratio-calculator', 'weight-converter'],
   },
   {
     slug: 'measurement-converter', name: 'Cooking Measurement Converter',
@@ -797,28 +735,22 @@ export const calculators = [
     about: 'Cooking measurements differ between US, UK and metric systems — tablespoons are different sizes, cups are not universal, and weighing by grams beats volumetric measures for baking precision. This converter handles all cooking unit conversions including weight-to-volume conversions for common ingredients.',
     related: ['recipe-converter', 'ratio-calculator', 'weight-converter'],
   },
-
-  // ─────────────────────────────────────────
-  // UTILITIES — Travel & Fuel
-  // ─────────────────────────────────────────
+  // Travel & Fuel
   {
     slug: 'fuel-cost', name: 'Fuel Cost Calculator',
     category: 'utilities', subcategory: 'travel', inputStyle: 'fields',
     description: 'Total fuel cost for any road trip based on distance, MPG and fuel price.',
     about: 'Plan your road trip budget with precision. Enter your journey distance, vehicle fuel economy (MPG or L/100km) and current fuel price to see the exact fuel cost. Also shows cost per mile/km and compares two vehicles side by side — useful for choosing which car to take.',
-    related: ['mpg-calculator', 'road-trip', 'distance-calculator'],
+    related: ['mpg-calculator', 'percentage-calculator', 'split-bill'],
   },
   {
     slug: 'mpg-calculator', name: 'MPG Calculator',
     category: 'utilities', subcategory: 'travel', inputStyle: 'fields',
     description: 'Calculate your car\'s fuel economy in MPG, L/100km and km/L.',
     about: 'Calculate your actual fuel economy from a real fill-up: enter miles driven and gallons/litres used to get your MPG, L/100km and km/L simultaneously. Compare to EPA ratings and see how your driving conditions affect real-world efficiency.',
-    related: ['fuel-cost', 'road-trip', 'emissions-calculator'],
+    related: ['fuel-cost', 'percentage-calculator', 'discount-calculator'],
   },
-
-  // ─────────────────────────────────────────
-  // UTILITIES — Business
-  // ─────────────────────────────────────────
+  // Business
   {
     slug: 'profit-margin', name: 'Profit Margin Calculator',
     category: 'utilities', subcategory: 'business', inputStyle: 'fields',
@@ -847,10 +779,7 @@ export const calculators = [
     about: 'VAT (Value Added Tax) is applied at different rates in different countries. This calculator adds VAT to a net price to give the gross price, or removes VAT from a gross price to reveal the net price — with the VAT amount shown separately. Supports any VAT rate from 0% to 100%.',
     related: ['sales-tax', 'profit-margin', 'discount-calculator'],
   },
-
-  // ─────────────────────────────────────────
-  // UTILITIES — Currency & Area
-  // ─────────────────────────────────────────
+  // Currency & Area
   {
     slug: 'area-calculator', name: 'Area Calculator',
     category: 'utilities', subcategory: 'currency', inputStyle: 'fields',
@@ -866,24 +795,956 @@ export const calculators = [
     related: ['area-calculator', 'tile-calculator', 'weight-converter'],
   },
 
+
+  // stock-return
+  {
+    slug: 'stock-return', name: 'Stock Return Calculator',
+    category: 'finance', subcategory: 'investment', inputStyle: 'fields',
+    description: 'Calculate total return on a stock investment including dividends and price appreciation.',
+    about: 'Stock return combines capital gains (price appreciation) and dividend income to give the total percentage return on an investment. This calculator computes simple return, annualised CAGR, and dividend-adjusted total return so you can accurately compare stock performance across different holding periods.',
+    related: ['roi-calculator', 'dividend-yield', 'cagr-calculator'],
+  },
+  {
+    slug: 'portfolio-return', name: 'Portfolio Return Calculator',
+    category: 'finance', subcategory: 'investment', inputStyle: 'fields',
+    description: 'Weighted average return across multiple holdings in a portfolio.',
+    about: 'Portfolio return is the weighted average of each holding\'s individual return, weighted by its share of the total portfolio value. This calculator lets you add multiple positions, assign weights, and see both the weighted average return and the impact each holding has on overall portfolio performance.',
+    related: ['roi-calculator', 'stock-return', 'cagr-calculator'],
+  },
+  {
+    slug: 'rule-of-72', name: 'Rule of 72 Calculator',
+    category: 'finance', subcategory: 'investment', inputStyle: 'fields',
+    description: 'How long until your money doubles at any interest rate.',
+    about: 'The Rule of 72 is a simple mental math shortcut: divide 72 by your annual interest rate to estimate how many years it takes to double your money. At 6%, your money doubles in about 12 years. This calculator applies the exact formula alongside the approximation so you can see how accurate the rule is.',
+    related: ['compound-interest', 'cagr-calculator', 'future-value'],
+  },
+  // Loans
+  {
+    slug: 'student-loan', name: 'Student Loan Calculator',
+    category: 'finance', subcategory: 'loans', inputStyle: 'fields',
+    description: 'Monthly payment, total interest and payoff timeline for student loans.',
+    about: 'Student loans are often the first major debt people take on. This calculator computes your monthly payment under standard, graduated and income-based repayment plans, shows total interest paid, and compares the cost of paying off early versus making minimum payments.',
+    related: ['loan-emi', 'loan-payoff', 'debt-payoff'],
+  },
+  {
+    slug: 'interest-only', name: 'Interest Only Calculator',
+    category: 'finance', subcategory: 'loans', inputStyle: 'fields',
+    description: 'Monthly interest-only payment and comparison with fully amortizing loan.',
+    about: 'An interest-only loan requires you to pay only the interest for a set period, after which payments jump to cover both principal and interest. This calculator shows your interest-only payment, the payment increase when amortization begins, and the total cost compared to a conventional amortizing loan.',
+    related: ['loan-emi', 'amortization', 'mortgage-calculator'],
+  },
+  // Mortgage
+  {
+    slug: 'heloc-calculator', name: 'HELOC Calculator',
+    category: 'finance', subcategory: 'mortgage', inputStyle: 'fields',
+    description: 'Home equity line of credit payment during draw and repayment periods.',
+    about: 'A HELOC (Home Equity Line of Credit) has two phases: a draw period (interest-only payments on what you borrow) and a repayment period (full principal + interest payments). This calculator shows payments in both phases and helps you understand the true cost of tapping your home equity.',
+    related: ['mortgage-calculator', 'down-payment', 'loan-emi'],
+  },
+  {
+    slug: 'mortgage-points', name: 'Mortgage Points Calculator',
+    category: 'finance', subcategory: 'mortgage', inputStyle: 'fields',
+    description: 'Should you buy down your mortgage rate with discount points?',
+    about: 'Mortgage discount points are upfront fees paid to reduce your interest rate — 1 point = 1% of the loan. This calculator computes your monthly savings from buying points, the break-even month, and total savings over the loan term so you can decide whether paying points makes financial sense.',
+    related: ['mortgage-calculator', 'mortgage-refinance', 'closing-costs'],
+  },
+  // Savings
+  {
+    slug: 'pension-calculator', name: 'Pension Calculator',
+    category: 'finance', subcategory: 'savings', inputStyle: 'fields',
+    description: 'Estimate your defined benefit pension income at retirement.',
+    about: 'A defined benefit pension pays a guaranteed monthly income based on your salary and years of service. The typical formula is: Years of Service × Final Salary × Accrual Rate. This calculator projects your pension income, adjusts for inflation and shows the lump-sum equivalent so you can plan your full retirement income.',
+    related: ['retirement-planner', 'social-security', 'safe-withdrawal'],
+  },
+  {
+    slug: 'social-security', name: 'Social Security Calculator',
+    category: 'finance', subcategory: 'savings', inputStyle: 'fields',
+    description: 'Estimate your Social Security benefit at different claiming ages.',
+    about: 'Social Security benefits are based on your 35 highest-earning years and the age you begin claiming. Claiming at 62 reduces your benefit by up to 30%; waiting until 70 increases it by 8% per year past full retirement age. This calculator helps you find the optimal claiming strategy for your situation.',
+    related: ['retirement-planner', 'pension-calculator', 'safe-withdrawal'],
+  },
+  {
+    slug: 'savings-rate', name: 'Savings Rate Calculator',
+    category: 'finance', subcategory: 'savings', inputStyle: 'fields',
+    description: 'Your savings rate as a percentage of income and its impact on FIRE timeline.',
+    about: 'Your savings rate — the percentage of income you save and invest — is the most powerful variable in your financial independence timeline. At a 50% savings rate you can retire in about 17 years from zero; at 10% it takes over 40 years. This calculator shows your current rate and maps it to your projected retirement date.',
+    related: ['fire-calculator', 'fire-number', 'retirement-planner'],
+  },
+  {
+    slug: 'net-worth', name: 'Net Worth Calculator',
+    category: 'finance', subcategory: 'savings', inputStyle: 'fields',
+    description: 'Total net worth from assets minus liabilities with category breakdown.',
+    about: 'Net worth is the most fundamental measure of financial health: total assets minus total liabilities. This calculator categorises your assets (liquid, invested, real estate, personal property) and liabilities (mortgage, loans, credit cards) to give you a complete net worth snapshot and track your progress over time.',
+    related: ['retirement-planner', 'fire-number', 'savings-goal'],
+  },
+  {
+    slug: 'wealth-tracker', name: 'Wealth Tracker',
+    category: 'finance', subcategory: 'savings', inputStyle: 'fields',
+    description: 'Project your wealth growth over time based on current savings and return rate.',
+    about: 'Track your path to financial goals by projecting how your current wealth grows over time. Enter your current net worth, monthly savings and expected return to see a year-by-year projection of your total wealth — and identify exactly when you hit key milestones like your FIRE number or first million.',
+    related: ['net-worth', 'fire-number', 'compound-interest'],
+  },
+  // Banking
+  {
+    slug: 'money-market', name: 'Money Market Calculator',
+    category: 'finance', subcategory: 'banking', inputStyle: 'fields',
+    description: 'Money market account earnings with tiered interest rates.',
+    about: 'Money market accounts offer higher interest rates than regular savings but may have tiered rates based on balance, minimum balance requirements and limited transactions. This calculator computes your actual earnings accounting for tiered rates and compares the effective APY against standard savings accounts and CDs.',
+    related: ['apy-calculator', 'cd-calculator', 'savings-goal'],
+  },
+  // Income
+  {
+    slug: 'bonus-tax', name: 'Bonus Tax Calculator',
+    category: 'finance', subcategory: 'income', inputStyle: 'fields',
+    description: 'How much tax you pay on a bonus and your actual take-home amount.',
+    about: 'Bonuses are taxed differently from regular salary — they can be withheld at a flat 22% federal rate (supplemental rate) or aggregated with your regular income and taxed at your marginal rate. This calculator shows both methods, reveals which gives you more take-home pay, and calculates FICA taxes on the bonus amount.',
+    related: ['take-home-pay', 'salary-to-hourly', 'raise-calculator'],
+  },
+  {
+    slug: 'freelance-rate', name: 'Freelance Rate Calculator',
+    category: 'finance', subcategory: 'income', inputStyle: 'fields',
+    description: 'Minimum hourly rate to match your employment income as a freelancer.',
+    about: 'Freelancers must earn significantly more than employees to account for self-employment tax (15.3%), no employer benefits, unpaid time between projects, and business expenses. This calculator finds the minimum hourly rate needed to match a given salary after accounting for all freelance-specific costs.',
+    related: ['salary-to-hourly', 'take-home-pay', 'overtime-calculator'],
+  },
+  {
+    slug: 'paycheck-calculator', name: 'Paycheck Calculator',
+    category: 'finance', subcategory: 'income', inputStyle: 'fields',
+    description: 'Exact paycheck amount after all deductions for hourly and salaried workers.',
+    about: 'Calculate your exact paycheck for any pay period — weekly, bi-weekly, semi-monthly or monthly. Accounts for federal and state income tax withholding based on your W-4, Social Security, Medicare, and any pre-tax deductions like 401(k) or health insurance. Shows both gross and net amounts.',
+    related: ['take-home-pay', 'salary-to-hourly', 'overtime-calculator'],
+  },
+  {
+    slug: 'annual-income', name: 'Annual Income Calculator',
+    category: 'finance', subcategory: 'income', inputStyle: 'fields',
+    description: 'Total annual income from multiple sources including salary, freelance and investments.',
+    about: 'Many people earn income from multiple sources — salary, freelance work, rental income, dividends and interest. This calculator consolidates all income streams into a total annual figure and estimates your tax bracket, effective rate and take-home based on the combined income.',
+    related: ['take-home-pay', 'salary-to-hourly', 'raise-calculator'],
+  },
+  // FIRE
+  {
+    slug: 'barista-fire', name: 'Barista FIRE Calculator',
+    category: 'finance', subcategory: 'fire', inputStyle: 'fields',
+    description: 'Portfolio needed for semi-retirement with part-time income covering some expenses.',
+    about: 'Barista FIRE is semi-retirement: you have enough invested to cover most expenses, but you work part-time (at a coffee shop, hence the name) to cover the remainder and access employer health benefits. This calculator finds your reduced portfolio target based on how much part-time income you plan to earn.',
+    related: ['fire-number', 'coast-fire', 'safe-withdrawal'],
+  },
+  // Health — body-metrics
+  {
+    slug: 'waist-hip-ratio', name: 'Waist-to-Hip Ratio Calculator',
+    category: 'health', subcategory: 'body-metrics', inputStyle: 'fields',
+    description: 'Waist-to-hip ratio with WHO health risk classification.',
+    about: 'Waist-to-hip ratio (WHR) is a measure of body fat distribution. The WHO uses WHR to classify cardiovascular and metabolic disease risk — high WHR indicates central obesity (apple shape) which carries higher health risks than peripheral obesity (pear shape). This calculator gives your WHR and WHO risk category.',
+    related: ['bmi-calculator', 'body-fat', 'ideal-weight'],
+  },
+  {
+    slug: 'body-surface-area', name: 'Body Surface Area Calculator',
+    category: 'health', subcategory: 'body-metrics', inputStyle: 'fields',
+    description: 'Body surface area using Mosteller, DuBois and Boyd formulas.',
+    about: 'Body Surface Area (BSA) is used in medicine to calculate drug dosages, chemotherapy doses and cardiac output. This calculator uses three validated formulas — Mosteller, DuBois & DuBois, and Boyd — and shows all three results so you can see the variation and choose the appropriate formula for your use case.',
+    related: ['bmi-calculator', 'lean-body-mass', 'ideal-weight'],
+  },
+  {
+    slug: 'frame-size', name: 'Frame Size Calculator',
+    category: 'health', subcategory: 'body-metrics', inputStyle: 'fields',
+    description: 'Determine small, medium or large body frame from wrist or elbow breadth.',
+    about: 'Body frame size affects ideal weight — larger frames carry more bone and muscle mass. Frame size can be estimated from wrist circumference relative to height (Frisancho method) or elbow breadth (Metropolitan Life method). This calculator uses both methods and adjusts ideal weight ranges accordingly.',
+    related: ['ideal-weight', 'bmi-calculator', 'lean-body-mass'],
+  },
+  // Health — calories
+  {
+    slug: 'carb-calculator', name: 'Carb Calculator',
+    category: 'health', subcategory: 'calories', inputStyle: 'fields',
+    description: 'Daily carbohydrate intake based on activity level and fitness goals.',
+    about: 'Carbohydrates are the body\'s primary fuel source. Requirements range from 130g/day minimum for sedentary adults to 6-10g/kg for endurance athletes. This calculator sets your carb target based on your TDEE, goal (fat loss / maintenance / muscle gain) and activity level, with guidance from ACSM and sports nutrition research.',
+    related: ['macro-calculator', 'calorie-calculator', 'tdee-calculator'],
+  },
+  {
+    slug: 'fat-calculator', name: 'Fat Intake Calculator',
+    category: 'health', subcategory: 'calories', inputStyle: 'fields',
+    description: 'Daily fat intake target with breakdown of saturated, unsaturated and omega-3.',
+    about: 'Dietary fat is essential for hormone production, vitamin absorption and cell health. Guidelines recommend 20-35% of calories from fat. This calculator sets your total fat target, breaks it down into saturated (limit), monounsaturated and polyunsaturated fats, and gives omega-3 targets from both food and supplemental sources.',
+    related: ['macro-calculator', 'calorie-calculator', 'protein-calculator'],
+  },
+  {
+    slug: 'fiber-calculator', name: 'Fiber Intake Calculator',
+    category: 'health', subcategory: 'calories', inputStyle: 'fields',
+    description: 'Daily fiber requirement based on age, sex and calorie intake.',
+    about: 'The Institute of Medicine recommends 14g of fiber per 1,000 calories consumed. Most adults need 25-38g daily. This calculator gives your personalised target based on age, sex and calorie intake, with guidance on soluble vs insoluble fiber and food sources to hit your target.',
+    related: ['calorie-calculator', 'macro-calculator', 'water-intake'],
+  },
+  // Health — fitness
+  {
+    slug: 'running-pace', name: 'Running Pace Calculator',
+    category: 'health', subcategory: 'fitness', inputStyle: 'fields',
+    description: 'Race finish time predictor for 5K, 10K, half marathon and marathon.',
+    about: 'Predict your race finish time based on a recent performance using the Riegel formula (T2 = T1 × (D2/D1)^1.06). Enter any recent race result and this calculator predicts finish times for all standard distances — 5K, 10K, half marathon and marathon — with adjustments for terrain and conditions.',
+    related: ['pace-calculator', 'calories-burned', 'vo2-max'],
+  },
+  {
+    slug: 'steps-to-miles', name: 'Steps to Miles Converter',
+    category: 'health', subcategory: 'fitness', inputStyle: 'fields',
+    description: 'Convert steps to miles, km and calories burned based on stride length.',
+    about: 'Step count accuracy depends on your stride length, which varies with height. This converter uses height to estimate stride length, then converts any step count to distance in miles and kilometres, calories burned and approximate active time — giving more accurate results than generic 2,000 steps per mile estimates.',
+    related: ['calories-burned', 'pace-calculator', 'water-intake'],
+  },
+  // Health — pregnancy
+  {
+    slug: 'conception-date', name: 'Conception Date Calculator',
+    category: 'health', subcategory: 'pregnancy', inputStyle: 'fields',
+    description: 'Estimated conception date from known due date or last menstrual period.',
+    about: 'Working backwards from a known due date or LMP, this calculator estimates the likely conception date and fertile window. Since conception typically occurs 11-21 days after the LMP, this provides a date range rather than an exact date. Useful for understanding timing and confirming conception occurred when expected.',
+    related: ['due-date', 'ovulation-calculator', 'fertility-window'],
+  },
+  {
+    slug: 'weeks-pregnant', name: 'Weeks Pregnant Calculator',
+    category: 'health', subcategory: 'pregnancy', inputStyle: 'fields',
+    description: 'Current gestational age in weeks and days from LMP or due date.',
+    about: 'Gestational age is counted from the first day of the last menstrual period (LMP), not from conception. This calculator determines your current gestational age in weeks and days, your current trimester, and key upcoming milestones — showing both the clinical gestational age and estimated fetal development stage.',
+    related: ['due-date', 'pregnancy-weight', 'conception-date'],
+  },
+  {
+    slug: 'fertility-window', name: 'Fertility Window Calculator',
+    category: 'health', subcategory: 'pregnancy', inputStyle: 'fields',
+    description: 'Your fertile days and peak conception probability by cycle day.',
+    about: 'Conception is only possible during a narrow window around ovulation — typically 5 days before and the day of ovulation. This calculator uses your cycle length to map the full fertile window for your current cycle, identifies the highest-probability conception days, and shows the next 3 cycles for planning ahead.',
+    related: ['ovulation-calculator', 'due-date', 'conception-date'],
+  },
+  // Health — vitals
+  {
+    slug: 'blood-pressure', name: 'Blood Pressure Calculator',
+    category: 'health', subcategory: 'vitals', inputStyle: 'fields',
+    description: 'Blood pressure classification and cardiovascular risk from systolic and diastolic.',
+    about: 'Blood pressure is classified by the American Heart Association into six categories from Normal to Hypertensive Crisis. This calculator takes your systolic and diastolic readings, classifies your blood pressure, explains what it means for your cardiovascular health, and provides guidance on next steps based on AHA guidelines.',
+    related: ['bmi-calculator', 'resting-heart-rate', 'age-calculator'],
+  },
+  {
+    slug: 'resting-heart-rate', name: 'Resting Heart Rate Calculator',
+    category: 'health', subcategory: 'vitals', inputStyle: 'fields',
+    description: 'Resting heart rate classification and cardiovascular fitness assessment.',
+    about: 'Resting heart rate (RHR) is one of the simplest indicators of cardiovascular fitness. A lower RHR generally indicates better fitness. This calculator classifies your RHR against American Heart Association reference ranges by age and sex, and explains what your result means for overall cardiovascular health.',
+    related: ['heart-rate-zones', 'vo2-max', 'blood-pressure'],
+  },
+  {
+    slug: 'blood-type', name: 'Blood Type Calculator',
+    category: 'health', subcategory: 'vitals', inputStyle: 'fields',
+    description: 'Possible blood types for a child based on parents\' blood types.',
+    about: 'Blood type is determined by ABO and Rh antigens inherited from both parents. This calculator uses Mendelian genetics to show all possible blood types a child could inherit from two parents, the probability of each, and which blood types are compatible for transfusion according to ABO compatibility rules.',
+    related: ['age-calculator', 'bmi-calculator', 'pregnancy-weight'],
+  },
+  {
+    slug: 'oxygen-saturation', name: 'Oxygen Saturation Guide',
+    category: 'health', subcategory: 'vitals', inputStyle: 'fields',
+    description: 'SpO2 reading interpretation and clinical reference ranges.',
+    about: 'Pulse oximetry measures blood oxygen saturation (SpO2). Normal SpO2 is 95-100%; below 90% is clinically significant hypoxemia. This guide explains how to interpret your SpO2 reading, what levels indicate concerning hypoxemia, factors that can affect accuracy and when to seek medical attention.',
+    related: ['resting-heart-rate', 'blood-pressure', 'bmi-calculator'],
+  },
+  // Health — lifestyle
+  {
+    slug: 'alcohol-units', name: 'Alcohol Units Calculator',
+    category: 'health', subcategory: 'lifestyle', inputStyle: 'fields',
+    description: 'Standard alcohol units from drinks and weekly limit tracking.',
+    about: 'One UK alcohol unit = 10ml of pure alcohol. NHS guidelines recommend no more than 14 units/week spread over 3+ days. This calculator converts any drink (beer, wine, spirits, cocktails) into standard units using alcohol percentage and volume, tracks weekly totals against safe limits and estimates calorie intake from alcohol.',
+    related: ['bac-calculator', 'calorie-calculator', 'water-intake'],
+  },
+  {
+    slug: 'steps-to-calories', name: 'Steps to Calories Calculator',
+    category: 'health', subcategory: 'lifestyle', inputStyle: 'fields',
+    description: 'Calories burned from daily step count based on weight and pace.',
+    about: 'Walking burns approximately 0.04-0.05 calories per step depending on body weight and walking speed. This calculator converts daily step count to calories burned using MET values adjusted for your weight and pace — giving more accurate results than the generic 100 calories per mile assumption.',
+    related: ['calories-burned', 'steps-to-miles', 'tdee-calculator'],
+  },
+  {
+    slug: 'caffeine-calculator', name: 'Caffeine Calculator',
+    category: 'health', subcategory: 'lifestyle', inputStyle: 'fields',
+    description: 'Caffeine intake from drinks and time until it clears your system.',
+    about: 'Caffeine has a half-life of 5-6 hours — meaning half remains in your system after that time. This calculator tracks cumulative caffeine from coffee, tea, energy drinks and other sources, compares against FDA safe limits (400mg/day for adults), and shows when caffeine will clear your system based on your last cup.',
+    related: ['sleep-calculator', 'water-intake', 'bac-calculator'],
+  },
+  // Engineering — electrical
+  {
+    slug: 'capacitor-charge', name: 'Capacitor Charge Calculator',
+    category: 'engineering', subcategory: 'electrical', inputStyle: 'fields',
+    description: 'Capacitor charge, energy stored and RC time constant.',
+    about: 'A capacitor stores energy in an electric field. This calculator computes charge (Q = CV), energy stored (E = ½CV²), and the RC time constant (τ = RC) which determines how quickly a capacitor charges or discharges through a resistor. Essential for timing circuits, filter design and power supply applications.',
+    related: ['ohms-law', 'power-calculator', 'voltage-drop'],
+  },
+  {
+    slug: 'led-resistor', name: 'LED Resistor Calculator',
+    category: 'engineering', subcategory: 'electrical', inputStyle: 'fields',
+    description: 'Correct current-limiting resistor value for any LED from supply voltage.',
+    about: 'LEDs require a current-limiting resistor to prevent burn-out. The formula is R = (Vsupply − Vforward) / Iforward. This calculator determines the exact resistor value needed for any LED, suggests the nearest standard resistor value from the E12/E24 series, and computes power dissipation in the resistor.',
+    related: ['ohms-law', 'resistor-color', 'power-calculator'],
+  },
+  {
+    slug: 'wire-gauge', name: 'Wire Gauge Calculator',
+    category: 'engineering', subcategory: 'electrical', inputStyle: 'fields',
+    description: 'Minimum wire gauge for any current load with voltage drop check.',
+    about: 'Selecting the correct wire gauge is critical for safety and efficiency. Undersized wire overheats; oversized wire is wasteful. This calculator finds the minimum AWG wire size for a given current, checks voltage drop against NEC 3% recommendation, and shows ampacity ratings from NEC Table 310.15.',
+    related: ['voltage-drop', 'ohms-law', 'power-calculator'],
+  },
+  {
+    slug: 'transformer-ratio', name: 'Transformer Ratio Calculator',
+    category: 'engineering', subcategory: 'electrical', inputStyle: 'fields',
+    description: 'Transformer turns ratio, secondary voltage and current from primary values.',
+    about: 'A transformer steps voltage up or down through electromagnetic induction. The turns ratio determines the voltage transformation: V2/V1 = N2/N1. Current transforms inversely: I2/I1 = N1/N2. This calculator computes turns ratio, secondary voltage, secondary current and apparent power for any transformer.',
+    related: ['ohms-law', 'power-calculator', 'voltage-drop'],
+  },
+  // Engineering — fluid
+  {
+    slug: 'pipe-sizing', name: 'Pipe Sizing Calculator',
+    category: 'engineering', subcategory: 'fluid', inputStyle: 'fields',
+    description: 'Minimum pipe diameter for a required flow rate and velocity.',
+    about: 'Correct pipe sizing balances flow velocity (too high causes erosion and noise; too low causes settling) against pressure drop. This calculator determines the minimum pipe diameter to achieve a target flow rate at an acceptable velocity, using standard pipe schedules and ASHRAE recommended velocity ranges.',
+    related: ['flow-rate', 'pressure-drop', 'reynolds-number'],
+  },
+  {
+    slug: 'heat-load', name: 'Heat Load Calculator',
+    category: 'engineering', subcategory: 'fluid', inputStyle: 'fields',
+    description: 'HVAC heat load for a space based on area, occupancy and climate.',
+    about: 'Heat load calculation determines the heating or cooling capacity needed for a space. This simplified Manual J-based calculator uses room dimensions, insulation, windows, occupancy and local climate to estimate BTU/hr requirements — giving you a starting point for HVAC equipment selection.',
+    related: ['flow-rate', 'pressure-drop', 'pipe-sizing'],
+  },
+  {
+    slug: 'hvac-calculator', name: 'HVAC Calculator',
+    category: 'engineering', subcategory: 'fluid', inputStyle: 'fields',
+    description: 'Air changes per hour, CFM requirements and duct sizing for HVAC systems.',
+    about: 'HVAC system design requires calculating air change rates, CFM (cubic feet per minute) supply airflow and appropriate duct sizes. This calculator determines ACH for ventilation compliance, required CFM from room size and occupancy, and duct dimensions to maintain target air velocity.',
+    related: ['flow-rate', 'heat-load', 'pipe-sizing'],
+  },
+  {
+    slug: 'pump-power', name: 'Pump Power Calculator',
+    category: 'engineering', subcategory: 'fluid', inputStyle: 'fields',
+    description: 'Hydraulic power, shaft power and pump efficiency from flow and head.',
+    about: 'Pump power depends on flow rate, total head (pressure) and efficiency. Hydraulic power = ρ × g × Q × H. Shaft power = Hydraulic power / efficiency. This calculator computes hydraulic power, required shaft power and motor power accounting for pump and motor efficiencies — essential for pump selection.',
+    related: ['flow-rate', 'pressure-drop', 'reynolds-number'],
+  },
+  // Engineering — mechanical
+  {
+    slug: 'torque-calculator', name: 'Torque Calculator',
+    category: 'engineering', subcategory: 'mechanical', inputStyle: 'fields',
+    description: 'Torque from force and moment arm, or from power and rotational speed.',
+    about: 'Torque is the rotational equivalent of force. T = F × r (force times moment arm). It can also be calculated from power and speed: T = P / ω. This calculator solves for torque, force, moment arm, power or RPM given any two variables — with unit conversions between Nm, ft-lb and in-lb.',
+    related: ['horsepower', 'gear-ratio', 'stress-strain'],
+  },
+  {
+    slug: 'gear-ratio', name: 'Gear Ratio Calculator',
+    category: 'engineering', subcategory: 'mechanical', inputStyle: 'fields',
+    description: 'Gear ratio, output speed and torque multiplication for any gear pair.',
+    about: 'Gear ratio is the relationship between the number of teeth on the driver and driven gears. A higher ratio increases torque but reduces speed; a lower ratio increases speed but reduces torque. This calculator computes gear ratio, output RPM, torque multiplication and mechanical advantage for simple and compound gear trains.',
+    related: ['torque-calculator', 'horsepower', 'stress-strain'],
+  },
+  {
+    slug: 'beam-deflection', name: 'Beam Deflection Calculator',
+    category: 'engineering', subcategory: 'mechanical', inputStyle: 'fields',
+    description: 'Maximum deflection and bending stress for common beam loading cases.',
+    about: 'Beam deflection must be checked to ensure serviceability (deflection < L/360 for floors). This calculator solves six standard loading cases — simply supported with point load, UDL, cantilever with point load, and more — computing maximum deflection, slope and bending stress using standard Euler-Bernoulli beam theory formulas.',
+    related: ['stress-strain', 'torque-calculator', 'gear-ratio'],
+  },
+  {
+    slug: 'stress-strain', name: 'Stress & Strain Calculator',
+    category: 'engineering', subcategory: 'mechanical', inputStyle: 'fields',
+    description: 'Normal stress, shear stress and strain from force, area and modulus.',
+    about: 'Stress is force per unit area (σ = F/A); strain is the resulting deformation per unit length (ε = ΔL/L). Young\'s modulus relates them: E = σ/ε. This calculator computes normal stress, shear stress, axial strain and deformation for any material under direct load, with factor of safety calculation.',
+    related: ['beam-deflection', 'torque-calculator', 'horsepower'],
+  },
+  {
+    slug: 'horsepower', name: 'Horsepower Calculator',
+    category: 'engineering', subcategory: 'mechanical', inputStyle: 'fields',
+    description: 'Convert between horsepower, watts, torque and RPM.',
+    about: 'Horsepower is a unit of power equal to 745.7 watts. It relates to torque and RPM by: HP = Torque(ft-lb) × RPM / 5252. This calculator converts between HP, kW, torque and RPM — and provides both mechanical horsepower (HP) and metric horsepower (PS) values.',
+    related: ['torque-calculator', 'gear-ratio', 'power-calculator'],
+  },
+  {
+    slug: 'spring-constant', name: 'Spring Constant Calculator',
+    category: 'engineering', subcategory: 'mechanical', inputStyle: 'fields',
+    description: 'Spring constant, force and deflection using Hooke\'s Law.',
+    about: "Hooke's Law states that a spring's restoring force is proportional to its displacement: F = k × x. This calculator solves for spring constant (k), force (F) or deflection (x) given any two values, computes elastic potential energy stored, and determines natural frequency for spring-mass systems.",
+    related: ['stress-strain', 'beam-deflection', 'torque-calculator'],
+  },
+  // Engineering — converters
+  {
+    slug: 'pressure-converter', name: 'Pressure Converter',
+    category: 'engineering', subcategory: 'converters', inputStyle: 'fields',
+    description: 'Convert between Pa, kPa, bar, psi, atm, mmHg and more.',
+    about: 'Pressure conversions are essential in fluid mechanics, HVAC and medical contexts. This converter supports all major pressure units: pascals, kilopascals, megapascals, bar, millibar, psi, ksi, atmospheres, mmHg (torr) and inches of water column — with real-time conversion as you type.',
+    related: ['pressure-drop', 'flow-rate', 'length-converter'],
+  },
+  {
+    slug: 'energy-converter', name: 'Energy Converter',
+    category: 'engineering', subcategory: 'converters', inputStyle: 'fields',
+    description: 'Convert between joules, calories, kWh, BTU, electronvolts and more.',
+    about: 'Energy units span an enormous range — from the electronvolt of nuclear physics to the megajoule of chemical energy. This converter supports joules, kilojoules, megajoules, calories, kilocalories, watt-hours, kilowatt-hours, BTU, foot-pounds, electronvolts and therms.',
+    related: ['power-calculator', 'length-converter', 'weight-converter'],
+  },
+  {
+    slug: 'power-converter', name: 'Power Converter',
+    category: 'engineering', subcategory: 'converters', inputStyle: 'fields',
+    description: 'Convert between watts, kilowatts, horsepower, BTU/hr and more.',
+    about: 'Power is the rate of energy transfer. This converter supports all major power units: watts, kilowatts, megawatts, horsepower (mechanical, metric and electrical), BTU per hour, calories per second, foot-pounds per second and refrigeration tons.',
+    related: ['power-calculator', 'energy-converter', 'horsepower'],
+  },
+  {
+    slug: 'volume-converter', name: 'Volume Converter',
+    category: 'engineering', subcategory: 'converters', inputStyle: 'fields',
+    description: 'Convert between litres, gallons, cubic metres, fluid ounces and more.',
+    about: 'Volume units differ significantly between metric and US/UK imperial systems. This converter handles all common volume units: cubic metres, litres, millilitres, cubic feet, cubic inches, US gallons, UK gallons, US fluid ounces, cups, pints, quarts and barrels.',
+    related: ['length-converter', 'weight-converter', 'flow-rate'],
+  },
+  {
+    slug: 'area-converter', name: 'Area Converter',
+    category: 'engineering', subcategory: 'converters', inputStyle: 'fields',
+    description: 'Convert between m², ft², acres, hectares, km² and more.',
+    about: 'Area unit conversion is essential for real estate, agriculture and engineering. This converter supports square metres, square centimetres, square kilometres, square feet, square inches, square yards, square miles, acres and hectares — with special attention to the common real-estate units of acres and square footage.',
+    related: ['length-converter', 'area-calculator', 'volume-converter'],
+  },
+  {
+    slug: 'force-converter', name: 'Force Converter',
+    category: 'engineering', subcategory: 'converters', inputStyle: 'fields',
+    description: 'Convert between newtons, pounds-force, kilogram-force and more.',
+    about: 'Force units are often confused with mass units. This converter handles the correct force units: newtons, kilonewtons, pound-force, ounce-force, dyne, kilogram-force (kgf) and kip — with explanations of the distinction between mass and force and how gravitational acceleration connects them.',
+    related: ['stress-strain', 'torque-calculator', 'weight-converter'],
+  },
+  // Engineering — tech
+  {
+    slug: 'data-storage', name: 'Data Storage Converter',
+    category: 'engineering', subcategory: 'tech', inputStyle: 'fields',
+    description: 'Convert between bits, bytes, KB, MB, GB, TB and their binary equivalents.',
+    about: 'Data storage involves two parallel systems: decimal (1 KB = 1,000 bytes) used by manufacturers, and binary (1 KiB = 1,024 bytes) used by operating systems. This converter handles all units in both systems — bits, bytes, KB/KiB, MB/MiB, GB/GiB, TB/TiB, PB/PiB — and explains why your hard drive seems smaller than advertised.',
+    related: ['bandwidth-calculator', 'binary-converter', 'hex-converter'],
+  },
+  {
+    slug: 'bandwidth-calculator', name: 'Bandwidth Calculator',
+    category: 'engineering', subcategory: 'tech', inputStyle: 'fields',
+    description: 'File transfer time and bandwidth requirements for any file size.',
+    about: 'Calculate how long it takes to transfer any file at a given connection speed, or what bandwidth you need to transfer files within a time budget. Supports all common speed units (Mbps, Gbps, MB/s) and shows transfer times for common connection types from 4G LTE to gigabit ethernet.',
+    related: ['data-storage', 'subnet-calculator', 'binary-converter'],
+  },
+  {
+    slug: 'subnet-calculator', name: 'Subnet Calculator',
+    category: 'engineering', subcategory: 'tech', inputStyle: 'fields',
+    description: 'IP subnet mask, network address, broadcast and host range from CIDR notation.',
+    about: 'Subnetting divides an IP network into smaller segments. Enter any IP address in CIDR notation (e.g. 192.168.1.0/24) and this calculator returns the subnet mask, network address, broadcast address, usable host range, number of hosts and the binary representations of all values.',
+    related: ['binary-converter', 'hex-converter', 'bandwidth-calculator'],
+  },
+  {
+    slug: 'binary-converter', name: 'Binary Converter',
+    category: 'engineering', subcategory: 'tech', inputStyle: 'fields',
+    description: 'Convert between binary, decimal, hexadecimal and octal number systems.',
+    about: 'Number base conversion is fundamental to computer science and digital electronics. This converter handles all four primary number systems — binary (base 2), octal (base 8), decimal (base 10) and hexadecimal (base 16) — converting any value between all four simultaneously with the full workings shown.',
+    related: ['hex-converter', 'subnet-calculator', 'data-storage'],
+  },
+  {
+    slug: 'hex-converter', name: 'Hex Converter',
+    category: 'engineering', subcategory: 'tech', inputStyle: 'fields',
+    description: 'Hexadecimal to decimal, binary and ASCII character conversion.',
+    about: 'Hexadecimal (base 16) is ubiquitous in programming — from memory addresses to colour codes. This converter translates hex to decimal and binary, converts hex colour codes to RGB values, and handles ASCII/Unicode character encoding — with support for both uppercase and lowercase hex notation.',
+    related: ['binary-converter', 'subnet-calculator', 'data-storage'],
+  },
+  // Math — basic
+  {
+    slug: 'rounding-calculator', name: 'Rounding Calculator',
+    category: 'math', subcategory: 'basic', inputStyle: 'fields',
+    description: 'Round any number to decimal places, significant figures or nearest integer.',
+    about: 'Rounding has several modes — round half up (standard), round half down, round half to even (banker\'s rounding) and truncation. This calculator rounds to any number of decimal places or significant figures using all four methods, showing the result of each so you can choose the appropriate rounding rule.',
+    related: ['percentage-calculator', 'average-calculator', 'fraction-calculator'],
+  },
+  // Math — algebra
+  {
+    slug: 'systems-equations', name: 'Systems of Equations Solver',
+    category: 'math', subcategory: 'algebra', inputStyle: 'fields',
+    description: 'Solve 2×2 and 3×3 systems of linear equations with step-by-step working.',
+    about: 'Systems of linear equations can be solved by substitution, elimination or matrix methods. This solver handles 2×2 and 3×3 systems, shows the complete solution process using elimination (Gaussian reduction), and classifies the system as consistent (unique solution), inconsistent (no solution) or dependent (infinite solutions).',
+    related: ['linear-equation', 'quadratic-solver', 'percentage-calculator'],
+  },
+  {
+    slug: 'polynomial-roots', name: 'Polynomial Roots Calculator',
+    category: 'math', subcategory: 'algebra', inputStyle: 'fields',
+    description: 'Real and complex roots of any polynomial up to degree 5.',
+    about: 'Finding polynomial roots is a core algebra skill. This calculator finds all roots — real and complex — for polynomials up to degree 5 using analytical formulas where available (quadratic, cubic, quartic) and numerical methods for higher degrees. Shows factored form and a graph of the polynomial.',
+    related: ['quadratic-solver', 'linear-equation', 'systems-equations'],
+  },
+  {
+    slug: 'exponent-calculator', name: 'Exponent Calculator',
+    category: 'math', subcategory: 'algebra', inputStyle: 'fields',
+    description: 'Calculate powers, roots, scientific notation and exponent rules.',
+    about: 'Exponent calculations cover powers (x^n), roots (x^(1/n)), negative exponents and fractional exponents. This calculator handles all cases, converts to and from scientific notation, and demonstrates the key exponent rules (product, quotient, power, zero and negative rules) with worked examples.',
+    related: ['logarithm-calculator', 'percentage-calculator', 'rounding-calculator'],
+  },
+  {
+    slug: 'logarithm-calculator', name: 'Logarithm Calculator',
+    category: 'math', subcategory: 'algebra', inputStyle: 'fields',
+    description: 'Natural log, log base 10, log base 2 and custom base logarithms.',
+    about: 'Logarithms are the inverse of exponentiation. This calculator computes log₁₀(x), ln(x) (natural log, base e), log₂(x) (binary log used in computing) and logₙ(x) for any custom base n. Shows the change-of-base formula, antilogarithm, and applications to pH, decibels and data compression.',
+    related: ['exponent-calculator', 'percentage-calculator', 'rounding-calculator'],
+  },
+  // Math — statistics
+  {
+    slug: 'normal-distribution', name: 'Normal Distribution Calculator',
+    category: 'math', subcategory: 'statistics', inputStyle: 'fields',
+    description: 'Probability and percentile for the normal distribution with Z-score.',
+    about: 'The normal (Gaussian) distribution is the most important probability distribution in statistics. This calculator finds the probability for any range, converts between raw scores and Z-scores, looks up percentiles, and visualises the distribution with the area under the curve shaded for the specified range.',
+    related: ['standard-deviation', 'mean-median-mode', 'probability-calculator'],
+  },
+  {
+    slug: 'correlation', name: 'Correlation Calculator',
+    category: 'math', subcategory: 'statistics', inputStyle: 'fields',
+    description: 'Pearson and Spearman correlation coefficient with significance test.',
+    about: 'Correlation measures the strength and direction of the relationship between two variables. Pearson\'s r works for linear relationships with normal data; Spearman\'s ρ is non-parametric. This calculator computes both coefficients, tests statistical significance with a t-test, and generates a scatter plot.',
+    related: ['standard-deviation', 'mean-median-mode', 'probability-calculator'],
+  },
+  {
+    slug: 'confidence-interval', name: 'Confidence Interval Calculator',
+    category: 'math', subcategory: 'statistics', inputStyle: 'fields',
+    description: 'Confidence interval for a mean or proportion at any confidence level.',
+    about: 'A confidence interval gives a range of plausible values for a population parameter. This calculator constructs CIs for both means (using t-distribution for small samples, z for large) and proportions, at any confidence level from 90% to 99.9%, with clear explanation of how to interpret the interval.',
+    related: ['standard-deviation', 'normal-distribution', 'probability-calculator'],
+  },
+  // Math — date-time
+  {
+    slug: 'time-zone-converter', name: 'Time Zone Converter',
+    category: 'math', subcategory: 'date-time', inputStyle: 'fields',
+    description: 'Convert any time between world time zones with DST awareness.',
+    about: 'Time zone conversion must account for Daylight Saving Time, which changes offset by 1 hour twice a year in most regions. This converter handles all major IANA time zones, correctly applies DST rules for the specified date, and shows the offset in both directions for easy scheduling across international teams.',
+    related: ['date-difference', 'working-days', 'add-subtract-days'],
+  },
+  // Math — probability
+  {
+    slug: 'dice-probability', name: 'Dice Probability Calculator',
+    category: 'math', subcategory: 'probability', inputStyle: 'fields',
+    description: 'Probability of any outcome when rolling multiple dice of any size.',
+    about: 'Dice probability can be calculated analytically for standard dice (d4, d6, d8, d10, d12, d20). This calculator computes the probability of rolling exactly a target sum, at least/at most a value, or any specific combination when rolling multiple dice — with a full probability distribution table and histogram.',
+    related: ['probability-calculator', 'combinations', 'permutations'],
+  },
+  // Utilities — everyday
+  {
+    slug: 'price-per-unit', name: 'Price Per Unit Calculator',
+    category: 'utilities', subcategory: 'everyday', inputStyle: 'fields',
+    description: 'Compare price per unit across different package sizes to find the best deal.',
+    about: 'Supermarket shelves are designed to make comparison difficult. This calculator computes the price per unit (per gram, ounce, litre, count) for multiple products simultaneously so you can instantly identify the best value regardless of package size. Supports weight, volume and count units.',
+    related: ['discount-calculator', 'percentage-calculator', 'sales-tax'],
+  },
+  {
+    slug: 'cost-per-use', name: 'Cost Per Use Calculator',
+    category: 'utilities', subcategory: 'everyday', inputStyle: 'fields',
+    description: 'True cost per use of any item over its lifetime.',
+    about: 'The cost-per-use framework helps justify quality purchases: a $200 coat worn 200 times costs $1/wear; a $50 coat worn 10 times costs $5/wear. This calculator divides total cost (including maintenance and accessories) by expected uses to reveal the true per-use cost and compare alternatives.',
+    related: ['discount-calculator', 'percentage-calculator', 'break-even'],
+  },
+  {
+    slug: 'budget-calculator', name: 'Budget Calculator',
+    category: 'utilities', subcategory: 'everyday', inputStyle: 'fields',
+    description: '50/30/20 budget split with custom category breakdown.',
+    about: 'The 50/30/20 rule allocates income as: 50% to needs (housing, food, transport), 30% to wants (entertainment, dining, hobbies) and 20% to savings and debt repayment. This budget calculator applies this framework to your income, lets you customise category allocations, and shows whether you\'re on track.',
+    related: ['take-home-pay', 'savings-goal', 'emergency-fund'],
+  },
+  // Utilities — home
+  {
+    slug: 'concrete-calculator', name: 'Concrete Calculator',
+    category: 'utilities', subcategory: 'home', inputStyle: 'fields',
+    description: 'Cubic yards/metres of concrete needed for slabs, footings and columns.',
+    about: 'Concrete volume must be calculated accurately — ordering too little means a cold joint; too much wastes money. This calculator handles slabs (length × width × depth), round columns (π × r² × height) and footings, outputs in both cubic yards (US) and cubic metres (metric), and adds a 10% waste factor by default.',
+    related: ['paint-calculator', 'flooring-calculator', 'area-calculator'],
+  },
+  {
+    slug: 'wallpaper-calculator', name: 'Wallpaper Calculator',
+    category: 'utilities', subcategory: 'home', inputStyle: 'fields',
+    description: 'Rolls of wallpaper needed for any room with pattern repeat allowance.',
+    about: 'Wallpaper calculation requires accounting for wall area, door and window cutouts, roll width and length, and pattern repeat (which creates waste). This calculator handles straight and drop pattern repeats, computes usable strips per roll, adds a 10% overage buffer and tells you the exact number of rolls to purchase.',
+    related: ['paint-calculator', 'tile-calculator', 'flooring-calculator'],
+  },
+  {
+    slug: 'fence-calculator', name: 'Fence Calculator',
+    category: 'utilities', subcategory: 'home', inputStyle: 'fields',
+    description: 'Posts, panels and materials needed for any fence length.',
+    about: 'Fence material estimation requires knowing the perimeter, post spacing and panel dimensions. This calculator determines the number of posts, panels/pickets, rails and concrete bags needed for any fence project — supporting wood privacy fence, chain link and post-and-rail styles with standard or custom spacing.',
+    related: ['concrete-calculator', 'paint-calculator', 'area-calculator'],
+  },
+  {
+    slug: 'mulch-calculator', name: 'Mulch Calculator',
+    category: 'utilities', subcategory: 'home', inputStyle: 'fields',
+    description: 'Cubic yards of mulch or topsoil needed for any garden area and depth.',
+    about: 'Mulch and topsoil are sold by the cubic yard. This calculator converts garden bed dimensions and desired depth to cubic yards, accounting for irregular shapes by letting you add multiple areas. Shows how many standard bags (2 cu ft) or bulk cubic yards to order.',
+    related: ['concrete-calculator', 'area-calculator', 'flooring-calculator'],
+  },
+  // Utilities — food
+  {
+    slug: 'cooking-time', name: 'Cooking Time Calculator',
+    category: 'utilities', subcategory: 'food', inputStyle: 'fields',
+    description: 'Roasting and baking times for meat, poultry and other foods by weight.',
+    about: 'Cooking times for meat and poultry are based on weight. This calculator provides times for beef, pork, lamb, chicken and turkey at standard oven temperatures — including adjustments for stuffed vs unstuffed, bone-in vs boneless, and different doneness levels. Always verify with a meat thermometer.',
+    related: ['recipe-converter', 'measurement-converter', 'ratio-calculator'],
+  },
+  {
+    slug: 'yeast-converter', name: 'Yeast Converter',
+    category: 'utilities', subcategory: 'food', inputStyle: 'fields',
+    description: 'Convert between active dry, instant and fresh yeast quantities.',
+    about: 'Different yeast types have different potencies and usage methods. Active dry yeast needs proofing; instant (rapid rise) can be added directly; fresh yeast is most perishable but highly potent. This converter gives the exact equivalent amount when substituting between types.',
+    related: ['recipe-converter', 'measurement-converter', 'ratio-calculator'],
+  },
+  {
+    slug: 'baking-calculator', name: 'Baking Calculator',
+    category: 'utilities', subcategory: 'food', inputStyle: 'fields',
+    description: 'Ingredient substitutions and pan size conversions for baking.',
+    about: 'Baking is precise chemistry — substitutions must maintain the correct ratios of structure, leavening and moisture. This calculator provides accurate substitutions for common baking ingredients (buttermilk, cake flour, baking powder, eggs) and converts recipes between different pan sizes using surface area ratios.',
+    related: ['recipe-converter', 'measurement-converter', 'yeast-converter'],
+  },
+  // Utilities — travel
+  {
+    slug: 'road-trip', name: 'Road Trip Calculator',
+    category: 'utilities', subcategory: 'travel', inputStyle: 'fields',
+    description: 'Total road trip cost including fuel, time and per-person split.',
+    about: 'A complete road trip cost breakdown: fuel cost from distance and MPG, time cost based on driving speed, optional per-passenger split, and comparison of different vehicles. Helps you decide whether to drive or fly for any route by giving the true all-in cost of a road trip.',
+    related: ['fuel-cost', 'mpg-calculator', 'split-bill'],
+  },
+  {
+    slug: 'flight-time', name: 'Flight Time Calculator',
+    category: 'utilities', subcategory: 'travel', inputStyle: 'fields',
+    description: 'Flight duration between any two cities with timezone arrival time.',
+    about: 'Flight time depends on distance, aircraft speed and wind conditions. This calculator estimates flight duration from great-circle distance between cities, adjusts for time zone differences to give local arrival time, and accounts for average cruise speed. Also compares to driving time for shorter routes.',
+    related: ['road-trip', 'time-zone-converter', 'fuel-cost'],
+  },
+  {
+    slug: 'timezone-converter', name: 'Timezone Converter',
+    category: 'utilities', subcategory: 'travel', inputStyle: 'fields',
+    description: 'Convert times across multiple cities simultaneously for travel planning.',
+    about: 'Planning international travel requires juggling multiple time zones simultaneously. This converter shows the current time in up to 5 cities at once, handles DST transitions, and lets you pick a future date to see what time it will be in each location — essential for booking flights and scheduling calls.',
+    related: ['flight-time', 'time-zone-converter', 'date-difference'],
+  },
+  {
+    slug: 'travel-budget', name: 'Travel Budget Calculator',
+    category: 'utilities', subcategory: 'travel', inputStyle: 'fields',
+    description: 'All-in travel cost estimator for flights, hotels, food and activities.',
+    about: 'Travel budgets are easy to underestimate. This calculator breaks down all travel costs: flights, accommodation (per-night rate × nights), daily food budget, ground transport, activities, travel insurance and shopping — with per-person splitting and a daily average cost so you can adjust your trip duration.',
+    related: ['road-trip', 'fuel-cost', 'split-bill'],
+  },
+  // Utilities — business
+  {
+    slug: 'invoice-calculator', name: 'Invoice Calculator',
+    category: 'utilities', subcategory: 'business', inputStyle: 'fields',
+    description: 'Invoice total with line items, tax, discount and payment terms.',
+    about: 'Build a complete invoice by adding line items (quantity × rate), applying a percentage or fixed discount, adding tax at any rate, and specifying payment terms. Shows subtotal, discount amount, tax amount and total due — with an option to calculate late payment interest for overdue invoices.',
+    related: ['vat-calculator', 'sales-tax', 'profit-margin'],
+  },
+  {
+    slug: 'roi-business', name: 'Business ROI Calculator',
+    category: 'utilities', subcategory: 'business', inputStyle: 'fields',
+    description: 'Return on investment for marketing campaigns, equipment and projects.',
+    about: 'Business ROI measures return relative to cost: ROI = (Gain − Cost) / Cost × 100. This calculator handles multi-period ROI, payback period, annualised return, and computes ROI for specific scenarios like marketing campaigns (cost per lead, conversion rate, customer value) and equipment purchases.',
+    related: ['roi-calculator', 'profit-margin', 'break-even'],
+  },
+  {
+    slug: 'payroll-calculator', name: 'Payroll Calculator',
+    category: 'utilities', subcategory: 'business', inputStyle: 'fields',
+    description: 'Employer payroll costs including wages, taxes and benefits.',
+    about: 'The true cost of an employee exceeds their salary. Employers pay the employer share of FICA (7.65%), FUTA, SUTA and often benefits. This calculator shows total payroll cost, employer tax burden, cost per hour and the all-in employee cost so businesses can accurately budget for headcount.',
+    related: ['take-home-pay', 'salary-to-hourly', 'overtime-calculator'],
+  },
+  // Utilities — currency
+  {
+    slug: 'currency-converter', name: 'Currency Converter',
+    category: 'utilities', subcategory: 'currency', inputStyle: 'fields',
+    description: 'Convert between world currencies using live or custom exchange rates.',
+    about: 'Currency conversion requires up-to-date exchange rates. This calculator lets you enter any exchange rate to convert between any two currencies, supports inverse conversion (showing both directions simultaneously), and calculates the rate you would need to enter to get a desired output amount.',
+    related: ['tip-calculator', 'sales-tax', 'vat-calculator'],
+  },
+  {
+    slug: 'square-footage', name: 'Square Footage Calculator',
+    category: 'utilities', subcategory: 'currency', inputStyle: 'fields',
+    description: 'Square footage of rooms, floors and irregularly shaped areas.',
+    about: 'Calculate the total square footage of any space — single rectangular rooms, L-shaped rooms, multiple rooms combined, and irregular polygons. Supports both feet/inches and metric inputs with automatic conversion. Commonly used for flooring estimates, real estate listings and rental pricing.',
+    related: ['area-calculator', 'flooring-calculator', 'paint-calculator'],
+  },
+  {
+    slug: 'acreage-calculator', name: 'Acreage Calculator',
+    category: 'utilities', subcategory: 'currency', inputStyle: 'fields',
+    description: 'Land area in acres, hectares and square feet from dimensions.',
+    about: 'Convert land dimensions to acreage for real estate, farming and land management. This calculator converts length × width to acres (1 acre = 43,560 sq ft), hectares (1 hectare = 10,000 m²), and square feet/metres — and works for rectangular, triangular and irregular plots.',
+    related: ['area-calculator', 'square-footage', 'length-converter'],
+  },
+
+
+  // ─── Finance / Income (new) ───
+  {
+    slug: 'tax-calculator (US)', name: 'Tax Calculator (US)',
+    category: 'finance', subcategory: 'income', inputStyle: 'fields',
+    description: 'Estimate your federal income tax liability based on income, filing status and deductions.',
+    about: 'This calculator applies the current US federal income tax brackets to your taxable income, accounting for your filing status (single, married filing jointly, head of household) and standard or itemized deductions. Shows marginal rate, effective rate, total tax owed and after-tax income.',
+    related: ['take-home-pay', 'salary-to-hourly', 'bonus-tax'],
+  },
+  {
+    slug: 'salary-after-tax', name: 'Salary After Tax (State-Wise)',
+    category: 'finance', subcategory: 'income', inputStyle: 'fields',
+    description: 'Net salary after federal and state taxes for any US state.',
+    about: 'Tax burden varies dramatically by state — from 0% income tax (Texas, Florida) to over 13% (California). This calculator computes your after-tax salary for any US state, applying both federal brackets and the state\'s specific rates, showing total tax burden and effective combined rate.',
+    related: ['take-home-pay', 'tax-calculator (US)', 'salary-to-hourly'],
+  },
+  // ─── Finance / Budgeting ───
+  {
+    slug: 'budget-planner', name: 'Budget Planner',
+    category: 'finance', subcategory: 'budgeting', inputStyle: 'fields',
+    description: 'Monthly budget planner with income, expense categories and savings target.',
+    about: 'A comprehensive monthly budget planner that organises income and expenses into categories (housing, food, transport, entertainment, savings), applies the 50/30/20 rule as a guideline, and shows surplus or deficit. Helps you find where money is going and identify opportunities to save more.',
+    related: ['savings-goal', 'emergency-fund', 'net-worth'],
+  },
+  {
+    slug: 'expense-tracker', name: 'Expense Tracker',
+    category: 'finance', subcategory: 'budgeting', inputStyle: 'fields',
+    description: 'Track and categorise daily expenses to understand spending patterns.',
+    about: 'Log daily expenses by category to see exactly where your money goes. This tracker categorises spending, shows monthly totals by category, highlights the biggest spending areas and compares actuals against your budget targets — giving you the awareness needed to make better financial decisions.',
+    related: ['budget-planner', 'cash-flow-calculator', 'savings-goal'],
+  },
+  {
+    slug: 'cash-flow-calculator', name: 'Cash Flow Calculator',
+    category: 'finance', subcategory: 'budgeting', inputStyle: 'fields',
+    description: 'Monthly cash flow from all income sources minus all expenses.',
+    about: 'Cash flow is money in minus money out. Positive cash flow means you can save or invest the surplus; negative means you\'re spending more than you earn. This calculator consolidates all income streams and expense categories to give your true monthly and annual cash flow position.',
+    related: ['budget-planner', 'net-worth', 'savings-rate'],
+  },
+  // ─── Health / Calories (new) ───
+  {
+    slug: 'calorie-deficit', name: 'Calorie Deficit Calculator',
+    category: 'health', subcategory: 'calories', inputStyle: 'fields',
+    description: 'Daily calorie deficit needed to lose weight at your target rate.',
+    about: 'To lose 1 lb per week requires a 500 calorie/day deficit; 2 lbs/week requires 1,000 cal/day. This calculator finds your TDEE, applies your target weight loss rate, and sets your daily calorie target — with safety checks to ensure the deficit isn\'t too aggressive for your weight and activity level.',
+    related: ['tdee-calculator', 'calorie-calculator', 'weight-loss-timeline'],
+  },
+  {
+    slug: 'weight-loss-timeline', name: 'Weight Loss Timeline Calculator',
+    category: 'health', subcategory: 'calories', inputStyle: 'fields',
+    description: 'How long to reach your goal weight at your current calorie deficit.',
+    about: 'Based on your current weight, goal weight and daily calorie deficit, this calculator projects your weight loss timeline week by week. Accounts for metabolic adaptation (the slowing of weight loss as you get lighter) and shows milestone dates — when you\'ll lose your first 10 lbs, reach halfway, and hit your goal.',
+    related: ['calorie-deficit', 'calorie-calculator', 'tdee-calculator'],
+  },
+  {
+    slug: 'lean-bulk-cut', name: 'Lean Bulk / Cut Planner',
+    category: 'health', subcategory: 'calories', inputStyle: 'fields',
+    description: 'Calories and macros for a lean bulk or cut phase based on your stats.',
+    about: 'Lean bulking (a small surplus to gain muscle with minimal fat) and cutting (a deficit to lose fat while preserving muscle) require precise calorie and macro targets. This planner sets calories at the appropriate surplus or deficit and distributes macros according to sport nutrition research for each phase.',
+    related: ['macro-calculator', 'calorie-deficit', 'protein-calculator'],
+  },
+  // ─── Health / Lifestyle (new) ───
+  {
+    slug: 'nap-calculator', name: 'Nap Calculator',
+    category: 'health', subcategory: 'lifestyle', inputStyle: 'fields',
+    description: 'Best nap duration and timing to feel refreshed without grogginess.',
+    about: 'Nap duration dramatically affects how you feel on waking. A 10-20 minute power nap boosts alertness without sleep inertia; a 90-minute full cycle nap provides deeper restoration. This calculator recommends optimal nap lengths based on time of day, current tiredness and how much time you have available.',
+    related: ['sleep-calculator', 'sleep-debt', 'caffeine-calculator'],
+  },
+  {
+    slug: 'sleep-debt', name: 'Sleep Debt Calculator',
+    category: 'health', subcategory: 'lifestyle', inputStyle: 'fields',
+    description: 'Cumulative sleep debt and how long to recover from it.',
+    about: 'Sleep debt accumulates when you sleep less than your body needs. Each hour of deficit adds to cumulative impairment comparable to missing a full night. This calculator tracks your weekly sleep debt, estimates cognitive impairment level, and shows how many recovery nights of adequate sleep are needed to clear the deficit.',
+    related: ['sleep-calculator', 'nap-calculator', 'caffeine-calculator'],
+  },
+  {
+    slug: 'caffeine-half-life', name: 'Caffeine Half-Life Calculator',
+    category: 'health', subcategory: 'lifestyle', inputStyle: 'fields',
+    description: 'How much caffeine remains in your system at any time after consumption.',
+    about: 'Caffeine has a half-life of approximately 5-6 hours — meaning half is metabolised every 5-6 hours. If you drink 200mg at 2pm, you still have 100mg at 8pm and 50mg at 2am. This calculator tracks cumulative caffeine from multiple drinks and shows exactly how much remains in your system hour by hour.',
+    related: ['caffeine-calculator', 'sleep-calculator', 'sleep-debt'],
+  },
+  {
+    slug: 'sober-time', name: 'Sober Time Calculator',
+    category: 'health', subcategory: 'lifestyle', inputStyle: 'fields',
+    description: 'Time elapsed since quitting alcohol, drugs or any habit.',
+    about: 'Tracking sobriety milestones provides motivation and perspective. Enter your sobriety start date to see exactly how long you\'ve been sober in years, months, days, hours and minutes. Marks key milestones (24 hours, 1 week, 30 days, 90 days, 1 year) and calculates the next milestone date.',
+    related: ['bac-calculator', 'alcohol-units', 'life-in-weeks'],
+  },
+  {
+    slug: 'chronotype', name: 'Chronotype Calculator',
+    category: 'health', subcategory: 'lifestyle', inputStyle: 'fields',
+    description: 'Are you a morning lark, evening owl or intermediate? Find your chronotype.',
+    about: 'Your chronotype — whether you\'re naturally a morning person or night owl — is largely genetic and affects optimal sleep, wake, exercise and productivity times. This calculator uses the Munich Chronotype Questionnaire (MCTQ) methodology to determine your chronotype and suggests the optimal daily schedule for your type.',
+    related: ['sleep-calculator', 'nap-calculator', 'sleep-debt'],
+  },
+  {
+    slug: 'life-in-weeks', name: 'Life in Weeks Calculator',
+    category: 'health', subcategory: 'lifestyle', inputStyle: 'fields',
+    description: 'Visualise your entire life as a grid of weeks — weeks lived vs remaining.',
+    about: 'Inspired by Tim Urban\'s "Your Life in Weeks", this calculator visualises your life as a grid of 4,680 weeks (90 years). Enter your birthdate to see how many weeks you\'ve lived (filled) and how many remain (empty) — a powerful perspective tool for reflecting on how you spend your time.',
+    related: ['age-calculator', 'sober-time', 'sleep-debt'],
+  },
+  // ─── Engineering / Fluid (new) ───
+  {
+    slug: 'pump-head-calculator', name: 'Pump Head Calculator',
+    category: 'engineering', subcategory: 'fluid', inputStyle: 'fields',
+    description: 'Total dynamic head for pump selection from static head and losses.',
+    about: 'Total Dynamic Head (TDH) is the total equivalent height a pump must overcome — the sum of static head (elevation), pressure head and friction losses. This calculator determines TDH from system geometry and pipe specifications, which is the key parameter for selecting the correct pump from manufacturer curves.',
+    related: ['pump-power', 'flow-rate', 'pressure-drop'],
+  },
+  {
+    slug: 'heat-transfer-calculator', name: 'Heat Transfer Calculator',
+    category: 'engineering', subcategory: 'fluid', inputStyle: 'fields',
+    description: 'Conductive, convective and radiative heat transfer rates.',
+    about: 'Heat transfers by three mechanisms: conduction (Q = kA∆T/L), convection (Q = hA∆T) and radiation (Q = εσAT⁴). This calculator handles all three modes, allowing analysis of composite walls, fin surfaces and combined modes — essential for heat exchanger design, building insulation and thermal management.',
+    related: ['heat-load', 'hvac-calculator', 'flow-rate'],
+  },
+  // ─── Engineering / Mechanical (new) ───
+  {
+    slug: 'force-calculator', name: 'Force Calculator',
+    category: 'engineering', subcategory: 'mechanical', inputStyle: 'fields',
+    description: 'Force from mass and acceleration using Newton\'s Second Law.',
+    about: "Newton's Second Law: F = ma. This calculator solves for force, mass or acceleration given any two values, converts between force units (N, kN, lbf, kgf), and handles net force from multiple forces acting on a body. Includes gravitational force (weight) calculations and inclined plane analysis.",
+    related: ['stress-strain', 'torque-calculator', 'work-calculator'],
+  },
+  {
+    slug: 'work-calculator', name: 'Work Calculator',
+    category: 'engineering', subcategory: 'mechanical', inputStyle: 'fields',
+    description: 'Mechanical work, energy and power from force, distance and time.',
+    about: 'Mechanical work = Force × Distance × cos(θ). Power = Work / Time. This calculator computes work done, power required and efficiency for any mechanical system — converting between joules, foot-pounds, horsepower and watts. Covers both linear and rotational work (torque × angle).',
+    related: ['force-calculator', 'horsepower', 'torque-calculator'],
+  },
+  // ─── Engineering / Converters (new) ───
+  {
+    slug: 'torque-converter', name: 'Torque Converter',
+    category: 'engineering', subcategory: 'converters', inputStyle: 'fields',
+    description: 'Convert between Nm, ft-lb, in-lb, kgf-m and other torque units.',
+    about: 'Torque units differ significantly between SI and imperial systems. This converter handles all major torque units: newton-metres (Nm), kilonewton-metres (kNm), pound-feet (lb-ft), pound-inches (lb-in), kilogram-force metres (kgf-m) and ounce-inches — with real-time conversion as you type.',
+    related: ['torque-calculator', 'force-converter', 'power-converter'],
+  },
+  // ─── Engineering / Tech (new) ───
+  {
+    slug: 'internet-speed-calculator', name: 'Internet Speed Calculator',
+    category: 'engineering', subcategory: 'tech', inputStyle: 'fields',
+    description: 'File download/upload time at any internet connection speed.',
+    about: 'Calculate how long any file takes to download or upload at your current connection speed. Converts between Mbps and MB/s (divide by 8), accounts for real-world efficiency (typically 60-80% of stated speed), and compares download times across common connection types from 4G LTE to gigabit fibre.',
+    related: ['bandwidth-calculator', 'data-storage', 'data-usage-calculator'],
+  },
+  {
+    slug: 'data-usage-calculator', name: 'Data Usage Calculator',
+    category: 'engineering', subcategory: 'tech', inputStyle: 'fields',
+    description: 'Monthly data consumption from streaming, browsing and downloads.',
+    about: 'Estimate your monthly mobile or home data usage from daily habits: video streaming (SD=1GB/hr, HD=3GB/hr, 4K=7GB/hr), music streaming (40-150MB/hr), video calls (600MB/hr for HD), browsing (60MB/hr) and app downloads. Helps choose the right data plan or identify what\'s consuming your allowance.',
+    related: ['internet-speed-calculator', 'bandwidth-calculator', 'data-storage'],
+  },
+  // ─── Engineering / Civil ───
+  {
+    slug: 'beam-load-calculator', name: 'Beam Load Calculator',
+    category: 'engineering', subcategory: 'civil', inputStyle: 'fields',
+    description: 'Reactions, shear force and bending moment for simply supported beams.',
+    about: 'Calculate support reactions, shear force diagram and bending moment diagram for simply supported beams under point loads, uniformly distributed loads (UDL) and moments. Outputs maximum shear force, maximum bending moment and location — the key inputs for beam sizing and structural design.',
+    related: ['beam-deflection', 'stress-strain', 'concrete-volume-calculator'],
+  },
+  {
+    slug: 'concrete-volume-calculator', name: 'Concrete Volume Calculator',
+    category: 'engineering', subcategory: 'civil', inputStyle: 'fields',
+    description: 'Volume of concrete for slabs, footings, columns and walls in m³ and yd³.',
+    about: 'Calculate concrete volume for any structural element: rectangular slabs, circular slabs, cylindrical columns, strip footings, pad footings and retaining walls. Outputs in both cubic metres (metric) and cubic yards (US), with material quantities for standard mix ratios (cement, sand, aggregate).',
+    related: ['beam-load-calculator', 'steel-weight-calculator', 'concrete-calculator'],
+  },
+  {
+    slug: 'steel-weight-calculator', name: 'Steel Weight Calculator',
+    category: 'engineering', subcategory: 'civil', inputStyle: 'fields',
+    description: 'Weight of steel sections: bars, plates, pipes and structural sections.',
+    about: 'Steel weight calculations are essential for material estimation and structural design. This calculator handles round bars, square bars, flat plates, hexagonal bars, pipes/tubes and common structural sections (I-beam, angle, channel) using standard steel density (7,850 kg/m³) with metric and imperial outputs.',
+    related: ['concrete-volume-calculator', 'beam-load-calculator', 'stress-strain'],
+  },
+  // ─── Math / Algebra (new) ───
+  {
+    slug: 'matrix-calculator', name: 'Matrix Calculator',
+    category: 'math', subcategory: 'algebra', inputStyle: 'fields',
+    description: 'Matrix addition, subtraction, multiplication and scalar operations.',
+    about: 'Perform matrix arithmetic on any size matrices: addition, subtraction, scalar multiplication and matrix multiplication. Shows step-by-step working for each operation. Validates dimensional compatibility and provides the result matrix along with its dimensions and transpose.',
+    related: ['determinant-calculator', 'matrix-inverse', 'systems-equations'],
+  },
+  {
+    slug: 'determinant-calculator', name: 'Determinant Calculator',
+    category: 'math', subcategory: 'algebra', inputStyle: 'fields',
+    description: 'Determinant of any square matrix with cofactor expansion shown.',
+    about: 'The determinant is a scalar value derived from a square matrix that encodes key properties — a matrix is invertible if and only if its determinant is non-zero. This calculator computes determinants for 2×2, 3×3 and 4×4 matrices using cofactor expansion, showing the complete step-by-step calculation.',
+    related: ['matrix-calculator', 'matrix-inverse', 'systems-equations'],
+  },
+  {
+    slug: 'graphing-calculator', name: 'Graphing Calculator',
+    category: 'math', subcategory: 'algebra', inputStyle: 'fields',
+    description: 'Plot functions, find intercepts and intersections on an interactive graph.',
+    about: 'Enter any mathematical function (polynomial, trigonometric, exponential, logarithmic) to plot it on an interactive graph. Automatically finds x and y intercepts, local maxima and minima, and can plot multiple functions simultaneously to find intersection points.',
+    related: ['quadratic-solver', 'polynomial-roots', 'derivative-calculator'],
+  },
+  // ─── Math / Linear Algebra ───
+  {
+    slug: 'matrix-inverse', name: 'Matrix Inverse Calculator',
+    category: 'math', subcategory: 'linear-algebra', inputStyle: 'fields',
+    description: 'Inverse of a 2×2, 3×3 or 4×4 matrix using Gauss-Jordan elimination.',
+    about: 'The matrix inverse A⁻¹ satisfies A × A⁻¹ = I (identity matrix). It exists only when the determinant is non-zero. This calculator finds the inverse using Gauss-Jordan elimination, showing each row reduction step — useful for solving systems of equations and understanding linear transformations.',
+    related: ['determinant-calculator', 'matrix-calculator', 'systems-equations'],
+  },
+  {
+    slug: 'eigenvalues-calculator', name: 'Eigenvalues Calculator',
+    category: 'math', subcategory: 'linear-algebra', inputStyle: 'fields',
+    description: 'Eigenvalues and eigenvectors of 2×2 and 3×3 matrices.',
+    about: 'Eigenvalues (λ) and eigenvectors (v) satisfy Av = λv. They are fundamental to principal component analysis, quantum mechanics, vibration analysis and graph theory. This calculator finds eigenvalues by solving the characteristic polynomial det(A − λI) = 0, then computes the corresponding eigenvectors.',
+    related: ['matrix-inverse', 'determinant-calculator', 'matrix-calculator'],
+  },
+  // ─── Math / Calculus ───
+  {
+    slug: 'derivative-calculator', name: 'Derivative Calculator',
+    category: 'math', subcategory: 'calculus', inputStyle: 'fields',
+    description: 'Symbolic derivative of any function with step-by-step rules shown.',
+    about: 'Compute the derivative of any function using calculus rules: power rule, product rule, quotient rule, chain rule, and derivatives of trigonometric, exponential and logarithmic functions. Shows each rule applied step-by-step and evaluates the derivative at any point.',
+    related: ['integral-calculator', 'graphing-calculator', 'polynomial-roots'],
+  },
+  {
+    slug: 'integral-calculator', name: 'Integral Calculator',
+    category: 'math', subcategory: 'calculus', inputStyle: 'fields',
+    description: 'Definite and indefinite integrals with step-by-step antiderivative rules.',
+    about: 'Calculate indefinite integrals (antiderivatives) and definite integrals for common functions using substitution, integration by parts and standard integral formulas. For definite integrals, evaluates between limits and shows the numeric result alongside the antiderivative.',
+    related: ['derivative-calculator', 'graphing-calculator', 'normal-distribution'],
+  },
+  // ─── Utilities / Everyday (new) ───
+  {
+    slug: 'countdown-timer', name: 'Countdown Timer',
+    category: 'utilities', subcategory: 'everyday', inputStyle: 'fields',
+    description: 'Days, hours and minutes until any future date or event.',
+    about: 'Count down to any event — a birthday, holiday, deadline or product launch. Enter the target date and time to see the exact remaining time in days, hours, minutes and seconds. Supports multiple countdowns simultaneously and can display countdowns in different time zones.',
+    related: ['date-difference', 'working-days', 'age-calculator'],
+  },
+  {
+    slug: 'age-difference-calculator', name: 'Age Difference Calculator',
+    category: 'utilities', subcategory: 'everyday', inputStyle: 'fields',
+    description: 'Exact age difference between two people or two dates.',
+    about: 'Calculate the precise age difference between two people — useful for family planning, relationship curiosity, or historical research. Enter two birth dates to get the difference in years, months and days, along with fun facts like how many days apart they were born and what day of the week each was born.',
+    related: ['age-calculator', 'date-difference', 'countdown-timer'],
+  },
+  {
+    slug: 'random-name-picker', name: 'Random Name Picker',
+    category: 'utilities', subcategory: 'everyday', inputStyle: 'fields',
+    description: 'Randomly select names from a list for draws, teams or assignments.',
+    about: 'Enter any list of names and randomly select one or more winners — ideal for raffle draws, team selection, classroom cold-calling, or assigning tasks. Supports weighted entries (giving some names more chances), removing selected names to avoid repeats, and drawing multiple winners at once.',
+    related: ['combinations', 'probability-calculator', 'split-bill'],
+  },
+  {
+    slug: 'password-strength-checker', name: 'Password Strength Checker',
+    category: 'utilities', subcategory: 'everyday', inputStyle: 'fields',
+    description: 'Password strength score and estimated crack time.',
+    about: 'Evaluate password strength based on length, character variety (uppercase, lowercase, numbers, symbols), common patterns and dictionary words. Shows a strength score (Weak / Fair / Strong / Very Strong), estimated time to crack using brute force, and specific suggestions to improve weak passwords.',
+    related: ['data-storage', 'binary-converter', 'percentage-calculator'],
+  },
+  // ─── Utilities / Home (new) ───
+  {
+    slug: 'electricity-bill-calculator', name: 'Electricity Bill Calculator',
+    category: 'utilities', subcategory: 'home', inputStyle: 'fields',
+    description: 'Monthly electricity cost from appliance wattage and usage hours.',
+    about: 'Calculate your electricity bill by entering each appliance\'s wattage and daily usage hours. Uses kWh pricing (cost = watts × hours / 1000 × rate) to show cost per appliance, cost per day/month/year, and total household consumption. Helps identify the biggest energy consumers to reduce bills.',
+    related: ['paint-calculator', 'flooring-calculator', 'fuel-cost'],
+  },
+
 ]
 
-// Helper — get a calculator by slug
 export function getCalculatorBySlug(slug) {
   return calculators.find(c => c.slug === slug) || null
 }
 
-// Helper — get all calculators for a category
 export function getCalculatorsByCategory(categorySlug) {
   return calculators.filter(c => c.category === categorySlug)
 }
 
-// Helper — get all calculators for a subcategory
 export function getCalculatorsBySubcategory(categorySlug, subcategorySlug) {
   return calculators.filter(c => c.category === categorySlug && c.subcategory === subcategorySlug)
 }
 
-// Helper — get related calculators for a calculator
 export function getRelatedCalculators(slug) {
   const calc = getCalculatorBySlug(slug)
   if (!calc) return []

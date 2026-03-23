@@ -14,6 +14,54 @@ const CALC_COMPONENTS = {
   'mortgage-calculator':    lazy(() => import('../calculators/finance/MortgageCalculator')),
   'roi-calculator':         lazy(() => import('../calculators/finance/ROICalculator')),
   'savings-goal':           lazy(() => import('../calculators/finance/SavingsGoal')),
+  'future-value': lazy(() => import('../calculators/finance/FutureValue')),
+  'cagr-calculator': lazy(() => import('../calculators/finance/CAGRCalculator')),
+  'present-value': lazy(() => import('../calculators/finance/PresentValue')),
+  'payback-period': lazy(() => import('../calculators/finance/PaybackPeriod')),
+  'dividend-yield':         lazy(() => import('../calculators/finance/DividendYield')),
+  'fire-calculator':        lazy(() => import('../calculators/finance/FIRECalculator')),
+  'irr-calculator':         lazy(() => import('../calculators/finance/IRRCalculator')),
+  'npv-calculator':         lazy(() => import('../calculators/finance/NPVCalculator')),
+  'investment-calculator':  lazy(() => import('../calculators/finance/InvestmentCalculator')),
+  'loan-payoff':            lazy(() => import('../calculators/finance/LoanPayoff')),
+  'amortization':           lazy(() => import('../calculators/finance/AmortizationCalculator')),
+  'credit-card-payoff':     lazy(() => import('../calculators/finance/CreditCardPayoff')),
+  'debt-payoff':            lazy(() => import('../calculators/finance/DebtPayoffPlanner')),
+  'auto-loan':              lazy(() => import('../calculators/finance/AutoLoan')),
+  'auto-lease':             lazy(() => import('../calculators/finance/AutoLease')),
+  'interest-rate-calculator': lazy(() => import('../calculators/finance/InterestRateCalculator')),
+  'personal-loan':          lazy(() => import('../calculators/finance/PersonalLoan')),
+
+  // ── Mortgage & Real Estate ──
+  'affordability':          lazy(() => import('../calculators/finance/HomeAffordability')),
+  'rent-vs-buy':            lazy(() => import('../calculators/finance/RentVsBuy')),
+  'mortgage-refinance':     lazy(() => import('../calculators/finance/MortgageRefinance')),
+  'down-payment':           lazy(() => import('../calculators/finance/DownPaymentCalculator')),
+  'closing-costs':          lazy(() => import('../calculators/finance/ClosingCosts')),
+
+  // ── Savings & Retirement ──
+  'retirement-planner':     lazy(() => import('../calculators/finance/RetirementPlanner')),
+  'emergency-fund':         lazy(() => import('../calculators/finance/EmergencyFund')),
+  '401k-calculator':        lazy(() => import('../calculators/finance/Calculator401k')),
+  'roth-ira':               lazy(() => import('../calculators/finance/RothIRA')),
+
+  // ── Banking & Interest ──
+  'apy-calculator':         lazy(() => import('../calculators/finance/APYCalculator')),
+  'apr-calculator':         lazy(() => import('../calculators/finance/APRCalculator')),
+  'inflation-calculator':   lazy(() => import('../calculators/finance/InflationCalculator')),
+  'simple-interest':        lazy(() => import('../calculators/finance/SimpleInterest')),
+  'cd-calculator':          lazy(() => import('../calculators/finance/CDCalculator')),
+
+  // ── Income & Pay ──
+  'salary-to-hourly':       lazy(() => import('../calculators/finance/SalaryToHourly')),
+  'take-home-pay':          lazy(() => import('../calculators/finance/TakeHomePay')),
+  'overtime-calculator':    lazy(() => import('../calculators/finance/OvertimeCalculator')),
+  'raise-calculator':       lazy(() => import('../calculators/finance/RaiseCalculator')),
+
+  // ── FIRE Planning ──
+  'fire-number':            lazy(() => import('../calculators/finance/FIRENumber')),
+  'safe-withdrawal':        lazy(() => import('../calculators/finance/SafeWithdrawal')),
+  'coast-fire':             lazy(() => import('../calculators/finance/CoastFIRE')),
 
   // ── Health ──
   'bmi-calculator':         lazy(() => import('../calculators/health/BMICalculator')),
