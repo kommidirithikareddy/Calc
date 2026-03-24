@@ -131,10 +131,8 @@ const CALC_LIST = {
       { slug: 'fertility-window',      name: 'Fertility Window Calculator' },
     ],
     vitals: [
-      { slug: 'bmi-calculator',        name: 'BMI Calculator' },
       { slug: 'blood-pressure',        name: 'Blood Pressure Calculator' },
       { slug: 'resting-heart-rate',    name: 'Resting Heart Rate' },
-      { slug: 'sleep-calculator',      name: 'Sleep Calculator' },
       { slug: 'age-calculator',        name: 'Age Calculator' },
       { slug: 'blood-type',            name: 'Blood Type Calculator' },
       { slug: 'oxygen-saturation',     name: 'Oxygen Saturation Guide' },
@@ -252,7 +250,6 @@ const CALC_LIST = {
       { slug: 'confidence-interval',   name: 'Confidence Interval' },
     ],
     'date-time': [
-      { slug: 'age-calculator',        name: 'Age Calculator' },
       { slug: 'date-difference',       name: 'Date Difference Calculator' },
       { slug: 'add-subtract-days',     name: 'Add / Subtract Days' },
       { slug: 'working-days',          name: 'Working Days Calculator' },
