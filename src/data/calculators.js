@@ -299,27 +299,7 @@
     about: 'Track your path to financial goals by projecting how your current wealth grows over time. Enter your current net worth, monthly savings and expected return to see a year-by-year projection of your total wealth â€” and identify exactly when you hit key milestones like your FIRE number or first million.',
     related: ['net-worth', 'fire-number', 'compound-interest'],
   },
-  {
-    slug: 'budget-planner', name: 'Budget Planner',
-    category: 'finance', subcategory: 'savings', inputStyle: 'fields',
-    description: 'Monthly budget planner with income, expense categories and savings target.',
-    about: 'A comprehensive monthly budget planner that organises income and expenses into categories (housing, food, transport, entertainment, savings), applies the 50/30/20 rule as a guideline, and shows surplus or deficit. Helps you find where money is going and identify opportunities to save more.',
-    related: ['savings-goal', 'emergency-fund', 'net-worth'],
-  },
-  {
-    slug: 'expense-tracker', name: 'Expense Tracker',
-    category: 'finance', subcategory: 'savings', inputStyle: 'fields',
-    description: 'Track and categorise daily expenses to understand spending patterns.',
-    about: 'Log daily expenses by category to see exactly where your money goes. This tracker categorises spending, shows monthly totals by category, highlights the biggest spending areas and compares actuals against your budget targets â€” giving you the awareness needed to make better financial decisions.',
-    related: ['budget-planner', 'cash-flow-calculator', 'savings-goal'],
-  },
-  {
-    slug: 'cash-flow-calculator', name: 'Cash Flow Calculator',
-    category: 'finance', subcategory: 'savings', inputStyle: 'fields',
-    description: 'Monthly cash flow from all income sources minus all expenses.',
-    about: 'Cash flow is money in minus money out. Positive cash flow means you can save or invest the surplus; negative means you\'re spending more than you earn. This calculator consolidates all income streams and expense categories to give your true monthly and annual cash flow position.',
-    related: ['budget-planner', 'net-worth', 'savings-rate'],
-  },
+ 
   // Banking & Interest
   {
     slug: 'apy-calculator', name: 'APY Calculator',
@@ -421,7 +401,7 @@
     related: ['take-home-pay', 'salary-to-hourly', 'raise-calculator'],
   },
   {
-    slug: 'tax-calculator (US)', name: 'Tax Calculator (US)',
+    slug: 'tax-calculator-us', name: 'Tax Calculator (US)',
     category: 'finance', subcategory: 'income', inputStyle: 'fields',
     description: 'Estimate your federal income tax liability based on income, filing status and deductions.',
     about: 'This calculator applies the current US federal income tax brackets to your taxable income, accounting for your filing status (single, married filing jointly, head of household) and standard or itemized deductions. Shows marginal rate, effective rate, total tax owed and after-tax income.',
@@ -432,7 +412,7 @@
     category: 'finance', subcategory: 'income', inputStyle: 'fields',
     description: 'Net salary after federal and state taxes for any US state.',
     about: 'Tax burden varies dramatically by state â€” from 0% income tax (Texas, Florida) to over 13% (California). This calculator computes your after-tax salary for any US state, applying both federal brackets and the state\'s specific rates, showing total tax burden and effective combined rate.',
-    related: ['take-home-pay', 'tax-calculator (US)', 'salary-to-hourly'],
+    related: ['take-home-pay', 'tax-calculator-us', 'salary-to-hourly'],
   },
   // FIRE Planning
   {
@@ -470,6 +450,26 @@
     about: 'Barista FIRE is semi-retirement: you have enough invested to cover most expenses, but you work part-time (at a coffee shop, hence the name) to cover the remainder and access employer health benefits. This calculator finds your reduced portfolio target based on how much part-time income you plan to earn.',
     related: ['fire-number', 'coast-fire', 'safe-withdrawal'],
   },
+
+  //Budgeting 
+  { slug: 'budget-planner', name: 'Budget Planner',
+    category: 'finance', subcategory: 'budgeting', inputStyle: 'fields',
+    description: 'Monthly budget planner with income, expense categories and savings target.',
+    about: 'A comprehensive monthly budget planner that organises income and expenses into categories (housing, food, transport, entertainment, savings), applies the 50/30/20 rule as a guideline, and shows surplus or deficit. Helps you find where money is going and identify opportunities to save more.',
+    related: ['savings-goal', 'emergency-fund', 'net-worth'],
+   },
+  { slug: 'expense-tracker', name: 'Expense Tracker',
+    category: 'finance', subcategory: 'budgeting', inputStyle: 'fields',    
+    description: 'Track and categorise daily expenses to understand spending patterns.',
+    about: 'Log daily expenses by category to see exactly where your money goes. This tracker categorises spending, shows monthly totals by category, highlights the biggest spending areas and compares actuals against your budget targets â€” giving you the awareness needed to make better financial decisions.',
+    related: ['budget-planner', 'cash-flow-calculator', 'savings-goal'],
+   },
+  { slug: 'cash-flow-calculator', name: 'Cash Flow Calculator',
+    category: 'finance', subcategory: 'budgeting', inputStyle: 'fields',
+    description: 'Calculate your monthly cash flow to understand your financial health.',
+    about: 'Cash flow is the net amount of cash and cash equivalents moving in and out of your business or personal finances. This calculator helps you track your income and expenses to determine your monthly cash flow and identify areas for improvement.',
+    related: ['budget-planner', 'expense-tracker', 'savings-goal'],
+   },
 
   // HEALTH
   // Body Metrics

@@ -130,10 +130,10 @@ export default function RentVsBuy({ meta, category }) {
   // Break-even year
   let breakEvenYr = null
   for(let yr=1;yr<=30;yr++){
-    let bc=downAmt,rb=loanAmt2=loanAmt,tc=0
-    let b2=loanAmt,ti=0
-    for(let m=1;m<=yr*12;m++){const ip2=b2*mr,pp2=Math.min(emi-ip2,b2);ti+=ip2;b2=Math.max(0,b2-pp2)}
-    const fhv=homePrice*Math.pow(1+homeAppreciation/100,yr)
+    let bc = downAmt, rb = loanAmt, tc = 0
+    let b2 = loanAmt, ti = 0
+    for(let m=1;m<=yr*12;m++){const ip2 = b2*mr, pp2 = Math.min(emi-ip2, b2); ti += ip2; b2 = Math.max(0, b2-pp2)}
+    const fhv = homePrice * Math.pow(1 + homeAppreciation/100, yr)
     const eq=fhv-b2, sc=fhv*0.06
     let buyC=downAmt+(emi+(tax+insurance+maintenance+pmi))*yr*12-(eq-sc)
     let rentC=0

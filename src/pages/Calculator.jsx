@@ -31,6 +31,11 @@ const CALC_COMPONENTS = {
   'auto-lease':             lazy(() => import('../calculators/finance/AutoLease')),
   'interest-rate-calculator': lazy(() => import('../calculators/finance/InterestRateCalculator')),
   'personal-loan':          lazy(() => import('../calculators/finance/PersonalLoan')),
+  'stock-return':           lazy(() => import('../calculators/finance/StockReturn')),
+  'portfolio-return':       lazy(() => import('../calculators/finance/PortfolioReturn')),
+  'wealth-tracker':         lazy(() => import('../calculators/finance/WealthTracker')),
+  'rule-of-72':             lazy(() => import('../calculators/finance/RuleOf72')),
+  'student-loan':           lazy(() => import('../calculators/finance/StudentLoan')),
 
   // ── Mortgage & Real Estate ──
   'affordability':          lazy(() => import('../calculators/finance/HomeAffordability')),
@@ -38,30 +43,48 @@ const CALC_COMPONENTS = {
   'mortgage-refinance':     lazy(() => import('../calculators/finance/MortgageRefinance')),
   'down-payment':           lazy(() => import('../calculators/finance/DownPaymentCalculator')),
   'closing-costs':          lazy(() => import('../calculators/finance/ClosingCosts')),
-
+  'heloc-calculator':       lazy(() => import('../calculators/finance/HELOCCalculator')),
+  'mortgage-points':        lazy(() => import('../calculators/finance/MortgagePoints')),
+  
   // ── Savings & Retirement ──
   'retirement-planner':     lazy(() => import('../calculators/finance/RetirementPlanner')),
   'emergency-fund':         lazy(() => import('../calculators/finance/EmergencyFund')),
   '401k-calculator':        lazy(() => import('../calculators/finance/Calculator401k')),
   'roth-ira':               lazy(() => import('../calculators/finance/RothIRA')),
-
+  'pension-calculator':     lazy(() => import('../calculators/finance/PensionCalculator')),
+  'social-security':        lazy(() => import('../calculators/finance/SocialSecurity')),
+  'net-worth':              lazy(() => import('../calculators/finance/NetWorth')),
+  
   // ── Banking & Interest ──
   'apy-calculator':         lazy(() => import('../calculators/finance/APYCalculator')),
   'apr-calculator':         lazy(() => import('../calculators/finance/APRCalculator')),
   'inflation-calculator':   lazy(() => import('../calculators/finance/InflationCalculator')),
   'simple-interest':        lazy(() => import('../calculators/finance/SimpleInterest')),
   'cd-calculator':          lazy(() => import('../calculators/finance/CDCalculator')),
+  'money-market':           lazy(() => import('../calculators/finance/MoneyMarket')),
+  'tax-calculator-us':      lazy(() => import('../calculators/finance/TaxCalculatorUS')),
 
   // ── Income & Pay ──
   'salary-to-hourly':       lazy(() => import('../calculators/finance/SalaryToHourly')),
   'take-home-pay':          lazy(() => import('../calculators/finance/TakeHomePay')),
+  'paycheck-calculator':    lazy(() => import('../calculators/finance/PaycheckCalculator')),
+  'salary-after-tax':       lazy(() => import('../calculators/finance/SalaryAfterTax')),
   'overtime-calculator':    lazy(() => import('../calculators/finance/OvertimeCalculator')),
   'raise-calculator':       lazy(() => import('../calculators/finance/RaiseCalculator')),
+  'bonus-tax':              lazy(() => import('../calculators/finance/BonusTax')),
+  'freelance-rate':         lazy(() => import('../calculators/finance/FreelanceRate')),
+  'annual-income':          lazy(() => import('../calculators/finance/AnnualIncome')),
 
   // ── FIRE Planning ──
   'fire-number':            lazy(() => import('../calculators/finance/FIRENumber')),
   'safe-withdrawal':        lazy(() => import('../calculators/finance/SafeWithdrawal')),
   'coast-fire':             lazy(() => import('../calculators/finance/CoastFIRE')),
+  'barista-fire':           lazy(() => import('../calculators/finance/BaristaFIRE ')),
+
+  // ── Budget & Planning ──
+  'budget-planner':         lazy(() => import('../calculators/finance/BudgetPlanner')),
+  'expense-tracker':        lazy(() => import('../calculators/finance/ExpenseTracker')),
+  'cash-flow-calculator':   lazy(() => import('../calculators/finance/CashFlowCalculator')),
 
   // ── Health ──
   'bmi-calculator':         lazy(() => import('../calculators/health/BMICalculator')),
