@@ -87,8 +87,21 @@ const CALC_COMPONENTS = {
   'cash-flow-calculator':   lazy(() => import('../calculators/finance/CashFlowCalculator')),
 
   // ── Health ──
-  'bmi-calculator':         lazy(() => import('../calculators/health/BMICalculator')),
-  'tdee-calculator':        lazy(() => import('../calculators/health/TDEECalculator')),
+  'bmi-calculator': lazy(() => import('../calculators/health/BMICalculator')),
+  'body-fat-calculator': lazy(() => import('../calculators/health/BodyFatCalculator')),
+  'ideal-weight-calculator': lazy(() => import('../calculators/health/IdealWeightCalculator')),
+  'bmr-calculator': lazy(() => import('../calculators/health/BMRCalculator')),
+  'lean-body-mass-calculator': lazy(() => import('../calculators/health/LeanBodyMassCalculator')),
+  'waist-hip-ratio-calculator': lazy(() => import('../calculators/health/WaistHipRatioCalculator')),
+  'body-surface-area-calculator': lazy(() => import('../calculators/health/BodySurfaceAreaCalculator')),
+  'frame-size': lazy(() => import('../calculators/health/FrameSizeCalculator')),
+  'tdee-calculator': lazy(() => import('../calculators/health/TDEECalculator')),
+  'calorie-calculator': lazy(() => import('../calculators/health/CalorieCalculator')),
+  'macro-calculator': lazy(() => import('../calculators/health/MacroCalculator')),
+  'water-intake': lazy(() => import('../calculators/health/WaterIntakeCalculator')),
+  'protein-calculator': lazy(() => import('../calculators/health/ProteinCalculator')),
+  'calorie-deficit': lazy(() => import('../calculators/health/CalorieDeficitCalculator')),
+  'weight-loss-timeline': lazy(() => import('../calculators/health/WeightLossTimelineCalculator')),
 
   // ── Engineering ──
   'ohms-law':               lazy(() => import('../calculators/engineering/OhmsLaw')),
