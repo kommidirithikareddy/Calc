@@ -203,7 +203,7 @@ export default function Home() {
 
               <p className="hero-sub">
                 Finance, Health, Engineering, Math &amp; Utilities.<br />
-                Every calculation you'll ever need — free, fast, AI-powered.
+                Every calculation you’ll ever need — free, fast, AI-powered.
               </p>
 
               <div className="hero-ctas">

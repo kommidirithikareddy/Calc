@@ -219,12 +219,12 @@ export default function RentVsBuy({ meta, category }) {
       <_Section title="Key Terms" subtitle="Click any term to see its definition">
         <div style={{display:'grid',gridTemplateColumns:'repeat(2,1fr)',gap:8}}>
           {[
-  {term:'Opportunity Cost',def:"The return you forgo by putting money into a down payment instead of investing it."}
-  {term:'Home Appreciation',def:"The annual rate at which your property value increases."}
-  {term:'Break-even Year',def:"The year when total cost of buying becomes less than total cost of renting."}
-  {term:'Net Proceeds',def:"Sale price minus remaining mortgage balance and selling costs (~6%)."}
-  {term:'Equity',def:"Your ownership stake — home value minus outstanding mortgage balance."}
-  {term:'Rent Inflation',def:"The annual percentage increase in your rent, typically 2-4%."}
+  {term:'Opportunity Cost',def:"The return you forgo by putting money into a down payment instead of investing it."},
+  {term:'Home Appreciation',def:"The annual rate at which your property value increases."},
+  {term:'Break-even Year',def:"The year when total cost of buying becomes less than total cost of renting."},
+  {term:'Net Proceeds',def:"Sale price minus remaining mortgage balance and selling costs (~6%)."},
+  {term:'Equity',def:"Your ownership stake — home value minus outstanding mortgage balance."},
+  {term:'Rent Inflation',def:"The annual percentage increase in your rent, typically 2-4%."},
           ].map((item,i)=><_Glossary key={i} term={item.term} def={item.def} catColor={catColor} />)}
         </div>
       </_Section>

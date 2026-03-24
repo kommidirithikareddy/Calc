@@ -160,7 +160,7 @@ export default function AutoLease({ meta, category }) {
             </div>
           ))}
         </div>
-        <p style={{fontSize:12,color:'var(--text-2)',lineHeight:1.75,margin:0}}>You only pay for the portion of the car's value you use during the lease. A car with a high residual value (like many luxury vehicles) has lower monthly payments because you're financing less depreciation. The money factor is negotiable down to the "buy rate" — ask the dealer for the base rate.</p>
+        <p style={{fontSize:12,color:'var(--text-2)',lineHeight:1.75,margin:0}}>You only pay for the portion of the car's value you use during the lease. A car with a high residual value (like many luxury vehicles) has lower monthly payments because you’re financing less depreciation. The money factor is negotiable down to the "buy rate" — ask the dealer for the base rate.</p>
       </Section>
 
       <Section title="Lease vs Buy Comparison" subtitle="Total cost of leasing repeatedly vs buying and keeping">

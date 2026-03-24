@@ -103,7 +103,7 @@ const HA_EXAMPLES = [
 const HA_FAQ = [
   {q:'What is the 28/36 rule?',a:'The 28/36 rule says housing costs should not exceed 28% of gross monthly income, and total debt (housing + all other debts) should not exceed 36%. Lenders use this to assess mortgage risk. Some programs allow higher ratios with strong credit or large down payments.'},
   {q:'What counts as monthly debt in the 36% calculation?',a:'Monthly debt includes minimum credit card payments, car loan payments, student loan payments, personal loan payments, and any alimony or child support. It does not include utilities, groceries, subscriptions or living expenses — only formal debt obligations with fixed payments.'},
-  {q:'What if I exceed the 28/36 limits?',a:'Exceeding the limits does not automatically disqualify you — lenders also consider credit score, employment stability, assets, and loan type. FHA loans allow up to 43% DTI; conventional loans sometimes allow 45-50% with compensating factors. However, staying within the limits ensures a comfortable payment that won't strain your budget.'},
+  {q:'What if I exceed the 28/36 limits?',a:'Exceeding the limits does not automatically disqualify you — lenders also consider credit score, employment stability, assets, and loan type. FHA loans allow up to 43% DTI; conventional loans sometimes allow 45-50% with compensating factors. However, staying within the limits ensures a comfortable payment that won’t strain your budget.'},
   {q:'Should I borrow the maximum I qualify for?',a:'No. Qualifying for the maximum is not the same as being able to comfortably afford it. Lenders consider gross income, but you live on net (after-tax) income. Use a conservative estimate — aim for 25% of gross income for housing — to leave room for savings, emergencies and lifestyle expenses.'},
 ]
 const HA_GLOSSARY = [
@@ -124,7 +124,6 @@ export default function HomeAffordability({ meta, category }) {
   const [tax,setTax]=useState(200)
   const [insurance,setInsurance]=useState(100)
   const [currency,setCurrency]=useState(CURRENCIES[0])
-  const [openFaq,setOpenFaq]=useState(null)
   const sym=currency.symbol
   const catColor=category?.color||'#6366f1'
 

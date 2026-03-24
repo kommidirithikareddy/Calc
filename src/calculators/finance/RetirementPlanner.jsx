@@ -125,7 +125,7 @@ export default function RetirementPlanner({ meta, category }) {
             <FieldInput label="Current Savings" value={currentSavings} onChange={setCurrentSavings} prefix={sym} min={0} catColor={catColor} />
             <FieldInput label="Monthly Contribution" value={monthlyContrib} onChange={setMonthlyContrib} prefix={sym} min={0} catColor={catColor} />
             <FieldInput label="Pre-Retirement Return" value={preReturnRate} onChange={setPreReturnRate} suffix="%/yr" min={0} max={20} catColor={catColor} />
-            <FieldInput label="Desired Annual Income" hint="In today's dollars" value={retireIncome} onChange={setRetireIncome} prefix={sym} min={1} catColor={catColor} />
+            <FieldInput label="Desired Annual Income" hint="In today’s dollars" value={retireIncome} onChange={setRetireIncome} prefix={sym} min={1} catColor={catColor} />
             <FieldInput label="Inflation Rate" value={inflation} onChange={setInflation} suffix="%" min={0} max={10} catColor={catColor} />
             <button style={{width:'100%',padding:13,borderRadius:10,border:'none',background:catColor,color:'#fff',fontSize:14,fontWeight:700,cursor:'pointer',marginTop:6}} onMouseEnter={e=>e.currentTarget.style.opacity='.85'} onMouseLeave={e=>e.currentTarget.style.opacity='1'}>Calculate →</button>
           </>}

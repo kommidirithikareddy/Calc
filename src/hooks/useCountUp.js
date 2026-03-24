@@ -18,7 +18,7 @@ export function useCountUp(target, duration = 800, formatter = null) {
   const prevTargetRef = useRef(null)
 
   useEffect(() => {
-    // Don't animate on first render or if value hasn't changed
+    // Don't animate on first render or if value hasn’t changed
     if (target === prevTargetRef.current) return
     prevTargetRef.current = target
 

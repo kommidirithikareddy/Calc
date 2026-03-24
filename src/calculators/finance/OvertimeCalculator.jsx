@@ -33,7 +33,7 @@ const FAQ = [
   { q: 'Who is entitled to overtime pay?', a: 'Under the Fair Labor Standards Act (FLSA), non-exempt employees must receive 1.5x their regular rate for all hours worked beyond 40 in a workweek. Exempt employees (generally salaried professionals earning over $684/week) are not entitled to FLSA overtime. Some states have stricter rules — California requires daily OT for hours over 8 in a day.' },
   { q: 'What is double time vs time-and-a-half?', a: 'Time-and-a-half (1.5x) is the federal minimum for overtime. Double time (2x) is not federally required but is mandated in some states (California requires double time for hours over 12 in a day) and many union contracts. Some employers offer double time as a benefit or for holiday work.' },
   { q: 'How is overtime calculated for salaried non-exempt employees?', a: 'First, calculate the regular rate: divide weekly salary by hours worked. Then apply 1.5x to overtime hours. For example, a $800/week salary working 50 hours: regular rate = $800/40 = $20/hr. Overtime = 10 hours × $20 × 0.5 = $100 extra (the half-time premium — they already received straight time as part of their salary).' },
-  { q: 'Can I waive my right to overtime?', a: 'No. Under the FLSA, non-exempt employees cannot legally waive their right to overtime pay, even if they sign an agreement saying they will. Employers who fail to pay required overtime can face back wages, penalties and lawsuits. If you believe you're owed overtime, contact the Department of Labor Wage and Hour Division.' },
+  { q: 'Can I waive my right to overtime?', a: 'No. Under the FLSA, non-exempt employees cannot legally waive their right to overtime pay, even if they sign an agreement saying they will. Employers who fail to pay required overtime can face back wages, penalties and lawsuits. If you believe you’re owed overtime, contact the Department of Labor Wage and Hour Division.' },
 ]
 const GLOSSARY = [
   { term: 'Overtime',          def: 'Hours worked beyond 40 in a workweek (federal standard). Must be paid at 1.5x for non-exempt employees.' },
@@ -137,7 +137,7 @@ export default function OvertimeCalculator({ meta, category }) {
         </div>
       </Section>
 
-      <Section title="Frequently Asked Questions" subtitle="Frequently Asked Questions" subtitle="Overtime rules and pay calculations">
+      <Section title="Frequently Asked Questions" subtitle="Overtime rules and pay calculations">
         {FAQ.map((item, i) => <AccordionItem key={i} q={item.q} a={item.a} isOpen={openFaq === i} onToggle={() => setOpenFaq(openFaq === i ? null : i)} catColor={catColor} />)}
       </Section>
     </div>

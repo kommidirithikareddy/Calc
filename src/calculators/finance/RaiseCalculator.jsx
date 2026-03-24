@@ -30,15 +30,15 @@ const EXAMPLES = [
   { title: 'Promotion',      desc: 'Step up to senior role',                       current: 85000, raisePct: 15, years: 10 },
 ]
 const FAQ = [
-  { q: 'Is a 3% raise actually a raise?', a: 'If inflation is running at 3%, a 3% raise means your purchasing power stayed the same — you didn't get a real raise, you stayed flat. To actually increase your standard of living, your raise needs to exceed the current inflation rate. During periods of 4-6% inflation, a 3% raise is effectively a pay cut in real terms.' },
-  { q: 'How do raises compound over time?', a: 'Each raise compounds on your previous salary. A 5% raise on $70,000 gives $73,500. Next year's 5% raise on $73,500 gives $77,175 — not $76,500 as linear thinking would suggest. Over a 20-year career, consistent raises compound dramatically. A 5% annual raise turns a $50,000 salary into $132,664.' },
+  { q: 'Is a 3% raise actually a raise?', a: 'If inflation is running at 3%, a 3% raise means your purchasing power stayed the same — you didn’t get a real raise, you stayed flat. To actually increase your standard of living, your raise needs to exceed the current inflation rate. During periods of 4-6% inflation, a 3% raise is effectively a pay cut in real terms.' },
+  { q: 'How do raises compound over time?', a: 'Each raise compounds on your previous salary. A 5% raise on $70,000 gives $73,500. Next year’s 5% raise on $73,500 gives $77,175 — not $76,500 as linear thinking would suggest. Over a 20-year career, consistent raises compound dramatically. A 5% annual raise turns a $50,000 salary into $132,664.' },
   { q: 'What is a good raise?', a: 'Average US salary increase is 3-4%/year. Inflation is typically 2-3% in normal years. A "good" raise beats inflation and ideally exceeds the 3-4% average. Top performers typically receive 5-10%. Promotions typically come with 10-20% increases. Switching jobs often produces the largest raises — 15-20% on average for high performers.' },
   { q: 'How do I negotiate a raise effectively?', a: 'Gather market data (Glassdoor, LinkedIn, Levels.fyi for tech), document your achievements in quantified terms ($, %, units), time the conversation after a win or positive review, ask for a specific number and justify it, and be prepared to discuss your timeline if they say not now. Negotiating raises 15-20% more than initial offers on average.' },
 ]
 const GLOSSARY = [
   { term: 'Base Salary',       def: 'Your current fixed annual compensation before the raise.' },
   { term: 'Raise Percentage',  def: 'The percentage increase applied to your base salary.' },
-  { term: 'Compound Growth',   def: 'Each year's raise is applied to the previous year's salary, not the original — creating exponential growth.' },
+  { term: 'Compound Growth',   def: 'Each year’s raise is applied to the previous year’s salary, not the original — creating exponential growth.' },
   { term: 'Cost of Living Adjustment (COLA)', def: 'A raise intended to maintain purchasing power by matching inflation — not a real increase in wealth.' },
   { term: 'Real Wage Growth',  def: 'Salary increase above the inflation rate — the true improvement in standard of living.' },
   { term: 'Total Compensation', def: 'Salary + benefits + bonuses + equity. A lower salary with better benefits may be worth more.' },

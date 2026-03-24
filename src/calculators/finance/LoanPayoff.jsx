@@ -122,7 +122,7 @@ export default function LoanPayoff({ meta, category }) {
 
   const hint = extra > 0
     ? `Paying ${sym}${extra}/month extra saves ${fmt(intSaved,sym)} in interest and pays off ${Math.round(monthsSaved/12*10)/10} years sooner.`
-    : `At ${sym}${payment}/month you'll pay off in ${Math.ceil(base.months/12)} years and pay ${fmt(base.totalInt,sym)} in interest total.`
+    : `At ${sym}${payment}/month you’ll pay off in ${Math.ceil(base.months/12)} years and pay ${fmt(base.totalInt,sym)} in interest total.`
 
   function applyExample(ex){setBalance(ex.balance);setRate(ex.rate);setPayment(ex.payment);setExtra(ex.extra);setTimeout(()=>calcRef.current?.scrollIntoView({behavior:'smooth',block:'start'}),50)}
 
