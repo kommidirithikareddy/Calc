@@ -87,6 +87,7 @@ const CALC_COMPONENTS = {
   'cash-flow-calculator':   lazy(() => import('../calculators/finance/CashFlowCalculator')),
 
   // ── Health ──
+  // Body Metrics
   'bmi-calculator': lazy(() => import('../calculators/health/BMICalculator')),
   'body-fat-calculator': lazy(() => import('../calculators/health/BodyFatCalculator')),
   'ideal-weight-calculator': lazy(() => import('../calculators/health/IdealWeightCalculator')),
@@ -95,13 +96,55 @@ const CALC_COMPONENTS = {
   'waist-hip-ratio-calculator': lazy(() => import('../calculators/health/WaistHipRatioCalculator')),
   'body-surface-area-calculator': lazy(() => import('../calculators/health/BodySurfaceAreaCalculator')),
   'frame-size': lazy(() => import('../calculators/health/FrameSizeCalculator')),
+
+  // Calories & Nutrition
   'tdee-calculator': lazy(() => import('../calculators/health/TDEECalculator')),
   'calorie-calculator': lazy(() => import('../calculators/health/CalorieCalculator')),
   'macro-calculator': lazy(() => import('../calculators/health/MacroCalculator')),
   'water-intake': lazy(() => import('../calculators/health/WaterIntakeCalculator')),
   'protein-calculator': lazy(() => import('../calculators/health/ProteinCalculator')),
+  'carb-calculator': lazy(() => import('../calculators/health/CarbCalculator')),
+  'fat-calculator': lazy(() => import('../calculators/health/FatCalculator')),
+  'fiber-calculator': lazy(() => import('../calculators/health/FiberCalculator')),
   'calorie-deficit': lazy(() => import('../calculators/health/CalorieDeficitCalculator')),
   'weight-loss-timeline': lazy(() => import('../calculators/health/WeightLossTimelineCalculator')),
+  'lean-bulk-cut': lazy(() => import('../calculators/health/LeanBulkCutCalculator')),
+
+  // Fitness & Performance
+  'one-rep-max': lazy(() => import('../calculators/health/OneRepMaxCalculator')),
+  'pace-calculator': lazy(() => import('../calculators/health/PaceCalculator')),
+  'calories-burned': lazy(() => import('../calculators/health/CaloriesBurnedCalculator')),
+  'heart-rate-zones': lazy(() => import('../calculators/health/HeartRateZonesCalculator')),
+  'vo2-max': lazy(() => import('../calculators/health/VO2MaxCalculator')),
+  'running-pace': lazy(() => import('../calculators/health/RunningPaceCalculator')),
+  'steps-to-miles': lazy(() => import('../calculators/health/StepsToMilesCalculator')),
+
+  // Pregnancy & Fertility
+  'due-date': lazy(() => import('../calculators/health/DueDateCalculator')),
+  'ovulation-calculator': lazy(() => import('../calculators/health/OvulationCalculator')),
+  'pregnancy-weight': lazy(() => import('../calculators/health/PregnancyWeightCalculator')),
+  'conception-date': lazy(() => import('../calculators/health/ConceptionDateCalculator')),
+  'weeks-pregnant': lazy(() => import('../calculators/health/WeeksPregnantCalculator')),
+  'fertility-window': lazy(() => import('../calculators/health/FertilityWindowCalculator')),
+  
+  // vitals
+  'blood-pressure': lazy(() => import('../calculators/health/BloodPressureCalculator')),
+  'resting-heart-rate': lazy(() => import('../calculators/health/RestingHeartRateCalculator')),
+  'oxygen-saturation': lazy(() => import('../calculators/health/OxygenSaturationCalculator')),
+  'blood-type': lazy(() => import('../calculators/health/BloodTypeCalculator')),
+
+  // Sleep & Lifestyle
+  'alcohol-units': lazy(() => import('../calculators/health/AlcoholUnitsCalculator')),
+  'steps-to-calories': lazy(() => import('../calculators/health/StepsToCaloriesCalculator')),
+  'caffeine-calculator': lazy(() => import('../calculators/health/CaffeineCalculator')),
+  'nap-calculator': lazy(() => import('../calculators/health/NapCalculator')),
+  'bac-calculator': lazy(() => import('../calculators/health/BACCalculator')),
+  'sleep-calculator': lazy(() => import('../calculators/health/SleepCycleCalculator')),
+  'sleep-debt': lazy(() => import('../calculators/health/SleepDebtCalculator')),
+  'caffeine-half-life': lazy(() => import('../calculators/health/CaffeineHalfLifeCalculator')),
+  'sober-time': lazy(() => import('../calculators/health/SoberTimeCalculator')),
+  'chronotype': lazy(() => import('../calculators/health/ChronotypeCalculator')),
+  'life-in-weeks': lazy(() => import('../calculators/health/LifeInWeeksCalculator')),
 
   // ── Engineering ──
   'ohms-law':               lazy(() => import('../calculators/engineering/OhmsLaw')),
