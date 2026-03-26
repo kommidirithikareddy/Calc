@@ -9,82 +9,82 @@ import { getCalculatorBySlug, getRelatedCalculators } from '../data/calculators'
 // Add every new calculator here as you build it
 const CALC_COMPONENTS = {
   // ── Finance ──
-  'compound-interest':      lazy(() => import('../calculators/finance/CompoundInterest')),
-  'loan-emi':               lazy(() => import('../calculators/finance/LoanEMI')),
-  'mortgage-calculator':    lazy(() => import('../calculators/finance/MortgageCalculator')),
-  'roi-calculator':         lazy(() => import('../calculators/finance/ROICalculator')),
-  'savings-goal':           lazy(() => import('../calculators/finance/SavingsGoal')),
+  'compound-interest': lazy(() => import('../calculators/finance/CompoundInterest')),
+  'loan-emi': lazy(() => import('../calculators/finance/LoanEMI')),
+  'mortgage-calculator': lazy(() => import('../calculators/finance/MortgageCalculator')),
+  'roi-calculator': lazy(() => import('../calculators/finance/ROICalculator')),
+  'savings-goal': lazy(() => import('../calculators/finance/SavingsGoal')),
   'future-value': lazy(() => import('../calculators/finance/FutureValue')),
   'cagr-calculator': lazy(() => import('../calculators/finance/CAGRCalculator')),
   'present-value': lazy(() => import('../calculators/finance/PresentValue')),
   'payback-period': lazy(() => import('../calculators/finance/PaybackPeriod')),
-  'dividend-yield':         lazy(() => import('../calculators/finance/DividendYield')),
-  'fire-calculator':        lazy(() => import('../calculators/finance/FIRECalculator')),
-  'irr-calculator':         lazy(() => import('../calculators/finance/IRRCalculator')),
-  'npv-calculator':         lazy(() => import('../calculators/finance/NPVCalculator')),
-  'investment-calculator':  lazy(() => import('../calculators/finance/InvestmentCalculator')),
-  'loan-payoff':            lazy(() => import('../calculators/finance/LoanPayoff')),
-  'amortization':           lazy(() => import('../calculators/finance/AmortizationCalculator')),
-  'credit-card-payoff':     lazy(() => import('../calculators/finance/CreditCardPayoff')),
-  'debt-payoff':            lazy(() => import('../calculators/finance/DebtPayoffPlanner')),
-  'auto-loan':              lazy(() => import('../calculators/finance/AutoLoan')),
-  'auto-lease':             lazy(() => import('../calculators/finance/AutoLease')),
+  'dividend-yield': lazy(() => import('../calculators/finance/DividendYield')),
+  'fire-calculator': lazy(() => import('../calculators/finance/FIRECalculator')),
+  'irr-calculator': lazy(() => import('../calculators/finance/IRRCalculator')),
+  'npv-calculator': lazy(() => import('../calculators/finance/NPVCalculator')),
+  'investment-calculator': lazy(() => import('../calculators/finance/InvestmentCalculator')),
+  'loan-payoff': lazy(() => import('../calculators/finance/LoanPayoff')),
+  'amortization': lazy(() => import('../calculators/finance/AmortizationCalculator')),
+  'credit-card-payoff': lazy(() => import('../calculators/finance/CreditCardPayoff')),
+  'debt-payoff': lazy(() => import('../calculators/finance/DebtPayoffPlanner')),
+  'auto-loan': lazy(() => import('../calculators/finance/AutoLoan')),
+  'auto-lease': lazy(() => import('../calculators/finance/AutoLease')),
   'interest-rate-calculator': lazy(() => import('../calculators/finance/InterestRateCalculator')),
-  'personal-loan':          lazy(() => import('../calculators/finance/PersonalLoan')),
-  'stock-return':           lazy(() => import('../calculators/finance/StockReturn')),
-  'portfolio-return':       lazy(() => import('../calculators/finance/PortfolioReturn')),
-  'wealth-tracker':         lazy(() => import('../calculators/finance/WealthTracker')),
-  'rule-of-72':             lazy(() => import('../calculators/finance/RuleOf72')),
-  'student-loan':           lazy(() => import('../calculators/finance/StudentLoan')),
+  'personal-loan': lazy(() => import('../calculators/finance/PersonalLoan')),
+  'stock-return': lazy(() => import('../calculators/finance/StockReturn')),
+  'portfolio-return': lazy(() => import('../calculators/finance/PortfolioReturn')),
+  'wealth-tracker': lazy(() => import('../calculators/finance/WealthTracker')),
+  'rule-of-72': lazy(() => import('../calculators/finance/RuleOf72')),
+  'student-loan': lazy(() => import('../calculators/finance/StudentLoan')),
 
   // ── Mortgage & Real Estate ──
-  'affordability':          lazy(() => import('../calculators/finance/HomeAffordability')),
-  'rent-vs-buy':            lazy(() => import('../calculators/finance/RentVsBuy')),
-  'mortgage-refinance':     lazy(() => import('../calculators/finance/MortgageRefinance')),
-  'down-payment':           lazy(() => import('../calculators/finance/DownPaymentCalculator')),
-  'closing-costs':          lazy(() => import('../calculators/finance/ClosingCosts')),
-  'heloc-calculator':       lazy(() => import('../calculators/finance/HELOCCalculator')),
-  'mortgage-points':        lazy(() => import('../calculators/finance/MortgagePoints')),
-  
+  'affordability': lazy(() => import('../calculators/finance/HomeAffordability')),
+  'rent-vs-buy': lazy(() => import('../calculators/finance/RentVsBuy')),
+  'mortgage-refinance': lazy(() => import('../calculators/finance/MortgageRefinance')),
+  'down-payment': lazy(() => import('../calculators/finance/DownPaymentCalculator')),
+  'closing-costs': lazy(() => import('../calculators/finance/ClosingCosts')),
+  'heloc-calculator': lazy(() => import('../calculators/finance/HELOCCalculator')),
+  'mortgage-points': lazy(() => import('../calculators/finance/MortgagePoints')),
+
   // ── Savings & Retirement ──
-  'retirement-planner':     lazy(() => import('../calculators/finance/RetirementPlanner')),
-  'emergency-fund':         lazy(() => import('../calculators/finance/EmergencyFund')),
-  '401k-calculator':        lazy(() => import('../calculators/finance/Calculator401k')),
-  'roth-ira':               lazy(() => import('../calculators/finance/RothIRA')),
-  'pension-calculator':     lazy(() => import('../calculators/finance/PensionCalculator')),
-  'social-security':        lazy(() => import('../calculators/finance/SocialSecurity')),
-  'net-worth':              lazy(() => import('../calculators/finance/NetWorth')),
-  
+  'retirement-planner': lazy(() => import('../calculators/finance/RetirementPlanner')),
+  'emergency-fund': lazy(() => import('../calculators/finance/EmergencyFund')),
+  '401k-calculator': lazy(() => import('../calculators/finance/Calculator401k')),
+  'roth-ira': lazy(() => import('../calculators/finance/RothIRA')),
+  'pension-calculator': lazy(() => import('../calculators/finance/PensionCalculator')),
+  'social-security': lazy(() => import('../calculators/finance/SocialSecurity')),
+  'net-worth': lazy(() => import('../calculators/finance/NetWorth')),
+
   // ── Banking & Interest ──
-  'apy-calculator':         lazy(() => import('../calculators/finance/APYCalculator')),
-  'apr-calculator':         lazy(() => import('../calculators/finance/APRCalculator')),
-  'inflation-calculator':   lazy(() => import('../calculators/finance/InflationCalculator')),
-  'simple-interest':        lazy(() => import('../calculators/finance/SimpleInterest')),
-  'cd-calculator':          lazy(() => import('../calculators/finance/CDCalculator')),
-  'money-market':           lazy(() => import('../calculators/finance/MoneyMarket')),
-  'tax-calculator-us':      lazy(() => import('../calculators/finance/TaxCalculatorUS')),
+  'apy-calculator': lazy(() => import('../calculators/finance/APYCalculator')),
+  'apr-calculator': lazy(() => import('../calculators/finance/APRCalculator')),
+  'inflation-calculator': lazy(() => import('../calculators/finance/InflationCalculator')),
+  'simple-interest': lazy(() => import('../calculators/finance/SimpleInterest')),
+  'cd-calculator': lazy(() => import('../calculators/finance/CDCalculator')),
+  'money-market': lazy(() => import('../calculators/finance/MoneyMarket')),
+  'tax-calculator-us': lazy(() => import('../calculators/finance/TaxCalculatorUS')),
 
   // ── Income & Pay ──
-  'salary-to-hourly':       lazy(() => import('../calculators/finance/SalaryToHourly')),
-  'take-home-pay':          lazy(() => import('../calculators/finance/TakeHomePay')),
-  'paycheck-calculator':    lazy(() => import('../calculators/finance/PaycheckCalculator')),
-  'salary-after-tax':       lazy(() => import('../calculators/finance/SalaryAfterTax')),
-  'overtime-calculator':    lazy(() => import('../calculators/finance/OvertimeCalculator')),
-  'raise-calculator':       lazy(() => import('../calculators/finance/RaiseCalculator')),
-  'bonus-tax':              lazy(() => import('../calculators/finance/BonusTax')),
-  'freelance-rate':         lazy(() => import('../calculators/finance/FreelanceRate')),
-  'annual-income':          lazy(() => import('../calculators/finance/AnnualIncome')),
+  'salary-to-hourly': lazy(() => import('../calculators/finance/SalaryToHourly')),
+  'take-home-pay': lazy(() => import('../calculators/finance/TakeHomePay')),
+  'paycheck-calculator': lazy(() => import('../calculators/finance/PaycheckCalculator')),
+  'salary-after-tax': lazy(() => import('../calculators/finance/SalaryAfterTax')),
+  'overtime-calculator': lazy(() => import('../calculators/finance/OvertimeCalculator')),
+  'raise-calculator': lazy(() => import('../calculators/finance/RaiseCalculator')),
+  'bonus-tax': lazy(() => import('../calculators/finance/BonusTax')),
+  'freelance-rate': lazy(() => import('../calculators/finance/FreelanceRate')),
+  'annual-income': lazy(() => import('../calculators/finance/AnnualIncome')),
 
   // ── FIRE Planning ──
-  'fire-number':            lazy(() => import('../calculators/finance/FIRENumber')),
-  'safe-withdrawal':        lazy(() => import('../calculators/finance/SafeWithdrawal')),
-  'coast-fire':             lazy(() => import('../calculators/finance/CoastFIRE')),
-  'barista-fire':           lazy(() => import('../calculators/finance/BaristaFIRE ')),
+  'fire-number': lazy(() => import('../calculators/finance/FIRENumber')),
+  'safe-withdrawal': lazy(() => import('../calculators/finance/SafeWithdrawal')),
+  'coast-fire': lazy(() => import('../calculators/finance/CoastFIRE')),
+  'barista-fire': lazy(() => import('../calculators/finance/BaristaFIRE ')),
 
   // ── Budget & Planning ──
-  'budget-planner':         lazy(() => import('../calculators/finance/BudgetPlanner')),
-  'expense-tracker':        lazy(() => import('../calculators/finance/ExpenseTracker')),
-  'cash-flow-calculator':   lazy(() => import('../calculators/finance/CashFlowCalculator')),
+  'budget-planner': lazy(() => import('../calculators/finance/BudgetPlanner')),
+  'expense-tracker': lazy(() => import('../calculators/finance/ExpenseTracker')),
+  'cash-flow-calculator': lazy(() => import('../calculators/finance/CashFlowCalculator')),
 
   // ── Health ──
   // Body Metrics
@@ -126,7 +126,7 @@ const CALC_COMPONENTS = {
   'conception-date': lazy(() => import('../calculators/health/ConceptionDateCalculator')),
   'weeks-pregnant': lazy(() => import('../calculators/health/WeeksPregnantCalculator')),
   'fertility-window': lazy(() => import('../calculators/health/FertilityWindowCalculator')),
-  
+
   // vitals
   'blood-pressure': lazy(() => import('../calculators/health/BloodPressureCalculator')),
   'resting-heart-rate': lazy(() => import('../calculators/health/RestingHeartRateCalculator')),
@@ -147,40 +147,97 @@ const CALC_COMPONENTS = {
   'life-in-weeks': lazy(() => import('../calculators/health/LifeInWeeksCalculator')),
 
   // ── Engineering ──
-  'ohms-law':               lazy(() => import('../calculators/engineering/OhmsLaw')),
+  'ohms-law': lazy(() => import('../calculators/engineering/OhmsLaw')),
 
   // ── Math ──
-  'age-calculator':         lazy(() => import('../calculators/math/AgeCalculator')),
-  'angle-calculator':       lazy(() => import('../calculators/math/AngleCalculator')),
-  'area-calculator':        lazy(() => import('../calculators/math/AreaCalculator')),
-  'average-calculator':     lazy(() => import('../calculators/math/AverageCalculator')),
-  'circle-calculator':      lazy(() => import('../calculators/math/CircleCalculator')),
-  'decimal-fraction-converter': lazy(() => import('../calculators/math/DecimalFractionConverter')),
-  'factorial-calculator':   lazy(() => import('../calculators/math/FactorialCalculator')),
-  'fraction-calculator':    lazy(() => import('../calculators/math/FractionCalculator')),
-  'gcf-calculator':         lazy(() => import('../calculators/math/GCFCalculator')),
-  'number-base-converter':  lazy(() => import('../calculators/math/NumberBaseConverter')),
-  'percentage-calculator':  lazy(() => import('../calculators/math/PercentageCalculator')),
-  'percentage-change':      lazy(() => import('../calculators/math/PercentageChangeCalculator')),
-  'percent-error':          lazy(() => import('../calculators/math/PercentErrorCalculator')),
-  'perimeter-calculator':   lazy(() => import('../calculators/math/PerimeterCalculator')),
-  'prime-factorization':    lazy(() => import('../calculators/math/PrimeFactorizationCalculator')),
-  'pythagorean-theorem':    lazy(() => import('../calculators/math/PythagoreanTheoremCalculator')),
-  'random-number':          lazy(() => import('../calculators/math/RandomNumberGenerator')),
-  'ratio-calculator':       lazy(() => import('../calculators/math/RatioCalculator')),
-  'right-triangle':         lazy(() => import('../calculators/math/RightTriangleCalculator')),
-  'rounding-calculator':    lazy(() => import('../calculators/math/RoundingCalculator')),
-  'scientific-notation':    lazy(() => import('../calculators/math/ScientificNotationCalculator')),
-  'slope-calculator':       lazy(() => import('../calculators/math/SlopeCalculator')),
+  // arithmetic
+  'percentage-calculator': lazy(() => import('../calculators/math/PercentageCalculator')),
+  'percentage-change': lazy(() => import('../calculators/math/PercentageChangeCalculator')),
+  'fraction-calculator': lazy(() => import('../calculators/math/FractionCalculator')),
   'square-root-calculator': lazy(() => import('../calculators/math/SquareRootCalculator')),
+  'gcf-calculator': lazy(() => import('../calculators/math/GCFCalculator')),
+  'ratio-calculator': lazy(() => import('../calculators/math/RatioCalculator')),
+  'average-calculator': lazy(() => import('../calculators/math/AverageCalculator')),
+  'rounding-calculator': lazy(() => import('../calculators/math/RoundingCalculator')),
+  'prime-factorization': lazy(() => import('../calculators/math/PrimeFactorizationCalculator')),
+  'factorial-calculator': lazy(() => import('../calculators/math/FactorialCalculator')),
+  'scientific-notation': lazy(() => import('../calculators/math/ScientificNotationCalculator')),
+  'number-base-converter': lazy(() => import('../calculators/math/NumberBaseConverter')),
+  'decimal-fraction-converter': lazy(() => import('../calculators/math/DecimalFractionConverter')),
+  'percent-error': lazy(() => import('../calculators/math/PercentErrorCalculator')),
+  'random-number': lazy(() => import('../calculators/math/RandomNumberGenerator')),
+
+  // geometry
+  'area-calculator': lazy(() => import('../calculators/math/AreaCalculator')),
+  'perimeter-calculator': lazy(() => import('../calculators/math/PerimeterCalculator')),
+  'volume-calculator': lazy(() => import('../calculators/math/VolumeCalculator')),
+  'pythagorean-theorem': lazy(() => import('../calculators/math/PythagoreanTheoremCalculator')),
+  'triangle-calculator': lazy(() => import('../calculators/math/TriangleCalculator')),
+  'circle-calculator': lazy(() => import('../calculators/math/CircleCalculator')),
   'surface-area-calculator': lazy(() => import('../calculators/math/SurfaceAreaCalculator')),
-  'triangle-calculator':    lazy(() => import('../calculators/math/TriangleCalculator')),
-  'volume-calculator':      lazy(() => import('../calculators/math/VolumeCalculator')),
-  
+  'slope-calculator': lazy(() => import('../calculators/math/SlopeCalculator')),
+  'right-triangle': lazy(() => import('../calculators/math/RightTriangleCalculator')),
+  'angle-calculator': lazy(() => import('../calculators/math/AngleCalculator')),
+
+  // algebra
+  'linear-equation': lazy(() => import('../calculators/math/LinearEquationCalculator')),
+  'quadratic-solver': lazy(() => import('../calculators/math/QuadraticSolverCalculator')),
+  'systems-equations': lazy(() => import('../calculators/math/SystemsEquationsCalculator')),
+  'polynomial-roots': lazy(() => import('../calculators/math/PolynomialRootsCalculator')),
+  'exponent-calculator': lazy(() => import('../calculators/math/ExponentCalculator')),
+  'logarithm-calculator': lazy(() => import('../calculators/math/LogarithmCalculator')),
+  'inequality-solver': lazy(() => import('../calculators/math/InequalitySolverCalculator')),
+  'sequence-calculator': lazy(() => import('../calculators/math/SequenceCalculator')),
+  'binomial-theorem': lazy(() => import('../calculators/math/BinomialTheoremCalculator')),
+  'complex-numbers': lazy(() => import('../calculators/math/ComplexNumbersCalculator')),
+  'exponential-growth': lazy(() => import('../calculators/math/ExponentialGrowthDecayCalculator')),
+  'absolute-value': lazy(() => import('../calculators/math/AbsoluteValueCalculator')),
+  'graphing-calculator': lazy(() => import('../calculators/math/GraphingCalculator')),
+
+
+  // trigonometry
+  'trig-calculator': lazy(() => import('../calculators/math/TrigCalculator')),
+  'inverse-trig': lazy(() => import('../calculators/math/InverseTrigCalculator')),
+  'angle-converter': lazy(() => import('../calculators/math/AngleConverterCalculator')),
+  'law-of-sines': lazy(() => import('../calculators/math/LawOfSinesCalculator')),
+  'law-of-cosines': lazy(() => import('../calculators/math/LawOfCosinesCalculator')),
+  'unit-circle': lazy(() => import('../calculators/math/UnitCircleReferenceCalculator')),
+  'trig-identities': lazy(() => import('../calculators/math/TrigIdentityVerifierCalculator')),
+
+  //  linear algebra
+
+  'matrix-calculator': lazy(() => import('../calculators/math/MatrixCalculator')),
+  'determinant-calculator': lazy(() => import('../calculators/math/DeterminantCalculator')),
+  'matrix-inverse': lazy(() => import('../calculators/math/MatrixInverseCalculator')),
+  'eigenvalues-calculator': lazy(() => import('../calculators/math/EigenvaluesCalculator')),
+  'rank-of-matrix': lazy(() => import('../calculators/math/RankOfMatrixCalculator')),
+  'gauss-elimination': lazy(() => import('../calculators/math/GaussEliminationCalculator')),
+  'dot-product': lazy(() => import('../calculators/math/DotProductCalculator')),
+  'cross-product': lazy(() => import('../calculators/math/CrossProductCalculator')),
+  'vector-magnitude': lazy(() => import('../calculators/math/VectorMagnitudeCalculator')),
+
+  // calculus
+  'limit-calculator': lazy(() => import('../calculators/math/LimitCalculator')),
+  'derivative-calculator': lazy(() => import('../calculators/math/DerivativeCalculator')),
+  'integral-calculator': lazy(() => import('../calculators/math/IntegralCalculator')),
+  'partial-derivative': lazy(() => import('../calculators/math/PartialDerivativeCalculator')),
+  'double-integral': lazy(() => import('../calculators/math/DoubleIntegralCalculator')),
+  'taylor-series': lazy(() => import('../calculators/math/TaylorSeriesCalculator')),
+  'riemann-sum': lazy(() => import('../calculators/math/RiemannSumCalculator')),
+
+  // differential-equations
+  'ode-first-order': lazy(() => import('../calculators/math/FirstOrderODESolverCalculator')),
+  'ode-second-order': lazy(() => import('../calculators/math/SecondOrderODESolverCalculator')),
+  'laplace-transform': lazy(() => import('../calculators/math/LaplaceTransformCalculator')),
+  'inverse-laplace': lazy(() => import('../calculators/math/InverseLaplaceTransformCalculator')),
+
+  // date-time
+  'age-calculator': lazy(() => import('../calculators/math/AgeCalculator')),
+
   // ── Utilities ──
-  'tip-calculator':         lazy(() => import('../calculators/utilities/TipCalculator')),
-  'discount-calculator':    lazy(() => import('../calculators/utilities/DiscountCalculator')),
-  'fuel-cost':              lazy(() => import('../calculators/utilities/FuelCostCalculator')),
+  'tip-calculator': lazy(() => import('../calculators/utilities/TipCalculator')),
+  'discount-calculator': lazy(() => import('../calculators/utilities/DiscountCalculator')),
+  'fuel-cost': lazy(() => import('../calculators/utilities/FuelCostCalculator')),
 }
 
 // ─── Related calculators strip ────────────────────────────────
@@ -195,7 +252,7 @@ function RelatedCalcs({ related, catColor }) {
             className="related-item" style={{ '--cat-color': catColor }}>
             <span className="related-item-name">{calc.name}</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6"/>
+              <polyline points="9 18 15 12 9 6" />
             </svg>
           </Link>
         ))}
@@ -207,10 +264,10 @@ function RelatedCalcs({ related, catColor }) {
 function CalcSkeleton() {
   return (
     <div className="calc-skeleton">
-      <div className="skel skel-title"/>
-      <div className="skel skel-input"/>
-      <div className="skel skel-input"/>
-      <div className="skel skel-btn"/>
+      <div className="skel skel-title" />
+      <div className="skel skel-input" />
+      <div className="skel skel-input" />
+      <div className="skel skel-btn" />
     </div>
   )
 }
@@ -233,7 +290,7 @@ export default function Calculator() {
 
   const category = getCategoryBySlug(catSlug)
   const calcMeta = getCalculatorBySlug(calcSlug)
-  const related  = getRelatedCalculators(calcSlug)
+  const related = getRelatedCalculators(calcSlug)
 
   if (!calcMeta) {
     return (
@@ -256,10 +313,10 @@ export default function Calculator() {
         <div className="calc-hero-bar-inner">
           <div className="calc-hero-icon" style={{ background: category?.colorLight || '#e0e7ff' }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={category?.color || '#6366f1'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="4" y="2" width="16" height="20" rx="2"/>
-              <line x1="8" y1="6" x2="16" y2="6"/>
-              <line x1="8" y1="10" x2="16" y2="10"/>
-              <line x1="8" y1="14" x2="12" y2="14"/>
+              <rect x="4" y="2" width="16" height="20" rx="2" />
+              <line x1="8" y1="6" x2="16" y2="6" />
+              <line x1="8" y1="10" x2="16" y2="10" />
+              <line x1="8" y1="14" x2="12" y2="14" />
             </svg>
           </div>
           <div className="calc-hero-text">
