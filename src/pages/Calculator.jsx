@@ -195,7 +195,7 @@ const CALC_COMPONENTS = {
   'graphing-calculator': lazy(() => import('../calculators/math/GraphingCalculator')),
 
 
-  // trigonometry
+  // Trigonometry
   'trig-calculator': lazy(() => import('../calculators/math/TrigCalculator')),
   'inverse-trig': lazy(() => import('../calculators/math/InverseTrigCalculator')),
   'angle-converter': lazy(() => import('../calculators/math/AngleConverterCalculator')),
@@ -204,7 +204,7 @@ const CALC_COMPONENTS = {
   'unit-circle': lazy(() => import('../calculators/math/UnitCircleReferenceCalculator')),
   'trig-identities': lazy(() => import('../calculators/math/TrigIdentityVerifierCalculator')),
 
-  //  linear algebra
+  //Linear Algebra
 
   'matrix-calculator': lazy(() => import('../calculators/math/MatrixCalculator')),
   'determinant-calculator': lazy(() => import('../calculators/math/DeterminantCalculator')),
@@ -216,7 +216,7 @@ const CALC_COMPONENTS = {
   'cross-product': lazy(() => import('../calculators/math/CrossProductCalculator')),
   'vector-magnitude': lazy(() => import('../calculators/math/VectorMagnitudeCalculator')),
 
-  // calculus
+  //Calculus
   'limit-calculator': lazy(() => import('../calculators/math/LimitCalculator')),
   'derivative-calculator': lazy(() => import('../calculators/math/DerivativeCalculator')),
   'integral-calculator': lazy(() => import('../calculators/math/IntegralCalculator')),
@@ -225,19 +225,118 @@ const CALC_COMPONENTS = {
   'taylor-series': lazy(() => import('../calculators/math/TaylorSeriesCalculator')),
   'riemann-sum': lazy(() => import('../calculators/math/RiemannSumCalculator')),
 
-  // differential-equations
+  //Differential Equations
+
   'ode-first-order': lazy(() => import('../calculators/math/FirstOrderODESolverCalculator')),
   'ode-second-order': lazy(() => import('../calculators/math/SecondOrderODESolverCalculator')),
   'laplace-transform': lazy(() => import('../calculators/math/LaplaceTransformCalculator')),
   'inverse-laplace': lazy(() => import('../calculators/math/InverseLaplaceTransformCalculator')),
 
-  // date-time
-  'age-calculator': lazy(() => import('../calculators/math/AgeCalculator')),
+  // Statistics
 
-  // ── Utilities ──
+  'mean-median-mode': lazy(() => import('../calculators/math/MeanMedianModeCalculator')),
+  'standard-deviation': lazy(() => import('../calculators/math/StandardDeviationCalculator')),
+  'normal-distribution': lazy(() => import('../calculators/math/NormalDistributionCalculator')),
+  'correlation': lazy(() => import('../calculators/math/CorrelationCalculator')),
+  'confidence-interval': lazy(() => import('../calculators/math/ConfidenceIntervalCalculator')),
+  'variance-calculator': lazy(() => import('../calculators/math/VarianceCalculator')),
+  'weighted-average': lazy(() => import('../calculators/math/WeightedAverageCalculator')),
+  'z-score-calculator': lazy(() => import('../calculators/math/ZScoreCalculator')),
+  'regression-calculator': lazy(() => import('../calculators/math/LinearRegressionCalculator')),
+  'chi-square': lazy(() => import('../calculators/math/ChiSquareTestCalculator')),
+  'hypothesis-test': lazy(() => import('../calculators/math/HypothesisTestCalculator')),
+  'sample-size-calculator': lazy(() => import('../calculators/math/SampleSizeCalculator')),
+
+
+  // Probability
+  'probability-calculator': lazy(() => import('../calculators/math/ProbabilityCalculator')),
+  'permutations': lazy(() => import('../calculators/math/PermutationsCalculator')),
+  'combinations': lazy(() => import('../calculators/math/CombinationsCalculator')),
+  'dice-probability': lazy(() => import('../calculators/math/DiceProbabilityCalculator')),
+  'bayes-theorem': lazy(() => import('../calculators/math/BayesTheoremCalculator')),
+  'binomial-distribution': lazy(() => import('../calculators/math/BinomialDistributionCalculator')),
+  'poisson-distribution': lazy(() => import('../calculators/math/PoissonDistributionCalculator')),
+
+
+
+
+  // Number Theory
+
+  'prime-checker': lazy(() => import('../calculators/math/PrimeChecker')),
+  'factor-calculator': lazy(() => import('../calculators/math/FactorCalculator')),
+  'remainder-calculator': lazy(() => import('../calculators/math/RemainderModuloCalculator')),
+
+
+
+  // Numerical Methods
+
+  'trapezoidal-rule': lazy(() => import('../calculators/math/TrapezoidalRuleCalculator')),
+  'simpsons-rule': lazy(() => import('../calculators/math/SimpsonsRuleCalculator')),
+  'newton-raphson': lazy(() => import('../calculators/math/NewtonRaphsonCalculator')),
+  'bisection-method': lazy(() => import('../calculators/math/BisectionCalculator')),
+
+
+  // Date-Time
+  'age-calculator': lazy(() => import('../calculators/math/AgeCalculator')),
+  'date-difference': lazy(() => import('../calculators/math/DateDifferenceCalculator')),
+  'add-subtract-days': lazy(() => import('../calculators/math/AddSubtractDaysCalculator')),
+  'working-days': lazy(() => import('../calculators/math/WorkingDaysCalculator')),
+  'time-zone-converter': lazy(() => import('../calculators/math/TimeZoneConverter')),
+
+  // ── Utilities — Everyday ──────────────────────────────────────
   'tip-calculator': lazy(() => import('../calculators/utilities/TipCalculator')),
+  'split-bill': lazy(() => import('../calculators/utilities/SplitBill')),
   'discount-calculator': lazy(() => import('../calculators/utilities/DiscountCalculator')),
+  'sales-tax': lazy(() => import('../calculators/utilities/SalesTax')),
+  'percentage-off': lazy(() => import('../calculators/utilities/PercentageOff')),
+  'price-per-unit': lazy(() => import('../calculators/utilities/PricePerUnit')),
+  'cost-per-use': lazy(() => import('../calculators/utilities/CostPerUse')),
+  'budget-calculator': lazy(() => import('../calculators/utilities/BudgetCalculator')),
+  'countdown-timer': lazy(() => import('../calculators/utilities/CountdownTimer')),
+  'age-difference-calculator': lazy(() => import('../calculators/utilities/AgeDifferenceCalculator')),
+  'random-name-picker': lazy(() => import('../calculators/utilities/RandomNamePicker')),
+  'password-strength-checker': lazy(() => import('../calculators/utilities/PasswordStrength')),
+
+  // ── Utilities — Home & Construction ──────────────────────────
+  'paint-calculator': lazy(() => import('../calculators/utilities/PaintCalculator')),
+  'flooring-calculator': lazy(() => import('../calculators/utilities/FlooringCalculator')),
+  'tile-calculator': lazy(() => import('../calculators/utilities/TileCalculator')),
+  'concrete-calculator': lazy(() => import('../calculators/utilities/ConcreteCalculator')),
+  'wallpaper-calculator': lazy(() => import('../calculators/utilities/WallpaperCalculator')),
+  'fence-calculator': lazy(() => import('../calculators/utilities/FenceCalculator')),
+  'mulch-calculator': lazy(() => import('../calculators/utilities/MulchCalculator')),
+  'electricity-bill-calculator': lazy(() => import('../calculators/utilities/ElectricityBillCalculator')),
+
+  // ── Utilities — Food & Cooking ───────────────────────────────
+  'recipe-converter': lazy(() => import('../calculators/utilities/RecipeConverter')),
+  'measurement-converter': lazy(() => import('../calculators/utilities/MeasurementConverter')),
+  'cooking-time': lazy(() => import('../calculators/utilities/CookingTime')),
+  'yeast-converter': lazy(() => import('../calculators/utilities/YeastConverter')),
+  'baking-calculator': lazy(() => import('../calculators/utilities/BakingCalculator')),
+
+  // ── Utilities — Travel & Fuel ────────────────────────────────
   'fuel-cost': lazy(() => import('../calculators/utilities/FuelCostCalculator')),
+  'mpg-calculator': lazy(() => import('../calculators/utilities/MPGCalculator')),
+  'road-trip': lazy(() => import('../calculators/utilities/RoadTripCalculator')),
+  'flight-time': lazy(() => import('../calculators/utilities/FlightTime')),
+  'timezone-converter': lazy(() => import('../calculators/utilities/TimezoneConverter')),
+  'travel-budget': lazy(() => import('../calculators/utilities/TravelBudget')),
+
+  // ── Utilities — Business ─────────────────────────────────────
+  'profit-margin': lazy(() => import('../calculators/utilities/ProfitMarginCalculator')),
+  'break-even': lazy(() => import('../calculators/utilities/BreakEvenCalculator')),
+  'markup-calculator': lazy(() => import('../calculators/utilities/MarkupCalculator')),
+  'vat-calculator': lazy(() => import('../calculators/utilities/VATCalculator')),
+  'invoice-calculator': lazy(() => import('../calculators/utilities/InvoiceCalculator')),
+  'roi-business': lazy(() => import('../calculators/utilities/ROIBusiness')),
+  'payroll-calculator': lazy(() => import('../calculators/utilities/PayrollCalculator')),
+
+  // ── Utilities — Currency & Area ──────────────────────────────
+  'currency-converter': lazy(() => import('../calculators/utilities/CurrencyConverter')),
+  'area-calculator-util': lazy(() => import('../calculators/utilities/AreaCalculatorUtil')),
+  'volume-calculator-util': lazy(() => import('../calculators/utilities/VolumeCalculatorUtil')),
+  'square-footage': lazy(() => import('../calculators/utilities/SquareFootage')),
+  'acreage-calculator': lazy(() => import('../calculators/utilities/AcreageCalculator')),
 }
 
 // ─── Related calculators strip ────────────────────────────────
