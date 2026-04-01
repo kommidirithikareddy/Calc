@@ -147,7 +147,65 @@ const CALC_COMPONENTS = {
   'life-in-weeks': lazy(() => import('../calculators/health/LifeInWeeksCalculator')),
 
   // ── Engineering ──
+
+  // ── Electrical ──
   'ohms-law': lazy(() => import('../calculators/engineering/OhmsLaw')),
+  'voltage-drop': lazy(() => import('../calculators/engineering/VoltageDropCalculator')),
+  'power-calculator': lazy(() => import('../calculators/engineering/PowerCalculator')),
+  'resistor-color': lazy(() => import('../calculators/engineering/ResistorColorCalculator')),
+  'capacitor-charge': lazy(() => import('../calculators/engineering/CapacitorChargeCalculator')),
+  'led-resistor': lazy(() => import('../calculators/engineering/LEDResistorCalculator')),
+  'wire-gauge': lazy(() => import('../calculators/engineering/WireGaugeCalculator')),
+  'transformer-ratio': lazy(() => import('../calculators/engineering/TransformerRatioCalculator')),
+  // ── Fluid & HVAC ──
+  'flow-rate': lazy(() => import('../calculators/engineering/FlowRateCalculator')),
+  'reynolds-number': lazy(() => import('../calculators/engineering/ReynoldsNumberCalculator')),
+  'pressure-drop': lazy(() => import('../calculators/engineering/PressureDropCalculator')),
+  'pipe-sizing': lazy(() => import('../calculators/engineering/PipeSizingCalculator')),
+  'heat-load': lazy(() => import('../calculators/engineering/HeatLoadCalculator')),
+  'hvac-calculator': lazy(() => import('../calculators/engineering/HVACCalculator')),
+  'pump-power': lazy(() => import('../calculators/engineering/PumpPowerCalculator')),
+  'pump-head-calculator': lazy(() => import('../calculators/engineering/PumpHeadCalculator')),
+  'heat-transfer-calculator': lazy(() => import('../calculators/engineering/HeatTransferCalculator')),
+  // ── Materials Science ──
+  'thermal-expansion': lazy(() => import('../calculators/engineering/ThermalExpansionCalculator')),
+  'youngs-modulus': lazy(() => import('../calculators/engineering/YoungsModulusCalculator')),
+  'material-density': lazy(() => import('../calculators/engineering/MaterialDensityCalculator')),
+  'hardness-converter': lazy(() => import('../calculators/engineering/HardnessConverterCalculator')),
+  // ── Mechanical Engineering ──
+  'torque-calculator': lazy(() => import('../calculators/engineering/TorqueCalculator')),
+  'gear-ratio': lazy(() => import('../calculators/engineering/GearRatioCalculator')),
+  'beam-deflection': lazy(() => import('../calculators/engineering/BeamDeflectionCalculator')),
+  'stress-strain': lazy(() => import('../calculators/engineering/StressStrainCalculator')),
+  'horsepower': lazy(() => import('../calculators/engineering/HorsepowerCalculator')),
+  'spring-constant': lazy(() => import('../calculators/engineering/SpringConstantCalculator')),
+  'force-calculator': lazy(() => import('../calculators/engineering/ForceCalculator')),
+  'work-calculator': lazy(() => import('../calculators/engineering/WorkCalculator')),
+  // ── Unit Converters ──
+  'length-converter': lazy(() => import('../calculators/engineering/LengthConverter')),
+  'weight-converter': lazy(() => import('../calculators/engineering/WeightConverter')),
+  'temperature-converter': lazy(() => import('../calculators/engineering/TemperatureConverter')),
+  'speed-converter': lazy(() => import('../calculators/engineering/SpeedConverter')),
+  'pressure-converter': lazy(() => import('../calculators/engineering/PressureConverter')),
+  'energy-converter': lazy(() => import('../calculators/engineering/EnergyConverter')),
+  'power-converter': lazy(() => import('../calculators/engineering/PowerConverter')),
+  'volume-converter': lazy(() => import('../calculators/engineering/VolumeConverter')),
+  'area-converter': lazy(() => import('../calculators/engineering/AreaConverter')),
+  'force-converter': lazy(() => import('../calculators/engineering/ForceConverter')),
+  'torque-converter': lazy(() => import('../calculators/engineering/TorqueConverter')),
+  // ── Tech & Digital ──
+  'data-storage': lazy(() => import('../calculators/engineering/DataStorageConverter')),
+  'bandwidth-calculator': lazy(() => import('../calculators/engineering/BandwidthCalculator')),
+  'subnet-calculator': lazy(() => import('../calculators/engineering/SubnetCalculator')),
+  'binary-converter': lazy(() => import('../calculators/engineering/BinaryConverter')),
+  'hex-converter': lazy(() => import('../calculators/engineering/HexConverter')),
+  'internet-speed-calculator': lazy(() => import('../calculators/engineering/InternetSpeedCalculator')),
+  'data-usage-calculator': lazy(() => import('../calculators/engineering/DataUsageCalculator')),
+  // ── Civil Engineering ──
+  'beam-load-calculator': lazy(() => import('../calculators/engineering/BeamLoadCalculator')),
+  'concrete-volume-calculator': lazy(() => import('../calculators/engineering/ConcreteVolumeCalculator')),
+  'steel-weight-calculator': lazy(() => import('../calculators/engineering/SteelWeightCalculator')),
+
 
   // ── Math ──
   // arithmetic
