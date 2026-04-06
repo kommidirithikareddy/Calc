@@ -1,108 +1,246 @@
 import { useState } from 'react'
 import CalcShell from '../../components/calculator/CalcShell'
 import BreakdownTable from '../../components/calculator/BreakdownTable'
+import FormulaCard from '../../components/calculator/FormulaCard'
 import AIHintCard from '../../components/calculator/AIHintCard'
-const fmt = n => (isNaN(n)||!isFinite(n))? '—' : parseFloat(Number(n).toFixed(6)).toString()
-function integrate1D(f,a,b,n=200){if(a===b)return 0;const h=(b-a)/n;let sum=f(a)+f(b);for(let i=1;i<n;i++)sum+=(i%2===0?2:4)*f(a+i*h);return(h/3)*sum}
-function integrate2D(f,ax,bx,ay,by,n=40){return integrate1D(x=>integrate1D(y=>f(x,y),ay,by,n),ax,bx,n)}
-function Sec({title,sub,children}){return(<div style={{background:'var(--bg-card)',border:'0.5px solid var(--border)',borderRadius:14,overflow:'hidden'}}><div style={{padding:'13px 18px',borderBottom:'0.5px solid var(--border)',display:'flex',justifyContent:'space-between'}}><span style={{fontSize:13,fontWeight:700,color:'var(--text)',fontFamily:"'Space Grotesk',sans-serif"}}>{title}</span>{sub&&<span style={{fontSize:11,color:'var(--text-3)'}}>{sub}</span>}</div><div style={{padding:'16px 18px'}}>{children}</div></div>)}
-function Acc({q,a,open,onToggle,color}){return(<div style={{borderBottom:'0.5px solid var(--border)'}}><button onClick={onToggle} style={{width:'100%',display:'flex',justifyContent:'space-between',alignItems:'center',padding:'13px 0',background:'none',border:'none',cursor:'pointer',gap:12,textAlign:'left'}}><span style={{fontSize:13,fontWeight:600,color:'var(--text)',fontFamily:"'DM Sans',sans-serif",lineHeight:1.4}}>{q}</span><span style={{fontSize:18,color,flexShrink:0,transform:open?'rotate(45deg)':'none',transition:'transform .2s'}}>+</span></button>{open&&<p style={{fontSize:12.5,color:'var(--text-2)',lineHeight:1.75,margin:'0 0 13px'}}>{a}</p>}</div>)}
-function Inp({label,value,onChange,color,hint}){const[f,sf]=useState(false);return(<div style={{marginBottom:12}}><div style={{display:'flex',justifyContent:'space-between',marginBottom:5}}><label style={{fontSize:12,fontWeight:600,color:'var(--text)',fontFamily:"'DM Sans',sans-serif"}}>{label}</label>{hint&&<span style={{fontSize:10,color:'var(--text-3)'}}>{hint}</span>}</div><div style={{display:'flex',height:40,border:`1.5px solid ${f?color:'var(--border-2)'}`,borderRadius:9,overflow:'hidden',background:'var(--bg-card)'}}><input type="number" value={value} onChange={e=>onChange(Number(e.target.value))} onFocus={()=>sf(true)} onBlur={()=>sf(false)} style={{flex:1,border:'none',background:'transparent',padding:'0 12px',fontSize:15,fontWeight:700,color:'var(--text)',outline:'none',fontFamily:"'Space Grotesk',sans-serif"}}/></div></div>)}
-const FUNCTIONS=[
-  {id:'xy',label:'xy',f:(x,y)=>x*y,fStr:'xy',steps:(ax,bx,ay,by)=>[{label:'Set up',math:`∬ xy dA = ∫${ax}^${bx} ∫${ay}^${by} xy dy dx`},{label:'Inner integral (∂y)',math:`∫ xy dy = x·y²/2`,note:'Treat x as constant'},{label:'Apply y limits',math:`[x·y²/2]${ay}^${by} = x·(${by}²−${ay}²)/2 = x·${(by*by-ay*ay)/2}`},{label:'Outer integral (∂x)',math:`∫${ax}^${bx} ${(by*by-ay*ay)/2}x dx = ${(by*by-ay*ay)/2}·x²/2`},{label:'Apply x limits',math:`= ${(by*by-ay*ay)/2}·(${bx}²−${ax}²)/2 = ${fmt(integrate2D((x,y)=>x*y,ax,bx,ay,by))}`}]},
-  {id:'x2y2',label:'x²+y²',f:(x,y)=>x*x+y*y,fStr:'x²+y²',steps:(ax,bx,ay,by)=>[{label:'Set up',math:`∬ (x²+y²) dA = ∫${ax}^${bx} ∫${ay}^${by} (x²+y²) dy dx`},{label:'Inner integral',math:`∫ (x²+y²) dy = x²y + y³/3`,note:'x² is constant w.r.t. y'},{label:'Apply y limits & outer integral',math:`∫${ax}^${bx} [x²(${by-ay}) + (${by}³−${ay}³)/3] dx`},{label:'Result',math:`= ${fmt(integrate2D((x,y)=>x*x+y*y,ax,bx,ay,by))}`}]},
-  {id:'sinxy',label:'sin(x+y)',f:(x,y)=>Math.sin(x+y),fStr:'sin(x+y)',steps:(ax,bx,ay,by)=>[{label:'Set up',math:`∬ sin(x+y) dA`},{label:'Inner integral',math:`∫ sin(x+y) dy = −cos(x+y)`,note:'u-substitution: u=x+y, du=dy'},{label:'Apply y limits',math:`−cos(x+${by}) + cos(x+${ay})`},{label:'Result',math:`= ${fmt(integrate2D((x,y)=>Math.sin(x+y),ax,bx,ay,by))}`}]},
+
+function evalFn(expr, x, y) {
+  try {
+    const clean = expr
+      .replace(/\^/g, '**')
+      .replace(/sin/g, 'Math.sin')
+      .replace(/cos/g, 'Math.cos')
+      .replace(/sqrt/g, 'Math.sqrt')
+      .replace(/pi/g, 'Math.PI')
+      .replace(/e(?![a-zA-Z])/g, 'Math.E')
+    // eslint-disable-next-line no-new-func
+    return Function('x', 'y', `"use strict"; return (${clean})`)(x, y)
+  } catch { return NaN }
+}
+
+// Numerical double integration using Simpson's rule
+function doubleIntegral(expr, xMin, xMax, yMin, yMax, n = 40) {
+  const hx = (xMax - xMin) / n
+  const hy = (yMax - yMin) / n
+  let total = 0
+  for (let i = 0; i <= n; i++) {
+    const x = xMin + i * hx
+    const wx = i === 0 || i === n ? 1 : i % 2 === 0 ? 2 : 4
+    for (let j = 0; j <= n; j++) {
+      const y = yMin + j * hy
+      const wy = j === 0 || j === n ? 1 : j % 2 === 0 ? 2 : 4
+      const fval = evalFn(expr, x, y)
+      if (isFinite(fval)) total += wx * wy * fval
+    }
+  }
+  return total * hx * hy / 9
+}
+
+const EXAMPLES = [
+  { label: '∫∫ 1 dA = area', expr: '1', x1: '0', x2: '3', y1: '0', y2: '2', note: 'Area of 3×2 rectangle = 6' },
+  { label: '∫∫ x·y dA', expr: 'x*y', x1: '0', x2: '2', y1: '0', y2: '2', note: 'Should be 4' },
+  { label: '∫∫ x²+y² dA', expr: 'x^2+y^2', x1: '0', x2: '1', y1: '0', y2: '1', note: 'Sum of squares' },
+  { label: '∫∫ sin(x+y) dA', expr: 'sin(x+y)', x1: '0', x2: '1', y1: '0', y2: '1', note: 'Trig example' },
 ]
-const FAQ=[
-  {q:'What is a double integral?',a:'A double integral ∬f(x,y)dA integrates over a 2D region. Geometrically, it equals the volume under the surface z=f(x,y) over the region R. For a rectangle, it becomes an iterated integral: ∫∫f(x,y)dy dx — integrate the inner integral first, then the outer.'},
-  {q:'What is Fubini\'s theorem?',a:"Fubini's theorem says you can switch the order of integration for nice functions: ∫∫f(x,y)dy dx = ∫∫f(x,y)dx dy. This is useful when one order is easier than the other. The theorem holds when f is continuous on the region."},
-  {q:'What is a double integral used for?',a:'Volume: ∬f(x,y)dA = volume under z=f(x,y). Area: ∬1 dA = area of region R. Mass: ∬ρ(x,y)dA where ρ is density. Average value: (1/Area)∬f(x,y)dA. Center of mass. Electric/gravitational potential over a surface.'},
-  {q:'How do I handle non-rectangular regions?',a:'For a region bounded by y=g₁(x) and y=g₂(x): ∫ₐᵇ [∫g₁(x)^g₂(x) f(x,y) dy] dx. The inner limits can be functions of x. Polar coordinates are often better for circular regions: ∬f(x,y)dA = ∬f(r cosθ, r sinθ)·r dr dθ.'},
+
+const FAQ = [
+  { q: 'What is a double integral and what does it calculate?', a: 'A double integral ∬f(x,y) dA integrates a function of two variables over a 2D region. Geometrically: if f(x,y) ≥ 0, the double integral equals the volume under the surface z=f(x,y) above the region. If f(x,y) = 1, it equals the area of the region. In physics it computes mass (with density), center of mass, moment of inertia, and probability.' },
+  { q: 'How does the order of integration work?', a: 'A double integral over a rectangle is computed as two nested single integrals: ∫ from x₁ to x₂ [∫ from y₁ to y₂ f(x,y) dy] dx. The inner integral treats x as a constant and integrates over y. The result (a function of x only) is then integrated over x. By Fubini\'s theorem, you can reverse the order (dx dy vs dy dx) and get the same answer for continuous functions.' },
+  { q: 'What is this calculator actually doing?', a: 'This calculator uses 2D Simpson\'s rule — a numerical method. It divides the rectangle into an n×n grid and applies the weighted sum from Simpson\'s 1D rule in both dimensions. With n=40, it evaluates f(x,y) at 1,681 points. The error is O(h⁴) — very small for smooth functions. For exact symbolic answers, you need a CAS like Mathematica or Wolfram Alpha.' },
+  { q: 'How do I handle non-rectangular regions?', a: 'For triangular or curved regions, you express the y-bounds as functions of x: ∫ from x₁ to x₂ [∫ from g(x) to h(x) f(x,y) dy] dx. For example, integrating over a triangle with vertices (0,0), (1,0), (0,1): y goes from 0 to (1-x) for each x from 0 to 1. This calculator handles rectangular regions only.' },
 ]
-export default function DoubleIntegralCalculator({meta,category}){
-  const C=category?.color||'#6366f1'
-  const[fnId,setFnId]=useState('xy')
-  const[ax,setAx]=useState(0);const[bx,setBx]=useState(2)
-  const[ay,setAy]=useState(0);const[by,setBy]=useState(3)
-  const[openFaq,setFaq]=useState(null)
-  const fn=FUNCTIONS.find(f=>f.id===fnId)||FUNCTIONS[0]
-  const result=integrate2D(fn.f,ax,bx,ay,by)
-  const area=(bx-ax)*(by-ay)
-  const avgVal=area>0?result/area:0
-  const steps=fn.steps(ax,bx,ay,by)
-  const W=180,H=140
-  const toSx=x=>20+(x-ax)/(bx-ax+0.001)*(W-40)
-  const toSy=y=>H-20-(y-ay)/(by-ay+0.001)*(H-40)
-  return(<div style={{display:'flex',flexDirection:'column',gap:20}}>
-    <div style={{background:`linear-gradient(135deg,${C}12,${C}06)`,border:`1px solid ${C}30`,borderRadius:14,padding:'16px 20px',display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:12}}>
-      <div>
-        <div style={{fontSize:10,fontWeight:700,color:C,textTransform:'uppercase',letterSpacing:'.08em',marginBottom:6}}>Double Integral</div>
-        <div style={{fontSize:20,fontWeight:700,color:C,fontFamily:"'Space Grotesk',sans-serif"}}>∬ f(x,y) dA = ∫∫ f(x,y) dy dx</div>
-        <div style={{fontSize:11,color:'var(--text-3)',marginTop:4}}>Volume under surface z=f(x,y) over region R</div>
+
+function Sec({ title, sub, children }) {
+  return (
+    <div style={{ background: 'var(--bg-card)', border: '0.5px solid var(--border)', borderRadius: 14, overflow: 'hidden' }}>
+      <div style={{ padding: '13px 18px', borderBottom: '0.5px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)', fontFamily: "'Space Grotesk',sans-serif" }}>{title}</span>
+        {sub && <span style={{ fontSize: 11, color: 'var(--text-3)' }}>{sub}</span>}
       </div>
-      <div style={{padding:'10px 20px',background:C+'18',borderRadius:12,textAlign:'center'}}>
-        <div style={{fontSize:11,color:'var(--text-3)',marginBottom:2}}>∬{fn.fStr} dA</div>
-        <div style={{fontSize:28,fontWeight:700,color:C,fontFamily:"'Space Grotesk',sans-serif"}}>{fmt(result)}</div>
-        <div style={{fontSize:10,color:'var(--text-3)'}}>over [{ax},{bx}]×[{ay},{by}]</div>
-      </div>
+      <div style={{ padding: '16px 18px' }}>{children}</div>
     </div>
-    <div style={{background:'var(--bg-card)',border:'0.5px solid var(--border)',borderRadius:14,padding:'14px 18px'}}>
-      <div style={{fontSize:12,fontWeight:600,color:'var(--text-2)',marginBottom:12}}>Select function f(x,y)</div>
-      <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8}}>
-        {FUNCTIONS.map(f=>(<button key={f.id} onClick={()=>setFnId(f.id)} style={{padding:'10px',borderRadius:10,border:`1.5px solid ${fnId===f.id?C:'var(--border-2)'}`,background:fnId===f.id?C+'12':'var(--bg-raised)',cursor:'pointer',fontSize:13,fontWeight:700,color:fnId===f.id?C:'var(--text-2)',fontFamily:"'Space Grotesk',sans-serif"}}>{f.fStr}</button>))}
-      </div>
+  )
+}
+function Acc({ q, a, open, onToggle, color }) {
+  return (
+    <div style={{ borderBottom: '0.5px solid var(--border)' }}>
+      <button onClick={onToggle} style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '13px 0', background: 'none', border: 'none', cursor: 'pointer', gap: 12, textAlign: 'left' }}>
+        <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)', fontFamily: "'DM Sans',sans-serif", lineHeight: 1.4 }}>{q}</span>
+        <span style={{ fontSize: 18, color, flexShrink: 0, display: 'inline-block', transform: open ? 'rotate(45deg)' : 'none', transition: 'transform .2s' }}>+</span>
+      </button>
+      {open && <p style={{ fontSize: 12.5, color: 'var(--text-2)', lineHeight: 1.75, margin: '0 0 13px', fontFamily: "'DM Sans',sans-serif" }}>{a}</p>}
     </div>
-    <CalcShell
-      left={<>
-        <div style={{fontSize:11,fontWeight:700,color:'var(--text-3)',textTransform:'uppercase',letterSpacing:'.07em',marginBottom:12,paddingBottom:8,borderBottom:'0.5px solid var(--border)'}}>f(x,y) = {fn.fStr}</div>
-        <div style={{fontSize:12,fontWeight:600,color:'var(--text)',marginBottom:8}}>x limits</div>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8}}><Inp label="x from (a)" value={ax} onChange={setAx} color={C}/><Inp label="x to (b)" value={bx} onChange={setBx} color={C}/></div>
-        <div style={{fontSize:12,fontWeight:600,color:'var(--text)',marginBottom:8,marginTop:4}}>y limits</div>
-        <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:8}}><Inp label="y from (c)" value={ay} onChange={setAy} color={C}/><Inp label="y to (d)" value={by} onChange={setBy} color={C}/></div>
-        <div style={{padding:'10px 14px',background:C+'08',borderRadius:10,border:`1px solid ${C}20`,marginBottom:14,marginTop:4}}>
-          <div style={{fontSize:13,fontWeight:700,color:C,fontFamily:"'Space Grotesk',sans-serif"}}>∫{ax}^{bx} ∫{ay}^{by} {fn.fStr} dy dx</div>
-          <div style={{fontSize:16,fontWeight:700,color:C,marginTop:4}}>= {fmt(result)}</div>
+  )
+}
+
+export default function DoubleIntegralCalculator({ meta, category }) {
+  const C = category?.color || '#3b82f6'
+  const [expr, setExpr] = useState('x*y')
+  const [x1, setX1] = useState(0)
+  const [x2, setX2] = useState(2)
+  const [y1, setY1] = useState(0)
+  const [y2, setY2] = useState(2)
+  const [openFaq, setOpenFaq] = useState(null)
+
+  const result = doubleIntegral(expr, x1, x2, y1, y2)
+  const area = (x2 - x1) * (y2 - y1)
+  const avgValue = area > 0 ? result / area : null
+  const fmt = v => v === null || isNaN(v) || !isFinite(v) ? '—' : parseFloat(v.toFixed(8)).toString()
+
+  const hint = `∬ ${expr} dA over [${x1},${x2}]×[${y1},${y2}] ≈ ${fmt(result)}. Area = ${area}. Average value ≈ ${fmt(avgValue)}.`
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+
+      {/* Plain-English explanation banner */}
+      <div style={{ background: `linear-gradient(135deg,${C}15,${C}06)`, border: `1px solid ${C}30`, borderRadius: 14, padding: '16px 20px' }}>
+        <div style={{ fontSize: 10, fontWeight: 700, color: C, textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: 6 }}>Double Integral</div>
+        <div style={{ fontSize: 16, fontWeight: 700, color: C, fontFamily: "'Space Grotesk',sans-serif", marginBottom: 8 }}>∬ f(x, y) dA — integrate over a 2D region</div>
+        <div style={{ background: 'var(--bg-card)', borderRadius: 10, padding: '12px 14px', border: '0.5px solid var(--border)' }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text)', marginBottom: 6 }}>📖 What this means, in plain English:</div>
+          <div style={{ fontSize: 12, color: 'var(--text-2)', lineHeight: 1.8 }}>
+            A double integral adds up the value of <strong style={{ color: C }}>f(x, y)</strong> over every tiny piece of a 2D region.<br />
+            <strong>Think of it as:</strong> if f(x, y) is the height of a surface above the xy-plane,<br />
+            the double integral = <strong style={{ color: C }}>volume under that surface</strong> above your region.<br />
+            If f(x, y) = 1, the result is just the <strong style={{ color: C }}>area</strong> of the region.
+          </div>
         </div>
-        <div style={{display:'flex',gap:10}}>
-          <button style={{flex:1,padding:13,borderRadius:10,border:'none',background:C,color:'#fff',fontSize:14,fontWeight:700,cursor:'pointer'}}>Integrate →</button>
-          <button onClick={()=>{setAx(0);setBx(2);setAy(0);setBy(3)}} style={{padding:'13px 18px',borderRadius:10,border:'1.5px solid var(--border-2)',background:'var(--bg-raised)',color:'var(--text-2)',fontSize:13,fontWeight:500,cursor:'pointer'}}>Reset</button>
-        </div>
-      </>}
-      right={<>
-        <div style={{background:'var(--bg-card)',border:`1.5px solid ${C}30`,borderRadius:14,padding:'18px 20px',marginBottom:14}}>
-          <div style={{fontSize:11,fontWeight:700,color:'var(--text-3)',textTransform:'uppercase',marginBottom:8}}>∬ {fn.fStr} dA</div>
-          <div style={{fontSize:38,fontWeight:700,color:C,fontFamily:"'Space Grotesk',sans-serif"}}>{fmt(result)}</div>
-          <div style={{fontSize:12,color:'var(--text-3)',marginTop:6}}>Area of region: {fmt(area)} · Average value: {fmt(avgVal)}</div>
-        </div>
-        <div style={{background:'var(--bg-card)',border:'0.5px solid var(--border)',borderRadius:14,padding:'14px 18px',marginBottom:14}}>
-          <div style={{fontSize:12,fontWeight:700,color:'var(--text)',marginBottom:8}}>Integration region R</div>
-          <svg viewBox={`0 0 ${W} ${H}`} width="100%" style={{display:'block',background:'var(--bg-raised)',borderRadius:8}}>
-            <rect x={20} y={20} width={W-40} height={H-40} fill={C+'15'} stroke={C} strokeWidth="2" rx="4"/>
-            <line x1={20} y1={H-20} x2={W-10} y2={H-20} stroke="var(--border)" strokeWidth="1"/>
-            <line x1={20} y1={H-20} x2={20} y2={10} stroke="var(--border)" strokeWidth="1"/>
-            <text x={W/2} y={H-5} textAnchor="middle" fontSize="9" fill={C} fontWeight="700">x: [{ax},{bx}]</text>
-            <text x={8} y={H/2} textAnchor="middle" fontSize="9" fill={C} fontWeight="700" transform={`rotate(-90,8,${H/2})`}>y: [{ay},{by}]</text>
-            <text x={W/2} y={H/2} textAnchor="middle" fontSize="11" fill={C} fontWeight="700">∬ {fn.fStr} dA</text>
-            <text x={W/2} y={H/2+16} textAnchor="middle" fontSize="13" fill={C} fontWeight="700">= {fmt(result)}</text>
-          </svg>
-        </div>
-        <BreakdownTable title="Results" rows={[
-          {label:'∬ f(x,y) dA',value:fmt(result),bold:true,highlight:true,color:C},
-          {label:'Region area',value:fmt(area)},
-          {label:'Average value',value:fmt(avgVal),note:'result ÷ area'},
-          {label:'x range',value:`[${ax}, ${bx}]`},
-          {label:'y range',value:`[${ay}, ${by}]`},
-        ]}/>
-        <AIHintCard hint={`∬${fn.fStr} dA over [${ax},${bx}]×[${ay},${by}] = ${fmt(result)}. This equals the volume under the surface z=${fn.fStr}. Average value = ${fmt(avgVal)}.`} color={C}/>
-      </>}
-    />
-    <Sec title="Step-by-step — iterated integration">
-      <div style={{display:'flex',flexDirection:'column',gap:14}}>
-        {steps.map((s,i)=>(<div key={i} style={{display:'flex',gap:14}}><div style={{width:26,height:26,borderRadius:'50%',flexShrink:0,background:i===steps.length-1?C:C+'18',border:`1.5px solid ${C}40`,display:'flex',alignItems:'center',justifyContent:'center',fontSize:11,fontWeight:700,color:i===steps.length-1?'#fff':C}}>{i===steps.length-1?'✓':i+1}</div><div style={{flex:1}}>{s.label&&<div style={{fontSize:10,fontWeight:700,color:C,textTransform:'uppercase',letterSpacing:'.06em',marginBottom:4}}>{s.label}</div>}<div style={{fontSize:13,fontFamily:"'Space Grotesk',sans-serif",background:'var(--bg-raised)',padding:'8px 12px',borderRadius:8,border:`0.5px solid ${i===steps.length-1?C+'40':'var(--border)'}`}}>{s.math}</div>{s.note&&<div style={{fontSize:11.5,color:'var(--text-3)',marginTop:4,fontStyle:'italic'}}>↳ {s.note}</div>}</div></div>))}
       </div>
-    </Sec>
-    <Sec title="Frequently asked questions">
-      {FAQ.map((f,i)=><Acc key={i} q={f.q} a={f.a} open={openFaq===i} onToggle={()=>setFaq(openFaq===i?null:i)} color={C}/>)}
-    </Sec>
-  </div>)
+
+      <CalcShell
+        left={<>
+          <div style={{ marginBottom: 14 }}>
+            <label style={{ fontSize: 12.5, fontWeight: 600, color: 'var(--text)', display: 'block', marginBottom: 6 }}>Function f(x, y)</label>
+            <input value={expr} onChange={e => setExpr(e.target.value)} placeholder="e.g. x*y, x^2+y^2, sin(x+y)"
+              style={{ width: '100%', height: 48, border: '1.5px solid var(--border-2)', borderRadius: 9, padding: '0 14px', fontSize: 16, fontWeight: 700, color: 'var(--text)', background: 'var(--bg-card)', outline: 'none', fontFamily: "'Space Grotesk',sans-serif", boxSizing: 'border-box' }} />
+            <div style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 5 }}>Use: x, y, +, −, *, /, ^, sin(), cos(), sqrt(), pi</div>
+          </div>
+
+          {/* Region bounds — visually clear */}
+          <div style={{ background: 'var(--bg-raised)', borderRadius: 11, padding: '14px', marginBottom: 14, border: '0.5px solid var(--border)' }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text)', marginBottom: 12 }}>Integration region (rectangle)</div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 10 }}>
+              <div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: C, marginBottom: 6 }}>x range (left → right)</div>
+                {[['x₁ (from)', x1, setX1], ['x₂ (to)', x2, setX2]].map(([l, v, set]) => (
+                  <div key={l} style={{ marginBottom: 8 }}>
+                    <label style={{ fontSize: 10, color: 'var(--text-3)', display: 'block', marginBottom: 3 }}>{l}</label>
+                    <input type="number" step="0.5" value={v} onChange={e => set(+e.target.value)}
+                      style={{ width: '100%', height: 38, border: `1.5px solid ${C}40`, borderRadius: 8, padding: '0 10px', fontSize: 15, fontWeight: 700, color: 'var(--text)', background: 'var(--bg-card)', outline: 'none', boxSizing: 'border-box' }} />
+                  </div>
+                ))}
+              </div>
+              <div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: '#ef4444', marginBottom: 6 }}>y range (bottom → top)</div>
+                {[['y₁ (from)', y1, setY1], ['y₂ (to)', y2, setY2]].map(([l, v, set]) => (
+                  <div key={l} style={{ marginBottom: 8 }}>
+                    <label style={{ fontSize: 10, color: 'var(--text-3)', display: 'block', marginBottom: 3 }}>{l}</label>
+                    <input type="number" step="0.5" value={v} onChange={e => set(+e.target.value)}
+                      style={{ width: '100%', height: 38, border: '1.5px solid #ef444440', borderRadius: 8, padding: '0 10px', fontSize: 15, fontWeight: 700, color: 'var(--text)', background: 'var(--bg-card)', outline: 'none', boxSizing: 'border-box' }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Visual rectangle */}
+            <div style={{ padding: '8px 12px', background: C + '08', borderRadius: 8, border: `1px solid ${C}20`, textAlign: 'center' }}>
+              <div style={{ fontSize: 12, color: C, fontFamily: "'Space Grotesk',sans-serif", fontWeight: 600 }}>
+                Region: x ∈ [{x1}, {x2}] × y ∈ [{y1}, {y2}]
+              </div>
+              <div style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 2 }}>Area = {Math.abs(area).toFixed(3)} square units</div>
+            </div>
+          </div>
+
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '.07em', marginBottom: 8 }}>Classic examples (click to load)</div>
+            {EXAMPLES.map((ex, i) => (
+              <button key={i} onClick={() => { setExpr(ex.expr); setX1(+ex.x1); setX2(+ex.x2); setY1(+ex.y1); setY2(+ex.y2) }}
+                style={{ display: 'block', width: '100%', padding: '8px 12px', marginBottom: 5, borderRadius: 8, border: '1px solid var(--border-2)', background: 'var(--bg-raised)', cursor: 'pointer', textAlign: 'left' }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text)' }}>{ex.label}</div>
+                <div style={{ fontSize: 11, color: 'var(--text-3)' }}>{ex.note}</div>
+              </button>
+            ))}
+          </div>
+        </>}
+
+        right={<>
+          {/* Main result */}
+          <div style={{ padding: '20px', background: `linear-gradient(135deg, ${C}, ${C}dd)`, borderRadius: 14, textAlign: 'center', marginBottom: 14 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: 6 }}>
+              ∬ {expr} dA
+            </div>
+            <div style={{ fontSize: 36, fontWeight: 700, color: '#fff', fontFamily: "'Space Grotesk',sans-serif" }}>{fmt(result)}</div>
+            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.7)', marginTop: 4 }}>numerical result (Simpson's rule, n=40)</div>
+          </div>
+
+          <BreakdownTable title="Analysis" rows={[
+            { label: '∬ f dA (integral)', value: fmt(result), bold: true, highlight: true, color: C },
+            { label: 'Region area', value: fmt(area) },
+            { label: 'Average value of f', value: fmt(avgValue) },
+            { label: 'x span', value: `${x1} to ${x2} (width ${Math.abs(x2 - x1)})` },
+            { label: 'y span', value: `${y1} to ${y2} (height ${Math.abs(y2 - y1)})` },
+          ]} />
+
+          <AIHintCard hint={hint} />
+        </>}
+      />
+
+      {/* Visual explanation of what's happening */}
+      <Sec title="What does ∬ f(x, y) dA mean visually?" sub="Intuitive guide">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+          {[
+            { icon: '📦', title: 'Volume interpretation', desc: `If f(x,y) ≥ 0, the double integral equals the volume of the 3D solid between the surface z = f(x,y) and the xy-plane over your region.`, color: C },
+            { icon: '📐', title: 'Area special case', desc: `When f(x,y) = 1, the double integral just gives the area of your region. Your region [${x1},${x2}]×[${y1},${y2}] has area = ${Math.abs(area).toFixed(3)}.`, color: '#10b981' },
+            { icon: '⚖️', title: 'Average value', desc: `The average value of f over the region = (1/Area) × ∬f dA. For your inputs: ${fmt(avgValue)}.`, color: '#f59e0b' },
+            { icon: '🔢', title: 'How it is computed', desc: 'Split the region into a 40×40 grid of tiny rectangles. Multiply f(x,y) by each rectangle area and add everything up — that is the integral.', color: '#8b5cf6' },
+          ].map((card, i) => (
+            <div key={i} style={{ padding: '12px 14px', borderRadius: 10, background: card.color + '08', border: `1px solid ${card.color}25` }}>
+              <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
+                <span style={{ fontSize: 16 }}>{card.icon}</span>
+                <span style={{ fontSize: 12, fontWeight: 700, color: card.color }}>{card.title}</span>
+              </div>
+              <p style={{ fontSize: 12, color: 'var(--text-2)', lineHeight: 1.65, margin: 0, fontFamily: "'DM Sans',sans-serif" }}>{card.desc}</p>
+            </div>
+          ))}
+        </div>
+      </Sec>
+
+      {/* How to evaluate step by step */}
+      <Sec title="How to evaluate ∬ x·y dA over [0,2]×[0,2]" sub="Worked example step by step">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {[
+            { step: 1, label: 'Write as nested integrals', detail: '∫₀² [∫₀² x·y dy] dx', note: 'Inner bracket = integrate over y first, treating x as a constant' },
+            { step: 2, label: 'Solve inner integral (over y)', detail: '∫₀² x·y dy = x·[y²/2]₀² = x·(4/2) = 2x', note: 'Integrate x·y with respect to y → x·y²/2, evaluate from 0 to 2' },
+            { step: 3, label: 'Now solve outer integral (over x)', detail: '∫₀² 2x dx = [x²]₀² = 4', note: 'Integrate 2x with respect to x → x², evaluate from 0 to 2' },
+            { step: 4, label: 'Final answer', detail: '∬ x·y dA = 4', note: 'Confirmed by the numerical result above' },
+          ].map((s, i) => (
+            <div key={i} style={{ display: 'flex', gap: 12, padding: '12px 14px', borderRadius: 10, background: 'var(--bg-raised)', border: '0.5px solid var(--border)' }}>
+              <div style={{ width: 26, height: 26, borderRadius: '50%', background: C + '18', color: C, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{s.step}</div>
+              <div>
+                <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--text)', marginBottom: 4 }}>{s.label}</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: C, fontFamily: "'Space Grotesk',sans-serif", marginBottom: 3 }}>{s.detail}</div>
+                <div style={{ fontSize: 11, color: 'var(--text-3)' }}>{s.note}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Sec>
+
+      <FormulaCard
+        formula={'∬_R f(x,y) dA = ∫_{x₁}^{x₂} [∫_{y₁}^{y₂} f(x,y) dy] dx\n\nStep 1: Inner integral — integrate over y, treat x as constant\nStep 2: Outer integral — integrate the result over x\n\nIf f(x,y) = 1: result = area of region\nAverage value = (1/Area) × ∬ f dA'}
+        variables={[
+          { symbol: '∬ f dA', meaning: 'Sum of f(x,y) × tiny area over the whole region' },
+          { symbol: 'dA', meaning: 'A tiny piece of area (dx × dy)' },
+          { symbol: 'x₁,x₂', meaning: 'Horizontal bounds of the region' },
+          { symbol: 'y₁,y₂', meaning: 'Vertical bounds of the region' },
+          { symbol: 'Fubini', meaning: 'Theorem: you can reverse dy dx order with same result' },
+        ]}
+        explanation="A double integral is just a single integral done twice. First integrate over y while treating x as a constant — this gives a function of x only. Then integrate that result over x. The key insight: dA = dx × dy, so we are really splitting the 2D region into infinitely many infinitesimally thin slices."
+      />
+
+      <Sec title="Frequently asked questions">
+        {FAQ.map((f, i) => <Acc key={i} q={f.q} a={f.a} open={openFaq === i} onToggle={() => setOpenFaq(openFaq === i ? null : i)} color={C} />)}
+      </Sec>
+    </div>
+  )
 }
